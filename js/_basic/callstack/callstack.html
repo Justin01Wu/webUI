@@ -1,0 +1,39 @@
+<h1>test call stack</h1>
+<br/>
+
+<script>
+	
+//---------------------------------------------------------
+// 调用栈的遍历
+//---------------------------------------------------------
+
+function foo1(v1, v2) {
+  foo2(v1 * 100);
+}
+
+function foo2(v1) {
+  foo3(v1 * 200);
+}
+
+function foo3(v1) {
+  var foo = arguments.callee;
+  while (foo && (foo != window)) {
+  	var name = (foo.arguments.callee.toString()).match(/function\s(\w+)\s*\(/);
+    document.writeln(name[1] + ' called parameter: <br>', '--------------------<br>');
+
+    var args = foo.arguments, argn = args.length;
+    for (var i=0; i<argn; i++) {
+      document.writeln('args[', i, ']: ', args[i], '<br>');
+    }
+    document.writeln('<br>');
+
+    // 上一级
+    foo = foo.caller;
+  }
+}
+
+// 运行测试
+foo1(1, 2);
+
+</script>
+

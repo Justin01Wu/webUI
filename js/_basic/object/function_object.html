@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta charset=utf-8 />
+</head>
+<body>
+
+	<h1>test function object</h1>
+	<br />
+
+	<button onClick=test();>test object with default</button>
+	<button onClick=testAnotherName();>test object with another
+		name</button>
+	<button onClick=printProp();>print all properties</button>
+	<button onClick=printThisInFunction();>print this in function</button>
+	<button onClick=printThisInObject();>print this in object</button>
+
+	<button onClick=anotherWayCreateObj();>another way to create Obj</button>
+	<button onClick=thirdWayCreateObj();>third way to create Obj</button>
+
+	<br />
+	<label id="infoLabel"></label>
+
+	<script>
+	
+//---------------------------------------------------------
+// how JavaScript declare an object
+//---------------------------------------------------------
+function Person(myName) {
+	var status = 'single';  
+	if(myName){
+		this.name = myName;
+	}else{
+		this.name = 'default name';
+	}  
+
+  this.sayHi = function() {
+  	var info = document.getElementById('infoLabel');
+  	info.innerHTML = info.innerHTML +' <br/> hi ' + this.name;
+  }
+}
+
+// here Person is used as contructor
+function test(){
+	var person1 = new Person();
+	person1.sayHi();
+}
+
+function testAnotherName(){
+	var person2 = new Person("Justin");
+	person2.sayHi();
+}
+
+// JavaScript use for ..in to get all properties
+function printProp(){
+	
+	var person3 = new Person("Kelvin");
+	// status is not counted as the properties of Person
+	
+	var info = document.getElementById('infoLabel');
+	for (var p in person3) {
+		info.innerHTML = info.innerHTML +' <br/>  ' + p;
+	}
+}
+
+function printThisInFunction(){
+	var info = document.getElementById('infoLabel');
+	info.innerHTML = info.innerHTML +' <br/> this = ' + this ;
+}
+
+function printThisInObject(){
+	var person = new Person("Yan");
+	printThisInFunction.call(person);
+}
+
+function anotherWayCreateObj(){
+	
+	var person = function() {
+		var name= 'sds';
+		var age =34;
+		
+		return {
+			sayHi2: function (){
+				var info = document.getElementById('infoLabel');
+				info.innerHTML = info.innerHTML +' <br/> hi ' + name ;
+			}
+		}
+	}();
+	
+	person.sayHi2();
+	var info = document.getElementById('infoLabel');
+	for (var p in person) {
+		info.innerHTML = info.innerHTML +' <br/>  ' + p;
+	}
+
+}
+
+
+function thirdWayCreateObj(){
+	
+	var person = {
+			name: 'sdffg',
+			age: 34,
+			
+			sayHi3: function (){
+				var info = document.getElementById('infoLabel');
+				info.innerHTML = info.innerHTML +' <br/> hi ' + name ;
+			}
+			
+	}
+	for (var p in person) {
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/>  ' + p;
+	}
+
+
+}
+
+
+
+</script>
+</body>
+
+</html>

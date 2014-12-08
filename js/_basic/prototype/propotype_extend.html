@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta charset=utf-8 />
+</head>
+<body>
+
+	<h1>test prototype extended</h1>
+	<br />
+
+	<br />
+	<label id="infoLabel"></label>
+
+	<script>
+		//---------------------------------------------------------
+		// how JavaScript extend propotype
+		//---------------------------------------------------------
+		
+		var info = document.getElementById('infoLabel');
+		
+		
+		function Person(name) {
+			this.name = name;
+		};
+		Person.prototype.company = "Microsoft"; //原型的属性 
+		Person.prototype.SayHello = function() //原型的方法 
+		{
+			//alert("Hello, I'm " + this.name + " of " + this.company);
+			info.innerHTML = info.innerHTML + " <br/> Hello, I'm " + this.name + " of " + this.company;
+		};
+
+		var BillGates = new Person("Bill Gates");
+		BillGates.SayHello(); //由于继承了原型的东西，规规矩矩输出：Hello, I'm Bill Gates 
+		
+		var SteveJobs = new Person("Steve Jobs");
+		SteveJobs.company = "Apple"; //设置自己的company属性，掩盖了原型的company属性 
+		
+		SteveJobs.SayHello = function() //实现了自己的SayHello方法，掩盖了原型的SayHello方法 
+		{
+			//alert("Hi, " + this.name + " like " + this.company + ", ha ha ha ");
+			info.innerHTML = info.innerHTML + " <br/> Hi, " + this.name + " like " + this.company + ", ha ha ha ";
+		};
+		SteveJobs.SayHello(); //都是自己覆盖的属性和方法，输出：Hi, Steve Jobs like Apple, ha ha ha 
+		BillGates.SayHello(); //SteveJobs的覆盖没有影响原型对象，BillGates还是按老样子输出
+		
+		
+		Person.prototype.Retire = function() //建立对象后再动态扩展原型的方法 
+		{ 
+			//alert("Poor " + this.name + ", bye bye!"); 
+			info.innerHTML = info.innerHTML + " <br/> Poor " + this.name + ", bye bye!";
+		}; 
+		BillGates.Retire(); //动态扩展的方法即可被先前建立的对象立即调用 
+		
+	</script>
+</body>
+
+</html>

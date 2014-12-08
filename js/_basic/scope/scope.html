@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta charset=utf-8 />
+</head>
+<body>
+
+<h1>test variable scope</h1>
+<br/>
+
+<button onClick=printStatus();>print global status</button>
+<button onClick=printMyStatus();>print inner status</button>
+<button onClick=printClosureStatus();>print closure status</button>
+<button onClick=changeValueTest();>change String value to 'changed'(it will come back after it return)</button>
+<button onClick=changeRefTest();>change ref value to 'changed'(it will keep it after it return)</button>
+<br/>
+<label id="infoLabel"></label>
+
+<script>
+	var status="single";
+
+function printStatus() {
+  	var info = document.getElementById('infoLabel');
+  	info.innerHTML = info.innerHTML +' <br/> status= ' + status;
+}
+
+function printMyStatus() {
+	var status =  "Married";
+  var info = document.getElementById('infoLabel');
+  info.innerHTML = info.innerHTML +' <br/> status= ' + status;
+}
+
+function printStatus2() {
+  	var info = document.getElementById('infoLabel');
+  	info.innerHTML = info.innerHTML +' <br/> status= ' + status2;
+}
+
+function printClosureStatus() {
+	var status2 =  "Devoiced";
+	
+	printStatus();  // will print single	
+	//printStatus2();  will complain status2 is not defined in it
+}
+
+function changeValue(status) {
+	status = 'changed';
+}
+function changeValueTest() {
+	var status =  "orig";
+	
+	changeValue(status);  
+	//changeStatus try to change status, but it is value parameter ( basic variable type ), 
+	//so the old value will come back after it return
+	
+	var info = document.getElementById('infoLabel');
+  info.innerHTML = info.innerHTML +' <br/> status= ' + status;
+	
+}
+
+function changeRef(person) {
+	person.name = 'changed';
+}
+function changeRefTest() {
+	
+	var person = {	name: "orig" };
+	
+	changeRef(person);  
+	//changeRef try to change status, because it is ref parameter , 
+	//so it will keep it after it return
+	
+	var info = document.getElementById('infoLabel');
+  info.innerHTML = info.innerHTML +' <br/> name = ' + person.name;
+	
+}
+
+</script>
+</body>
+
+</html>

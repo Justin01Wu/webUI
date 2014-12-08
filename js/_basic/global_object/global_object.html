@@ -1,0 +1,49 @@
+<html>
+<head>
+	<meta charset=utf-8 />
+</head>
+<body>
+
+<h1>test implicit global object</h1>
+<br/>
+
+<button onClick=implicitGlobal();>create implicit global variable</button>
+<button onClick=printImplicitGlobalVar();>print implicit global variable</button>
+
+<br/><br/>
+
+<button onClick=StopImplicitGlobal();>stop to create implicit global variable(Please open console to see the error)</button>
+<br/><br/>
+
+<label id="infoLabel"></label>
+<br/><br/>
+
+<script>
+	var status="single";  
+	// here we create a explicit global variable by declaring it in global scope  	
+
+function implicitGlobal() {
+  	implicitGlobalVar = "I am 'implicitGlobalVar', an implicit global variable";  
+	// here we create an implicit global variable by no "var"  	
+	var info = document.getElementById('infoLabel');
+	info.innerHTML = info.innerHTML +' <br/> implicit global Var is created, please click the second button to get it';
+}
+
+function printImplicitGlobalVar() {
+  var info = document.getElementById('infoLabel');
+  info.innerHTML = info.innerHTML +' <br/> implicitGlobalVar= ' + implicitGlobalVar;
+}
+
+function StopImplicitGlobal() {
+	"use strict";
+  	implicitGlobalVar2 = "I am 'implicitGlobalVar2', an implicit global variable";  
+	// here we will get a kind of error when create an implicit global variable with "use strict"  	
+}
+
+</script>
+
+it comes from <a href="http://blog.niftysnippets.org/2008/03/horror-of-implicit-globals.html" target=_blank>here</a>
+<br/> and  <a href="http://stackoverflow.com/questions/6888570/declaring-variables-without-var-keyword" target=_blank>here</a>
+</body>
+
+</html>

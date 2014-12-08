@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta charset=utf-8 />
+</head>
+<body>
+
+	<h1>test readonly properties</h1>
+	<h2>browser has to support ECMAScript 5</h2>
+	<br />
+
+	<button onClick=readProp();>retrieve readonly properties</button>
+	<button onClick=writereadOnlyProp();>write readonly properties</button>
+	<button onClick=writeProp();>write writable properties</button>
+
+	<br />
+	<label id="infoLabel"></label>
+
+	<script>
+		//---------------------------------------------------------
+		// how JavaScript set readonly properties
+		//---------------------------------------------------------
+		var obj = {};
+		Object.defineProperty(obj, "prop", {
+			value: "test",
+			writable: false   //  defineProperty always use false as the default value, so you can remove this line
+		});
+		
+		Object.defineProperty(obj, "prop2", {
+			value: "justin",
+			writable: true
+		});		
+		
+	function readProp() {
+		var value = obj.prop;	
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/> obj.prop = ' + value;
+	}		
+	
+	function writereadOnlyProp() {
+		obj.prop ="test2";	
+		var value = obj.prop;
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;
+	}		
+	
+	function writeProp() {
+		obj.prop2 ="justin2";	
+		var value = obj.prop2;
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/> obj.prop now = ' + value;
+	}	
+		
+	</script>
+	
+	<br/><br/>
+	<br/><br/>
+	it comes from <a href="http://stackoverflow.com/questions/7757337/defining-read-only-properties-in-javascript" target=_blank>here</a>
+</body>
+
+</html>
