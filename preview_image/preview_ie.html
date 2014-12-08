@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+        <meta charset=utf-8 />
+        <title>preview image on IE</title>
+        <style>            
+            #preview_ie {
+                FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+            }
+        </style>
+    </head>
+
+    <body>        
+
+        <script src="js/libs/jquery-1.9.1.js"></script>
+
+        <h1> preview image before submit (only for IE9 and IE9-) </h1>
+        <h2> need to enable ActiveX before load an image </h2>
+        <h2> please change browser mode to IE9 or below</h2>
+        <h2> need to run from web server if you are using IE 10 or 11</h2>
+
+
+        <form id="form1" >
+            <input type='file' id="imgInp" />
+        </form>
+        <div id="preview_ie">
+        </div>
+
+
+        <script >
+            function readURL(imgFile)
+            {
+                var newPreview = document.getElementById("preview_ie");
+                newPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgFile.value;
+                newPreview.style.width = "160px";
+                newPreview.style.height = "120px";
+            }
+            $(document).ready(function () {
+                $("#imgInp").change(function () {
+                    readURL(this);
+                });
+            });
+        </script>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        comes from <a href="http://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded"> here </a>
+    </body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>preview image on modern browser</title>
+        <script type="text/javascript" src="js/libs/jquery-1.9.1.js"></script>
+		
+    </head>
+    <body>
+
+        <h1> preview image before submit(doesn't support IE9-)</h1>
+	<h2> need to run from web server if you are using IE 10 or 11</h2>
+        comes from <a href="http://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded"> here </a>
+        <form id="form1" >
+            <input type='file' id="imgInp" />
+            <img id="blah" src="#" alt="your image" />
+        </form>
+
+
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }else{
+					if(window.console){
+						console.log('going to bind event');
+					}				
+				}
+            }
+            $(document).ready(function () {
+                $("#imgInp").change(function () {
+                    readURL(this);
+                });
+            });
+        </script>
+
+
+    </body>
+
+</html>
