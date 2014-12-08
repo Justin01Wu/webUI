@@ -1,0 +1,11 @@
+<div id="project">
+		<div ng-if="loading">
+			<img src="img/loading_circle.gif" />
+		</div>
+		<div ng-if="project">
+			<b>Name: </b>{{project.name}}<br/>
+			<b>Type: </b>{{project.type}}<br/>
+			<b>Underwriter: </b>{{project.underwriter}}<br/>
+			<b>Profit Center: </b>{{project.profile}}
+		</div>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/angular1.2.25.js"></script>
+<script src="js/app.js"></script>
+</head>
+
+<body>
+	<h1> test $log</h1>
+	<h2> please open console to see the result </h2>
+	<div ng-app="myApp" ng-controller="personController">
+
+		First Name: <input type="text" ng-model="firstName"><br>
+		Last Name: <input type="text" ng-model="lastName"><br>
+		<br>
+		Full Name: {{firstName + " " + lastName}}
+		
+		<br/><br/>		
+
+		
+	</div>
+	
+	<br/>
+	<br/>
+	
+</body>
+</html>
+
+

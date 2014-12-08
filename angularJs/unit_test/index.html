@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/angular1.2.25.js"></script>
+<script src="js/app.js"></script>
+</head>
+
+<body>
+	<h1>unit test Example with Jasmine</h1>
+	
+	<div ng-app="myApp2" ng-controller="personController">
+
+		First Name: <input type="text" ng-model="firstName"><br>
+		Last Name: <input type="text" ng-model="lastName"><br>
+		<br>
+		Full Name: {{firstName + " " + lastName}}
+		
+		<br/><br/>
+		
+		<h3>without server side, don't click the button, it is there just for unit test</h3>
+		<button ng-click="retrieveNewPerson()">get new person(don't click me)</button>
+		
+	</div>
+	
+	<br/>
+	<br/>
+	<a href="unit_test.html" target="_blank">unit test results</a>
+	
+</body>
+</html>
+
+

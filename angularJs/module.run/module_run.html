@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <script src="angular1.2.25.js"></script>
+	  <script src="module_run.js"></script>
+	</head>
+
+	<body>
+	<h1> this is a demo of AngualrJs module run order</h1>
+	
+	<p><strong>Run blocks</strong> - get executed after the injector is created and are
+		used to kickstart the
+		application. Only instances and constants can be injected into run blocks. This is to prevent
+		further system configuration during application run time.</p>
+  
+	<p>Run blocks are the closest thing in Angular to the main method. A run
+	block is the code which needs to run to kickstart the application. It
+	is executed after all of the service have been configured and the
+	injector has been created. Run blocks typically contain code which is
+	hard to unit-test, and for this reason should be declared in isolated
+	modules, so that they can be ignored in the unit-tests.</p>
+	
+	<strong style="color: red;">Please open browser console to see the initialization order</strong>
+	<br/><br/>
+	
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<p>message from app.run:  	
+		{{someData.message}}</p>
+		<br/>
+		<div test1 test2> </div>
+	</div>
+	
+	<a href = "http://stackoverflow.com/questions/20663076/angularjs-app-run-documentation">it comes from here</a>
+	
+</html>

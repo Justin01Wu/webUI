@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <script src="angular1.2.25.js"></script>
+	  <script src="script.js"></script>
+	</head>
+
+	<body>
+	<h1> this is a demo of AngualrJs reusable component</h1>
+
+	<div ng-app="myDirectives">		
+		<div>
+			<message msg2="I am using message component once"></message> 
+			<message msg2="I am using message component Twice"></message> 
+		</div>
+		
+		<div superman flash>
+		</div>		
+		<!-- superman only support html  attribute, so <superman/> will fail silently  -->
+		
+		<br/>
+	</div>
+	
+	<a href = "http://www.objectpartners.com/2013/08/13/angular-js-create-reusable-html-widgets-with-directives/">it comes from here</a>
+	<br/>
+	<a href = "http://stackoverflow.com/questions/13619264/reusable-components-in-angularjs">and here</a>
+</html>

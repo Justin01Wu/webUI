@@ -1,0 +1,21 @@
+.container {
+	margin: 20px 0px 900px;
+	background: none repeat scroll 0% 0% #0F0;
+}
+
+.right {
+	padding: 20px 20px 200px;
+	overflow: auto;
+	background: none repeat scroll 0% 0%  #CCC;
+}
+
+.left {
+	width: 360px;
+	padding: 20px;
+	float: left;
+}
+
+footer {
+    color: #CCC;
+    background: none repeat scroll 0% 0% #300;
+}

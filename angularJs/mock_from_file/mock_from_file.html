@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/angular1.2.25.js"></script>
+		<script src="js/angular-mocks1.2.27.js"></script>	  
+		<script src="js/mock_from_file.js"></script>
+	</head>
+
+	<body>
+	<h1> this is a demo of AngualrJs component load data from file</h1>
+
+	<strong style="color: red;">Please use firefox to open the page if you are in local file</strong>
+	<br/>
+	<strong style="color: red;">or add --allow-file-access-from-files parameter if you like chrome</strong>
+	
+	<br/>
+	
+	<div ng-app="myAppDev" >	
+		<div class="container" ng-controller="mainController">	
+			<div class="left" >
+				<p>Please select a project</p>
+				<select ng-model="selectedProject" ng-options="project as project.name for project in projects"></select>
+				<br/>
+				selected Project: {{selectedProject.id}}-{{selectedProject.name}}
+				<pre>{{selectedProject | json}}</pre>
+			</div>
+			<div class="right">
+				<project project11="{{selectedProject.id}}"></message> 	
+				<!-- one way binding has to use {{}}, it will be converted to string -->				
+				<!-- two way binding use variable without {{}} -->				
+			</div>
+		<br/>
+		</div>
+	</div>
+
+</html>
