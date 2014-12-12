@@ -1,0 +1,12 @@
+.clearfix { 
+	zoom: 1; 
+}
+.clearfix:before, .clearfix:after { 
+	content: "\0020";   /* add a space after and before this element to stop  */
+	display: block; 
+	height: 0; 
+	overflow: hidden; 
+}
+.clearfix:after { 
+	clear: both; 
+}
