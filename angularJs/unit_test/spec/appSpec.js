@@ -86,6 +86,8 @@ describe('test app itself', function() {
 
 	// third test suite can be put in the same file
 	describe("test nothing", function() {
+		xit('disabled test case', function () {
+		});
 	});
 
 
