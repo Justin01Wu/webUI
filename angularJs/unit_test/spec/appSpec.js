@@ -5,6 +5,10 @@ describe('test app itself', function() {
   // it loads only the "ng" module by default.
   beforeEach(module('myApp2'));
   
+  var foo;
+  beforeAll(function() {
+    foo = 1;
+  });
  
   it("contains spec with an expectation", function() {
     console.log('contains spec with an expectation');
