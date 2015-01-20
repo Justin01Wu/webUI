@@ -1,0 +1,4 @@
+(1) Chrome doesn't support multiple styles on the same element, but old IE support it , fox example:
+   <input type="text" id="pm_name"  class="edline" style="width:310;" readonly style="font-weight:bold"/>
+   Chrome will miss the second style
+   

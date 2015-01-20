@@ -1,0 +1,30 @@
+
+.main {
+    font: 100% Verdana, Arial, Helvetica, sans-serif;
+    background: #cccccc;
+    margin: 0; 
+    padding: 0;
+    text-align: center; 
+    color: #000000;
+}
+
+
+.main #main_content {
+	display:table;
+    height: auto;
+    width: auto;
+    padding: 5px;
+    margin: 0 auto;
+	background: #4ccccc;
+	text-align: left;  
+}
+
+.item_details {
+    margin: 10px;
+    padding: 25px;
+    float: left;
+	background: #4cffcc;
+    border-bottom: 0.5px solid blue;
+}
+
+.clear { clear: both; }
