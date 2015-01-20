@@ -1,0 +1,22 @@
+.wrong {
+	width: 300px;
+	height: 16px;
+	padding: 0px;
+	padding-top: 2px;
+	background-color: #338833;
+	color: #f0ffff;
+	text-align: center;
+	font-size: 90%; 
+}
+
+.correct {
+	float: left;  /* this line is the fixing*/
+	width: 300px;
+	height: 16px;
+	padding: 0px;
+	padding-top: 2px;
+	background-color: #338833;
+	color: #f0ffff;
+	text-align: center;
+	font-size: 90%; 
+}
