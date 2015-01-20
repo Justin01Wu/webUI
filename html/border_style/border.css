@@ -1,0 +1,5 @@
+.shadow {
+	border-width: 0px; 
+	padding: 0px;
+	box-shadow: -1px -1px black; 
+}
