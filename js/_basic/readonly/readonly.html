@@ -37,10 +37,10 @@
 	}		
 	
 	function writereadOnlyProp() {
-		obj.prop ="test2";	
+		obj.prop ="test2";	//silently fail
 		var value = obj.prop;
 		var info = document.getElementById('infoLabel');
-		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;
+		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;  // still old value
 	}		
 	
 	function writeProp() {
