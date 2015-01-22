@@ -1,0 +1,2 @@
+in Compatibility View (old IE) document.getElementById is case insensitive
+but modern browser and new IE, it is case sensitive.
