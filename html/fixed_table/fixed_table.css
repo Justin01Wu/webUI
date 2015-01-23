@@ -1,0 +1,19 @@
+table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 300px;
+}
+
+th, td {
+    border: 1px solid black;
+    overflow: hidden;
+	white-space: nowrap
+}
+
+table th:nth-child(1){
+    width: 25%;
+}
+
+table th:nth-child(2){
+    width: 55%;
+}
