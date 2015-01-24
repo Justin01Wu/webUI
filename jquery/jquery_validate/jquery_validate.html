@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>test jquery validate</title>
+</head>
+
+<body>
+	<script src="js/libs/jquery-1.9.1.js"></script>	
+	<script src="js/libs/jquery.validate-1.11.0.js"></script>
+	
+	<br />
+	<br />
+	<h1>test jquery validate</h1>
+
+	<form class="cmxform" id="commentForm" method="get" action="">
+		<fieldset>
+			<legend>Please provide your name, email address (won't be
+				published) and a comment</legend>
+			<p>
+				<label for="cname">Name (required, at least 2 characters)</label> 
+				<input id="cname" name="name" minlength="2" type="text" required />
+			</p>
+			<p>
+				<label for="longStr">Long String (not required, must less than 10 characters)</label> 
+				<input id="longStr" name="longStr" maxlength="10" type="text"/>
+			</p>
+			<p>
+				<label for="cemail">E-Mail (required)</label> 
+				<input id="cemail"	type="email" name="email" required />
+			</p>
+			
+			<p>
+				<label for="clocation">Location (optional)</label> 
+				<input id="clocation" name="location" type="text"  />
+			</p>
+
+			<p>
+				<label for="curl">URL (optional)</label> 
+				<input id="curl" type="url"	name="url22" />
+			</p>
+			<p>
+				<label for="ccomment">Your comment (required)</label>
+				<textarea id="ccomment" name="comment" required></textarea>
+			</p>
+			<p>
+				<input class="submit" type="submit" value="Submit" />
+			</p>
+		<p>
+				<label id='myshowErrors' name="myshowErrors">test show error    </label><br/>
+		</p>
+
+		</fieldset>
+	</form>
+	
+		<input type="button" value="click to show msg" onclick="showMsg()"/>
+		<input type="button" value="add rules to location" onclick="addRules()"/>
+		<input type="button" value="validate comment field only" onclick="validateCommentOnly()"/>
+		
+	<script>
+		$(document).ready(function () {
+    	$("#commentForm").validate();    	
+  	})    
+    
+     function addRules(){
+     	
+     	$( "#clocation" ).rules( "add", {
+				required: true,
+				minlength: 2,
+				messages: {
+					required: "   Required input324345",
+					minlength: $.validator.format("Please, at least {0} characters are necessary")
+				}
+		});
+    	var validator  = $("#commentForm").validate();
+			validator.form();
+			//validator.element( "#curl" );
+			
+			
+		}
+    
+    function validateCommentOnly(){
+    	var validator  = $("#commentForm").validate();
+    	validator.element( "#ccomment" );
+    }
+    
+    function showMsg(){
+			var validator = $( "#commentForm" ).validate();
+			validator.showErrors({
+				"myshowErrors": "   ==--I know that your firstname is Pete, Pete!"
+			});
+		}
+    
+  </script>
+
+</body>
+</html>
+
