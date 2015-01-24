@@ -1,0 +1,21 @@
+
+.bbm .emoticonDevil {
+    background-position: -4566px 0px;
+    /*background-position: -9133px 0px;*/
+}
+
+.bbm .emoticon {
+    background-image: url('../inline_images_font_emoticons.png');
+    background-size: auto 38px;
+    background-repeat: no-repeat;
+    width: 38px;
+    height: 38px;
+    outline: medium none;    
+    display: inline-block;
+    border: medium none;
+}
+.bbm div img {
+    background-color: transparent;
+}
+
+
