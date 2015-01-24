@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>test bootstrap slider</title>
+
+<link href="css/bootstrap2.3.2.css" rel="stylesheet" />
+<link href="css/bootstrap-slider-3.0.0.css" rel="stylesheet" />
+</head>
+<body>
+
+	<br />
+	<br />
+	<h1>test bootstrap slider </h1>
+
+
+<span>13</span><div class="age_slider"></div><span>50</span>
+	
+	
+	<!-- Button disable slider -->
+<button class="btn btn-primary btn-lg"  onclick="toggleSlider()" >
+  toggle Slider(enable or disable)
+</button>
+
+<br/><br/>
+
+Slider value: <lable id="dispValue">19</label>
+
+
+	<script src="js/libs/jquery-1.9.1.js"></script>	
+	<script src="js/libs/bootstrap-slider-3.0.0.js"></script>
+	
+	<script>
+		 $('.age_slider').slider({
+          min: 13,
+          max: 50,
+          value: 19,
+          tooltip: "hide"
+        })
+    .on('slideStop', function(ev){
+			//console.log('slide');    
+			//console.log('slide');
+			console.log("new value: "+ ev.value); 
+			$("#dispValue").text(ev.value);
+    });    
+    
+    function toggleSlider(){
+    	$('.age_slider').slider('toggle');
+    }
+	</script>
+
+</body>
+</html>
+
