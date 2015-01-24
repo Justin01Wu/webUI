@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Bootstrap Dual Listbox</title>
+
+
+<style>
+	
+.span12 {
+  width: 940px;
+}
+
+
+
+.row-fluid:before, .row-fluid:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.row-fluid:after {
+    clear: both;
+}
+
+.row-fluid [class*="span"]:first-child {
+  margin-left: 0;
+}
+
+.row-fluid [class*="span"] {
+    -moz-box-sizing: border-box;
+    display: block;
+    float: left;
+    margin-left: 2.12766%;
+    min-height: 30px;
+    width: 100%;
+}
+
+.row-fluid {
+    width: 100%;
+}
+
+#restrictContry select {
+  background: transparent;
+}
+
+.row-fluid .span6 {
+  width: 48.9362%;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  background-image: url("./img/glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 14px;
+  line-height: 14px;
+  margin-top: 1px;
+  vertical-align: text-top;
+  width: 14px;
+}
+
+.icon-arrow-right {
+  background-position: -264px -96px;
+}
+.icon-arrow-left {
+  background-position: -240px -96px;
+}
+.bbm .bootstrap-duallistbox-container select {
+	background: none;
+}
+
+
+.btn-group {
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+body {
+    color: #333333;
+    font-family: 'Ubuntu',Tahoma,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+[class*="span"] {
+  float: left;
+  margin-left: 20px;
+  min-height: 1px;
+}
+
+}
+</style>
+
+<link href="bootstrap-responsive.css" rel="stylesheet" type="text/css" media="all">
+<link href="bootstrap-duallistbox.css" rel="stylesheet" type="text/css" media="all">
+        
+<script src="jquery-1.9.1.js"></script>
+<script src="jquery.bootstrap-duallistbox.js"></script>
+
+<script>
+	function b1Click(){
+		
+		var selector = document.getElementById("select67");
+		//alert('selected values:' + selector );
+		
+		 var x = 0;
+			var SelectedValues = "";
+     for (x=0; x<selector.length; x++)
+     {
+        if (selector[x].selected)
+        {
+         SelectedValues = SelectedValues + selector[x].value + ",";
+        }
+     }
+     alert(SelectedValues);
+	};
+</script>
+</head>
+
+<body>
+<h1>comes from <a href=http://www.jqueryscript.net/demo/Responsive-jQuery-Dual-Select-Boxes-For-Bootstrap-Bootstrap-Dual-Listbox/>bootStrap</a></h1>
+<button type="button" id=b1 onclick="b1Click()">get selected values</button> 
+
+<div class="container-fluid" style="max-width:920px;margin:0 auto;">
+        	
+        	
+	<div class="row-fluid">
+		<div class="row-fluid>
+			<div class="span12">
+					<select multiple="true" size="10" name="duallistbox_demo1" id="select67">
+									<option value="CA">Canada</option>
+									<option value="AF">Afghanistan</option>
+									<option value="BR" >Brazil</option>
+									<option value="CN">China</option>
+									<option value="CU" selected="selected">Cuba</option>
+									<option value="FI" selected="selected">Finland</option>
+									<option value="FR">France</option>
+									<option value="DE">Germany</option>
+									<option value="JP">Japan</option>
+									<option value="option0">Option 10</option>
+					</select>
+					<script>
+		       var demo1 = $('[name=duallistbox_demo1]').bootstrapDualListbox(
+		       {
+		       	infotext: 'blocked countries {0}'
+		       	});
+		       	
+		       	
+		     </script> 
+		 </div>  
+	  </div>  
+	</div>
+	
+	
+</div>
+
+</body>
