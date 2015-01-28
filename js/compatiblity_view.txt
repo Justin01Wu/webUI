@@ -1,2 +1,16 @@
-in Compatibility View (old IE) document.getElementById is case insensitive
+(1) Compatibility View is the way IE try to implement backwards Compatibility 
+   when newer IE version is transferring itself to W3C spec
+
+(2) Compatibility View can't set by pages, it is controlled by the client or IT policy
+
+(3) in Compatibility View (old IE) document.getElementById is case insensitive
 but modern browser and new IE, it is case sensitive.
+
+(4) child window which is opened by window.open can have different View setting from base window
+
+
+(5) Compatibility View is not document mode. document mode is controlled by pages.
+
+(6) parent doc and child doc in frames can have different doc mode, 
+    but unfortunately  in IE console you can only see parent doc mode
+
