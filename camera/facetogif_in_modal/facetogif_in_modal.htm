@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>face to gif</title>
+<link href="css/gif_creator.css" rel="stylesheet" />
+<link href="css/bootstrap2.3.2.css" rel="stylesheet" />
+<link href="css/bootstrap-modal2.3.2.css" rel="stylesheet" />
+<link href="css/bootstrap-responsive2.3.2.css" rel="stylesheet" />
+
+<script src="js/lib/jquery-1.9.1.js"></script>
+<script src=js/lib/gif.js></script>
+<script src="js/lib/bootstrap2.3.2.js"></script>
+<script src="js/lib/bootstrap-modal2.1.js"></script>
+<script src="js/lib/bootstrap-modalmanager2.1.js"></script>
+<script src="js/lib/handlebars-1.0.0-rc.3.js"></script>
+<script src="js/lib/ember-1.0.0-rc.2.js"></script>
+<script src=js/facetogif_in_modal.js></script>
+
+</head>
+<body>
+
+<script type="text/x-handlebars" >
+  {{view Ember.TextField id="post-title-field-value"   name="post-title"   maxlength=100 class="vcell field postTitle" valueBinding="newTitle" placeholderTranslation="post.form.hintTitle"}}
+  {{view Ember.TextArea  id="post-content-field-value" name="post-content" maxlength=400 class="vcell field postContent" valueBinding="newContent" placeholderTranslation="post.form.hintBody"}}
+<br/>
+<br/>
+<br/>
+
+<button type="button"
+		onclick="openGifCreator()">open modal</button>
+
+	<div class="modal hide" id="gif-creator">
+
+		<div class="container" id="gif-creator-container">
+			<button class="ui-button request-stream" id=put-your-face-here onclick="switchCamera()">click here to start camera</button>
+			<span class=recording-indicator id=recording-indicator></span>
+			<video autoplay width=320 height=240 id="video665"></video>
+			<div class="gif-maker-controls">
+				<button class="ui-button recording-toggle" id=start-recording onclick="startRecording()">start	recording</button>
+			</div>
+		</div>		
+		
+		<output id=gif-go-here>
+			<div id="controls-template" class="gif-maker-controls">
+				<button class="ui-button save img" id="saveResult" onclick="insertGif()"><span>I like it. Post it</span></button>
+				<button class="ui-button remove img to-danger" id="removeImg" onclick="removeGif()"><span>Retry</span></button>
+				<button class="ui-button remove img to-danger" id="cancelImg" onclick="hideGifModal()"><span>Cancel</span></button>
+			</div>
+		</output>
+
+
+	</div>
+	
+	
+<div class="modal hide" id="messageBox">	
+
+	<div class='modal-header'>
+		<h2 class='text-center'>Error</h2>
+  </div>
+  <div class='modal-body'>
+			<label class="noCamera">You cannot make a GIF without a camera. Sorry.</label>
+			<label class="cameraNotAvailable">Your camera is not working right now. Check nothing else is using your camera and then try again.</label>
+			<label class="noSupport">Unfortunately, this feature is not supported in your browser</label>
+				
+	</div>'
+</div>
+</script>
+
+
+</body>
+</html>
