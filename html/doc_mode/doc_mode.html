@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset=utf-8 />	
+</head>
+<body>
+
+<script>
+window.onload = function(e){ 
+	var docMode = document.documentMode;
+    document.getElementById("docMode").innerHTML = docMode;
+}
+
+function openDialog(docUrl){
+	var height = 300;
+	var width = 400;
+	var iTop = 200;
+	var iLeft = 250;
+	var win=window.open(docUrl,"doc mode", 'height='+height+', width=' + width +
+						', scrollbars=false, location=0, menubar=0, resizable=1,' +
+						' toolbar=0, titlebar=0, status=1, top=' + iTop + 
+						', left=' + iLeft);
+	win.focus();	
+}
+</script>
+
+<h2>Demo how to get document mode (please open this page in IE)</h2>
+
+<ul>
+	<li> Compatibility View is the way IE try to implement backwards Compatibility 
+   when newer IE version is transferring itself to W3C spec
+   </li>
+
+	<li> Compatibility View can't set by pages, it is controlled by the client or IT policy
+	</li>
+	
+	<li> in Compatibility View (old IE) document.getElementById is case insensitive
+but modern browser and new IE, it is case sensitive.
+	</li>
+	
+	<li> Compatibility View is browser mode, not document mode. document mode is controlled by pages.
+	</li>
+	
+	<li> child window which is opened by window.open can have different browser and document mode from base window
+	</li>
+
+	<li> parent doc and child doc in frames can have different doc mode, 
+		but unfortunately  in IE console you can only see parent doc mode
+	</li>
+	
+	<li> doc mode will affect javascript more than Compatibility View, 
+	if doc mode is highe enough, most javascript code will work
+	</li>
+</ul>	
+<h2>Only IE has document mode setting, so please open this page in IE</h2>
+
+<h3>your current mode is <span id ="docMode" style="color:red;"></span></h3>
+
+
+<input id="open" name="open" value="open IE9 mode" type="button" onClick="openDialog('doc_mode_ie9.html')"/>
+<input id="open" name="open" value="open IE8 mode" type="button" onClick="openDialog('doc_mode_ie8.html')"/>
+
+<br/>
+
+</body>
+
+</html>
