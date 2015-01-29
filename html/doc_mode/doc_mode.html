@@ -1,9 +1,4 @@
-<!doctype html>
 <html>
-<head> 
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta charset=utf-8 />	
-</head>
 <body>
 
 <script>
@@ -28,7 +23,15 @@ function openDialog(docUrl){
 }
 </script>
 
-<h2>Demo how to get document mode (please open this page in IE)</h2>
+<h2>Demo how to get document mode (pOnly IE has document mode setting, so please open this page in IE)</h2>
+
+<h3>your current document mode is 
+<label id ="docMode" style="color:red;"></label>&nbsp;
+ compatMode is <label id ="compatMode" style="color:red;"></label>
+<input id="open" name="open" value="open IE9 mode" type="button" onClick="openDialog('doc_mode_ie9.html')"/>
+<input id="open" name="open" value="open IE8 mode" type="button" onClick="openDialog('doc_mode_ie8.html')"/>
+
+</h3>
 
 <ul>
 	<li> Compatibility View is the way IE try to implement backwards Compatibility 
@@ -48,28 +51,21 @@ but modern browser and new IE, it is case sensitive.
 	<li> child window which is opened by window.open can have different browser and document mode from base window
 	</li>
 
-	<li> parent doc and child doc in frames can have different doc mode in Compatibility View, 
+	<li> parent doc and child doc in frames of frameset can have different doc mode in Compatibility View, 
 		but unfortunately in IE console you can only see parent doc mode
+	</li>
+	
+	<li> child doc in iframes will have same doc mode of parent
 	</li>
 	
 	<li> Compatibility View won't affect JavaScript directly, but it will change default doc mode which affect JavaScript  
 	unless page it self set X-UA-Compatible
 	</li>
 </ul>	
-<h2>Only IE has document mode setting, so please open this page in IE</h2>
-
-<h3>your current document mode is 
-<label id ="docMode" style="color:red;"></label>
- compatMode is <label id ="compatMode" style="color:red;"></label>
-<input id="open" name="open" value="open IE9 mode" type="button" onClick="openDialog('doc_mode_ie9.html')"/>
-<input id="open" name="open" value="open IE8 mode" type="button" onClick="openDialog('doc_mode_ie8.html')"/>
-
-</h3>
-
 
 <iframe src="doc_mode_ie8.html" style="height:200px;width:600px"></iframe>
 
-
+<iframe src="doc_mode_none.html" style="height:200px;width:500px"></iframe>
 <br/><br/>
 
 

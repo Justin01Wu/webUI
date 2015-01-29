@@ -1,0 +1,27 @@
+<html>
+<head> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset=utf-8 />	
+</head>
+<body>
+
+<script>
+window.onload = function(e){ 
+	var docMode = document.documentMode;
+    document.getElementById("docMode").innerHTML = docMode;
+	document.getElementById("compatMode").innerHTML = document.compatMode;
+}
+</script>
+
+<h2>X-UA-Compatible = edge ,see what is my doc mode </h2>
+
+<h3>your current mode  is <label id ="docMode" style="color:red;"></label>&nbsp;
+ compatMode is <label id ="compatMode" style="color:red;"></label>
+</h3>
+
+<h2>please change IE browser mode to Compatibility view and see what happen</h2>
+
+
+</body>
+
+</html>
