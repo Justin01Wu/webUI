@@ -10,6 +10,7 @@
 window.onload = function(e){ 
 	var docMode = document.documentMode;
     document.getElementById("docMode").innerHTML = docMode;
+	document.getElementById("compatMode").innerHTML = document.compatMode;
 }
 
 function openDialog(docUrl){
@@ -17,10 +18,12 @@ function openDialog(docUrl){
 	var width = 400;
 	var iTop = 200;
 	var iLeft = 250;
-	var win=window.open(docUrl,"doc mode", 'height='+height+', width=' + width +
-						', scrollbars=false, location=0, menubar=0, resizable=1,' +
-						' toolbar=0, titlebar=0, status=1, top=' + iTop + 
-						', left=' + iLeft);
+	var para = 'height='+height+', width=' + width ;
+	para = para + 	', scrollbars=false';
+	para = para + 	', location=0, menubar=0, resizable=1';
+	para = para +	', toolbar=0, titlebar=0, status=1';
+	para = para +	', top=' + iTop + ', left=' + iLeft;
+	var win=window.open(docUrl,"doc_mode", para);
 	win.focus();	
 }
 </script>
@@ -55,11 +58,17 @@ but modern browser and new IE, it is case sensitive.
 </ul>	
 <h2>Only IE has document mode setting, so please open this page in IE</h2>
 
-<h3>your current mode is <span id ="docMode" style="color:red;"></span></h3>
-
-
+<h3>your current document mode is 
+<label id ="docMode" style="color:red;"></label>
+ compatMode is <label id ="compatMode" style="color:red;"></label>
 <input id="open" name="open" value="open IE9 mode" type="button" onClick="openDialog('doc_mode_ie9.html')"/>
 <input id="open" name="open" value="open IE8 mode" type="button" onClick="openDialog('doc_mode_ie8.html')"/>
+
+</h3>
+
+
+<iframe src="doc_mode_ie8.html" style="height:200px;width:600px"></iframe>
+
 
 <br/><br/>
 

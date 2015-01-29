@@ -10,16 +10,15 @@
 window.onload = function(e){ 
 	var docMode = document.documentMode;
     document.getElementById("docMode").innerHTML = docMode;
+	document.getElementById("compatMode").innerHTML = document.compatMode;
 }
 </script>
 
-<h2>Demo how to get document mode (please open this page in IE)</h2>
+<h2>Demo how to get document mode  and compatMode </h2>
 
-<h2>Only IE has document mode setting, so please open this page in IE</h2>
-
-<h3>your current mode is <span id ="docMode" style="color:red;"></span></h3>
-
-
+<h3>your current mode should be 8, and it is <label id ="docMode" style="color:red;"></label>
+ compatMode is <label id ="compatMode" style="color:red;"></label>
+</h3>
 
 <br/>
 
