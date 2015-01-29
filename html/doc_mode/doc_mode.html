@@ -48,12 +48,12 @@ but modern browser and new IE, it is case sensitive.
 	<li> child window which is opened by window.open can have different browser and document mode from base window
 	</li>
 
-	<li> parent doc and child doc in frames can have different doc mode, 
-		but unfortunately  in IE console you can only see parent doc mode
+	<li> parent doc and child doc in frames can have different doc mode in Compatibility View, 
+		but unfortunately in IE console you can only see parent doc mode
 	</li>
 	
-	<li> doc mode will affect javascript more than Compatibility View, 
-	if doc mode is highe enough, most javascript code will work
+	<li> Compatibility View won't affect JavaScript directly, but it will change default doc mode which affect JavaScript  
+	unless page it self set X-UA-Compatible
 	</li>
 </ul>	
 <h2>Only IE has document mode setting, so please open this page in IE</h2>
