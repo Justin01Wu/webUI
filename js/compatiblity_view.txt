@@ -13,4 +13,7 @@ but modern browser and new IE, it is case sensitive.
 
 (6) parent doc and child doc in frames can have different doc mode, 
     but unfortunately  in IE console you can only see parent doc mode
+	
+(7)	this.document will works in Compatibility View. 
+   But in standard view you have to use window.document, this means current object, not window
 
