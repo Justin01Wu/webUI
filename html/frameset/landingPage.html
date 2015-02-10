@@ -1,0 +1,30 @@
+<html>    
+
+    <body>
+        <h1> this is demo how JavaScript to get variable cross frames in frame set</h1>
+        <h2> Chrome has tough security check on the local, so please use FireFox or IE to open it on the local</h2>
+        <button onClick=getGUser();>get global user</button>
+        <button onClick=getHUser();>get header user</button>
+        <label id="infoLabel"></label>
+
+        <script>
+
+            function getGUser() {
+                var gUser = top.GLOBAL_USER;
+                var info = document.getElementById('infoLabel');
+                info.innerHTML = info.innerHTML + ' <br/> global user = ' + gUser.name;
+            }
+
+            function getHUser() {
+                var hUser = top.frames["ifrHeader"].HEADER_USER;
+                var info = document.getElementById('infoLabel');
+                info.innerHTML = info.innerHTML + ' <br/> header user = ' + hUser.name;
+            }
+
+        </script>
+
+    </body>
+
+
+
+</html>
