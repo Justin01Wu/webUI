@@ -51,4 +51,17 @@ function customersController($scope) {
 	} ];
 
 	$scope.people = mockDataForThisTest;
+	
+	$scope.addMorePeople = function() {
+		
+		for(var i=0;i<1000;i++){
+			var newPerson ={
+				id: i+12,
+				name: "p"+i,
+				country: "country"+i
+			};
+			$scope.people.push(newPerson);
+		}
+	    
+	};
 }
