@@ -1,0 +1,28 @@
+.wrap {
+	width:880px;
+	margin:0 auto;
+	background:#99c;
+}
+
+.left {
+	float: left;
+	width: 350px;
+	background: #9c9;
+}
+
+.right {
+	float: right;
+	width: 450px;
+	background: #c9c;
+}
+
+table {
+	border: 1px solid black;
+	table-layout: fixed;
+	width: 350px;
+}
+
+th, td {
+	border: 1px solid black;
+	height: 24px;
+}

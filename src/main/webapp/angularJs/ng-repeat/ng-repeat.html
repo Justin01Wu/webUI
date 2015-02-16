@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<link rel="stylesheet" href="ng-repeat.css" />
+</head>
+
+<body>
+
+	<h1>demo how ng-repeat works with html table</h1>
+
+	<div class="wrap" ng-app="" ng-controller="customersController">
+	
+	
+		<div class="left">
+			<label>display value in a table:</label>
+			<table>
+				<tr ng-repeat="p in people">
+					<td>{{ p.id }}</td>
+					<td>{{ p.name }}</td>
+					<td>{{ p.country }}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="right">
+			<label>edit value in a table:</label>
+			<table>
+				<tr ng-repeat="x in people">
+					<td>{{ x.id }}</td>
+					<td><input type="text" name="userName" ng-model="x.name" size="10" /></td>
+					<td><input type="text" name="userCountry" ng-model="x.country" size="10"  />
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+	
+	<script src="ng-repeat.js"></script>
+
+</body>
+</html>
