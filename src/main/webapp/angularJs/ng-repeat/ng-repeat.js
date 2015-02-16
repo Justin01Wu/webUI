@@ -12,43 +12,7 @@ function customersController($scope) {
 		id : 3,
 		name : "Yan",
 		country : "China"
-	}, {
-		id : 4,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 5,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 6,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 7,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 8,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 9,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 10,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 11,
-		name : "Yan",
-		country : "China"
-	}, {
-		id : 12,
-		name : "Yan",
-		country : "China"
-	} ];
+	}];
 
 	$scope.people = mockDataForThisTest;
 	
