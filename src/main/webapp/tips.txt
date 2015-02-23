@@ -1,0 +1,3 @@
+(1) In Chrome (version 38 -40, didn't try others), the exception comes from JOSN.parse won't show up which line of JS code it comes from.
+But IE and firefox will show you which line of JS code
+  

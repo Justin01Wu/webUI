@@ -17,3 +17,14 @@ but modern browser and new IE, it is case sensitive.
 (7)	this.document will works in Compatibility View. 
    But in standard view you have to use window.document, this means current object, not window
 
+(8) in Compatibility View (old IE). JSON.parse can handle tab character in a JSON string, which is not allowed in modern browsers because it is not allowed in JSON Sepc.
+
+	From JSON standard:
+	
+	Insignificant whitespace is allowed before or after any token. 
+	The whitespace characters are: character tabulation (U+0009), line feed (U+000A), 
+	carriage return (U+000D), and space (U+0020). Whitespace is not allowed within any token, 
+	except that space is allowed in strings.
+	It means that a literal tab character is not allowed inside a JSON string. 
+	You need to escape it as \t (in a .json-file)
+
