@@ -1,3 +1,5 @@
 (1) In Chrome (version 38 -40, didn't try others), the exception comes from JOSN.parse won't show up which line of JS code it comes from.
-But IE and firefox will show you which line of JS code
+But IE and Firefox will show you which line of JS code
   
+(2)  IE always cache AJAX response until you explicitly appending a query string parameter "_=[TIMESTAMP]"
+ which means 	jQuery.ajax({cache: false, ...  
