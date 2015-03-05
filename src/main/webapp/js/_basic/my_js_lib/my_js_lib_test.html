@@ -23,11 +23,22 @@
 </body>
 
 <script>
+	
 	//use my lib
 	var setting = {msg :"message from outside"}; 
 	var myObj = new Justin_JS_LIB34.Person(setting);
 	myObj.sayMsg1();
 	myObj.sayMsg2();
+	
+	Justin_JS_LIB34.Person.prototype.sayMsg3 = function() { //extend exists prototype 
+		if(window.console){
+			console.log("sayMsg3: " + this.msg);
+		}
+	};
+	
+	// extend existing library sample
+	myObj.sayMsg3();
+	
 </script>
 
 </html>
