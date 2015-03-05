@@ -24,9 +24,10 @@
 
 <script>
 	//use my lib
-	var myObj = Justin_JS_LIB34;
-	myObj.init({msg :"message from outside"});
-	myObj.fun1();
+	var setting = {msg :"message from outside"}; 
+	var myObj = new Justin_JS_LIB34.Person(setting);
+	myObj.sayMsg1();
+	myObj.sayMsg2();
 </script>
 
 </html>

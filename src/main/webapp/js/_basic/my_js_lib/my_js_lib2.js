@@ -11,16 +11,22 @@
  
 	window.Justin_JS_LIB34 = {};
 	var self = window.Justin_JS_LIB34;
-	self.init = function ( settings) {
+	self.Person = function ( settings) {
 		if(settings.msg){
-			self.msg = settings.msg;
+			this.msg = settings.msg;
+		}
+		
+		this.sayMsg2 = function(){
+			if(window.console){
+				console.log("sayMsg2: " + this.msg);
+			}			
 		}
 	};
 	
-	self.fun1 =function() {
-		 	if(window.console){
-				console.log(self.msg);
-		 	}
+	self.Person.prototype.sayMsg1 = function() { //add prototype method
+		if(window.console){
+			console.log("sayMsg1: " + this.msg);
+		}
 	};
 
 })(window);
