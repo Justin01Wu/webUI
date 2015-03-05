@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+</head>
+
+<body>
+
+	<h1>how JavaScript use propotype to add function to data object</h1>
+	<br />
+
+	<br />
+	<label id="infoLabel"></label>
+
+	<script>
+		//---------------------------------------------------------
+		// how JavaScript use propotype to add function to data object 
+		//---------------------------------------------------------
+
+		var info = document.getElementById('infoLabel');
+
+		function Person(obj) {
+			this.name = null; // place hold
+			this.company = null; // place hold
+
+			// ===  IF AN OBJECT WAS PASSED THEN INITIALISE PROPERTIES FROM THAT OBJECT
+			// it comes from 
+			// http://stackoverflow.com/questions/5873624/parse-json-string-into-a-particular-object-prototype-in-javascript
+			for ( var prop in obj) {
+				this[prop] = obj[prop];
+			}
+			
+			
+		};
+
+		Person.prototype.hasCompany = function() { //add 原型的方法
+			if (this.company) {
+				return true;
+			}
+			return false;
+		};
+
+		var jsonObjFromAjax = {
+			"name" : "Justin",
+			"company" : {
+				"name" : "MyCompany",
+				"type" : "finance"
+			},
+			"gender" : "male"
+		};
+
+		var aPerson = new Person(jsonObjFromAjax);
+		console.log(aPerson.name + " hasCompany: " + aPerson.hasCompany());
+		info.innerHTML = aPerson.name + " hasCompany: " + aPerson.hasCompany();
+
+		console.log(aPerson.name + "'s company is " + aPerson.company.name);
+		
+		info.innerHTML = info.innerHTML + " <br/>" + aPerson.name + "'s company is " + aPerson.company.name
+		
+	</script>
+</body>
+
+</html>
