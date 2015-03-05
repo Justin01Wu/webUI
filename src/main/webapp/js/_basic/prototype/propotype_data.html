@@ -20,7 +20,9 @@
 
 		var info = document.getElementById('infoLabel');
 
-		function Person(obj) {
+		var JUSTA={};  // define my name space
+		
+		JUSTA.Person = function(obj) {
 			this.name = null; // place hold
 			this.company = null; // place hold
 
@@ -34,7 +36,7 @@
 			
 		};
 
-		Person.prototype.hasCompany = function() { //add 原型的方法
+		JUSTA.Person.prototype.hasCompany = function() { //add 原型的方法
 			if (this.company) {
 				return true;
 			}
@@ -50,7 +52,7 @@
 			"gender" : "male"
 		};
 
-		var aPerson = new Person(jsonObjFromAjax);
+		var aPerson = new JUSTA.Person(jsonObjFromAjax);
 		console.log(aPerson.name + " hasCompany: " + aPerson.hasCompany());
 		info.innerHTML = aPerson.name + " hasCompany: " + aPerson.hasCompany();
 
