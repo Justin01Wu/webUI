@@ -3,7 +3,10 @@
 (function(window) {
 
 	if(window.Justin_JS_LIB34){
-		throw new Error("Justin_JS_LIB34 has been registered, you can't register twice");
+		if(window.console){
+			console.log("Justin_JS_LIB34 has been registered, skip now");
+		}
+		return;
 	}
  
 	window.Justin_JS_LIB34 = {};
@@ -22,7 +25,3 @@
 
 })(window);
 
-// use my lib
-var myObj = Justin_JS_LIB34;
-myObj.init({msg :"message from outside"});
-myObj.fun1();
