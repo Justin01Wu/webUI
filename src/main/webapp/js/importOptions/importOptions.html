@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+</head>
+
+<body>
+
+	<h1>how JavaScript import selection  options and set default value</h1>
+	<br />
+
+	<input type="button" value="append Option" onclick="appendOption()"><br/><br/>
+	<input type="button" value="change default Option" onclick="setDefaultOption()"><br/><br/>
+
+	<br />
+	<select id="mySelection" size="10">
+		<option value="0" selected="selected">default one</option>
+	</select>	
+	
+
+	<script>
+	
+	function appendOption(){
+		var mySelection = document.getElementById('mySelection');
+		var one =  new Option("Option"+mySelection.options.length, mySelection.options.length);
+		mySelection.add(one, mySelection.options.length);  // append to the end
+		return mySelection;
+		
+	}
+	
+	function setDefaultOption(){
+		var mySelection = appendOption();
+		
+		mySelection.value=1;
+		
+	}
+
+		
+	</script>
+</body>
+
+</html>
