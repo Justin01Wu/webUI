@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<style type="text/css">
+	
+	
+		.col1, .col11{
+			float:left;
+	      	position: relative;
+  			min-height: 1px;
+  			padding-right: 15px;
+  			padding-left: 15px;		
+		} 
+		.col1 {		    
+		    width:8.3333333%;
+		}		
+
+		.col11 {
+		    width:35%;		    	    
+		}		
+				
+		.wrongWrapper:after {
+		    clear: both;
+		}	
+	
+	
+		.correctWrapper:after {  /* this is different*/
+		    content:'';
+		    display:block;
+		    clear: both;
+		}		
+	</style>
+	
+	
+</head>
+
+<body>
+
+	<h1>how to clear both</h1>
+	<br />
+	
+	<div class="wrongWrapper">
+    	<span class="col11">this is wrong CSS to clear both</span>
+    	<span class="col1">end text</span>       
+	</div>
+	<table border=1 >
+		<tr>
+			<td>The table is appended to the end, because clear both doesn't works</td>
+			<td>The table is appended to the end, because clear both doesn't works</td>
+		</tr>
+	</table>
+	
+<br/><br/>
+
+	<div style="width:100%">
+	<div class="wrongWrapper" style="width:100%">
+    	<span class="col11">this is wrong CSS to clear both</span>
+    	<span class="col1">end text</span>       
+	</div>
+	<table border=1 style="width:100%">
+		<tr>
+			<td>The table is appended to the end and stretch out in Firefox, because clear both doesn't works</td>
+			<td>The table is appended to the end and stretch out in Firefox, because clear both doesn't works</td>
+		</tr>
+	</table>
+	</div>
+	
+<br/><br/>
+
+
+	<div class="correctWrapper">
+    	<span class="col11">this is correct CSS to clear both</span>
+    	<span class="col1">end text</span>       
+	</div>
+	<table border=1 >
+		<tr>
+			<td>The table is started from begin, because clear both works</td>
+			<td>The table is started from begin, because clear both works</td>
+		</tr>
+	</table>
+
+	<br />
+	<br /> it comes from
+	<a
+		href="http://stackoverflow.com/questions/10699343/using-after-to-clear-floating-elements"
+		target=_blank>here</a>
+		
+		
+</body>
+
+</html>
+
+
+
