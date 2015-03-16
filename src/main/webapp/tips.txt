@@ -6,3 +6,25 @@ But IE and Firefox will show you which line of JS code
  
  (3) when a page has multiple frame in frame set, you need to choose correct frame in Chrome console to run command properly,
  it is a drop down list on the top of Chrome console
+
+ (4) Chrome will send a error status 0 when browser cancelled a request
+    (it often happens when user click a link to go to another page before an AJAX request return)
+    So your code need to handle it if you are using jQuery:
+     	jQuery.ajax({
+    		url : ...,
+    		dataType : 'json',
+    		success : function(json) {
+    			...
+    		},
+    		error: function(jqXHR,error, errorThrown) {
+    			
+    		    //If either of these are true, then it's not a true error and we don't care
+    		    if (jqXHR.status === 0 || jqXHR.readyState === 0) {
+    		    	console.error("browser canceled request: " + self.apiUrl );
+    		        return;
+    		    }
+    			var msg = "loading all clients error with status: " + jqXHR.status;
+    			console.error(msg);
+                alert(msg);
+            }
+            
