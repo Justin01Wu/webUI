@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>selected Item</title>
+	<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script	src="selectedItem.js"></script>
+</head>
+
+
+<body ng-app="demoApp">
+    <div ng-controller="DemoController">
+        <div>
+            <h2>Incorrect</h2>
+            <p>We might expect the select box to be initialized to "two," but it isn't because these are two different objects.</p>
+            <select ng-model="incorrectlySelected"
+                ng-options="opt as opt.label for opt in options">
+            </select>
+
+            The value selected is {{ incorrectlySelected.value }}.
+        </div>
+        <div>
+            <h2>Correct</h2>
+            <p>Here we are referencing the same object in <code>$scope.correctlySelected</code> as in <code>$scope.options</code>, so the select box is initialized correctly.</p>
+            <select ng-model="correctlySelected"
+                ng-options="opt as opt.label for opt in options">
+            </select>
+
+            The value selected is {{ correctlySelected.value }}.
+        </div>
+
+    </div>
+    
+	<br/><br/>
+	<a href = "https://docs.angularjs.org/api/ng/directive/ngOptions">it comes from here</a>
+    
+</body>
+
+</html>
