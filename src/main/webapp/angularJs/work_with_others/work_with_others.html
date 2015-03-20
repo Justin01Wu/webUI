@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script	src="js/jquery-1.9.1.js"></script>
+<title>AngularJs with with others</title>
+</head>
+<body>
+
+<h1>demo how AngularJs works with other JS frameWork</h1>
+
+<!--  this following div is controlled by jQuery -->
+
+	<div>
+		<button id="getName"  >get AngularJS name value</button>
+		<br/>	
+		<button id="changeName2"  >call AngularJS changeName</button>
+		<button id="changeName4"  >directly change AngularJS value</button>
+	</div>
+
+<!--  this following div is controlled by AngularJs -->
+	<div id="tableDiv" ng-app="" ng-controller="AccountListController">
+	
+		<span>my name is <b>{{userName}}</b></span>
+		<br/>
+		<button ng-click="changeName()">change Name</button>
+	</div>
+	
+	<br/><br/>
+	<a href = "http://michalostruszka.pl/blog/2013/09/24/angularjs-in-browsers-console/" target=_blank>it comes from here</a>
+	<br/> and  
+	<a href = "http://stackoverflow.com/questions/10490570/call-angular-js-from-legacy-code" target=_blank>here</a>
+	
+	
+	
+	
+<script	src="js/work_with_others.js"></script>	
+	
+</body>
+</html>
