@@ -1,30 +1,34 @@
 table {
 	table-layout: fixed;
 	width: 100%;
-	*margin-left: -100px; /*ie7*/
 }
 
-td, th {
+
+table th:nth-child(1){
+    width: 150px; /* this must be the same as inner width */
+    position: absolute;	
+	left: 0;
 	vertical-align: top;
 	border-top: 1px solid #ccc;
 	padding: 10px;
-	width: 100px;
+	
 }
 
-th {
-	position: absolute;
-	*position: relative; /*ie7*/
-	left: 0;
-	width: 100px;
+td {
+	vertical-align: top;
+	border-top: 1px solid #ccc;
+	padding: 10px;
+	width: 200px;
 }
 
 .outer {
-	position: relative
+	position: relative;
+	width:100%
 }
 
 .inner {
 	overflow-x: scroll;
 	overflow-y: visible;
-	width: 500px;
-	margin-left: 100px;
+	width: 90%;   /* 10% of outer must > 150px*/
+	margin-left: 150px;
 }
