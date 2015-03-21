@@ -1,6 +1,10 @@
 table{
     border: 1px solid black;
     table-layout: fixed;
+    width: 100%;
+}
+
+table.fixedTotalWidth{
     width: 600px;
 }
 
@@ -11,9 +15,9 @@ th, td {
 }
 
 table th:nth-child(1){
-    width: 25%;
+    width: 15%;
 }
 
 table th:nth-child(2){
-    width: 35%;
+    width: 25%;
 }
