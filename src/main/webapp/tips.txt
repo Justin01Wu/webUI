@@ -28,3 +28,7 @@ But IE and Firefox will show you which line of JS code
                 alert(msg);
             }
             
+  (5) AngularJs directive name must start with lower case letter, 
+      if you use Upper case letter, AngularJs(1.2.26) will ignore this directive without any warning.
+      This will confuse you 
+            
