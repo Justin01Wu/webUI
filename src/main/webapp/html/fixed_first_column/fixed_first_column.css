@@ -29,6 +29,6 @@ td {
 .inner {
 	overflow-x: scroll;
 	overflow-y: visible;
-	width: 90%;   /* 10% of outer must > 150px*/
+	width: 99%;   /* 10% of outer must > 150px*/
 	margin-left: 150px;
 }
