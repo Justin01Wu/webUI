@@ -1,4 +1,4 @@
-/** declare an angularJs filter:  currency.usd
+/** declare some angularJs filters:  currency.usd currency.comma 
  * Justin Wu
  */
 
@@ -22,7 +22,7 @@
         };
     });
 
-    angular.module('filters').filter('currency.bigNumber', function() {
+    angular.module('filters').filter('currency.comma', function() {
         return function (number, currencyCode) {
         	if(isNaN(number)){
         		return number;
