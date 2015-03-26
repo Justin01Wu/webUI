@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+<title>test customized AngularJs filter : Currency</title>
+</head>
+<body>
+	
+	<script>
+		angular.module("filters", []);
+		var app = angular.module('myApp', ["filters"]);
+		app.controller('myCtrl', function($scope) {
+			$scope.myNumber1 = '234556';
+			$scope.myNumber2 = '0.234554234556';
+			$scope.myNumber3 = '2345565363904698.2342342309';
+			$scope.myNumber4 = '-234234556.23487236';
+			$scope.myName = 'Justin719.wu';
+		});		
+	</script>
+	
+	<!--  must define app firstly , then include filter.js, otherwise angularJs will complain -->
+	<script src="filters.js"></script>
+	
+	<h1>demo how to customize AngularJs filter : Currency</h1>
+
+	<div ng-app="myApp" ng-controller="myCtrl" >
+		
+		<span>This number is <b>{{myNumber1|currency.usd}}</b></span>
+		
+		<br/>
+		<span>This is NOT a number:<b>{{myName|currency.usd}}</b></span>
+		<br/>
+		<span>This number is <b>{{myNumber1|currency.bigNumber}}</b></span>
+		<br/>
+		<span>This number is <b>{{myNumber2|currency.bigNumber}}</b></span>
+		<br/>
+		<span>This number is <b>{{myNumber3|currency.bigNumber}}</b></span>
+		<br/>
+		<span>This number is <b>{{myNumber4|currency.bigNumber}}</b></span>
+		<br/>
+		
+	</div>
+
+	<br />
+	<br />
+	<a href="http://stackoverflow.com/questions/10490570/call-angular-js-from-legacy-code" target=_blank>here</a>
+
+
+</body>
+</html>
