@@ -6,6 +6,8 @@
  * 
  * -- Justin Wu
  */
+(function () {
+'use strict';
 
 var myApp = angular.module('directives', []);
 
@@ -53,3 +55,5 @@ myApp.directive('project.edit', function(){
 		
       }
     });
+
+})();  // close anonymous function
