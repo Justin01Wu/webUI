@@ -37,10 +37,23 @@ function _loadProject($scope, $http){
 
 }
 
+var catModels = ["RMS","Validus"];
+
 function _controller($scope, $http){
 	// example comes from 
 	// http://stackoverflow.com/questions/15112584/using-scope-watch-and-scope-apply
 	// and http://stackoverflow.com/questions/14693052/watch-ngmodel-from-inside-directive-using-isolate-scope
+	
+	$scope.catModels = catModels;
+	$scope.selectedCatModel = $scope.catModels[0];
+	
+	$scope.$watch('selectedCatModel', function(newValue, oldValue) {		 
+		if(newValue === oldValue) {				
+			return;
+		}
+		console.log("selectedCatModel changed from " + oldValue +" to "+ newValue);		
+	});	
+	
 	$scope.$watch('projectId', function(newValue, oldValue) {
 		console.log("project changed from " + oldValue +" to "+ newValue); 
 		$scope.project=null;

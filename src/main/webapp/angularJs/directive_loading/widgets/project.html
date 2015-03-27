@@ -1,8 +1,19 @@
 <div id="project">
-		<div ng-if="loading">
+
+		<div ng-show="loading">
 			<img src="img/loading_circle.gif" />
 		</div>
-		<div ng-if="project">
+		<div ng-show="project">
+		
+			<div class="radio">
+				<label> 
+					<input type="radio" value="RMS"	name="catModel" ng-model="selectedCatModel"> RMS
+				</label>
+				<label>
+					<input type="radio" value="Validus"	name="catModel" ng-model="selectedCatModel"> Validus
+				</label>
+			</div>  
+			
 			<b>Name: </b>{{project.name}}<br/>
 			<b>Type: </b>{{project.type}}<br/>
 			<b>Underwriter: </b>{{project.underwriter}}<br/>
