@@ -13,7 +13,7 @@
 	<a href="http://www.ng-newsletter.com/posts/validations.html">please also see here</a>
 
 
-	<form ng-app="" ng-controller="validateCtrl" name="myForm" novalidate>
+	<form ng-app="myAppName" ng-controller="validateCtrl" name="myForm" novalidate>
 
 		<p>
 			Username:<br> <input type="text" name="user" ng-model="user" required> <span style="color: red"
@@ -38,10 +38,11 @@ myForm.email.$dirty && myForm.email.$invalid">
 	</form>
 
 	<script>
-		function validateCtrl($scope) {
-			$scope.user = 'John Doe';
-			$scope.email = 'john.doe@gmail.com';
-		}
+	var myApp = angular.module('myAppName', [ ]);
+	myApp.controller('validateCtrl', function($scope) {
+		$scope.user = 'John Doe';
+		$scope.email = 'john.doe@gmail.com';
+	});
 	</script>
 
 </body>
