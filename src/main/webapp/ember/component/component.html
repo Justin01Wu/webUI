@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css">
+</head>
+<body>
+  
+  <script type="text/x-handlebars">
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+  <h1>this is a demo for Ember Component</h1><button {{action "changeData"}}>change data</button>
+  <h2>id: {{model.id}} </h2>
+  <h2>value: {{model.value}} </h2>
+
+  <p>    
+        {{hobby data=model}}
+  </p>
+  
+   <p>    
+        {{hobby data=model}}
+  </p>
+
+  </script>
+  
+  <script type="text/x-handlebars" id="components/hobby">
+  <h1>==>>start of Component: {{sid}}</h1>
+	<h2>value: {{data.value}} </h2>
+
+  <h1>==>>End of Component </h1>
+  </script>
+
+  
+  <script src="lib/jquery.1.10.2.min.js"></script>
+  <script src="lib/handlebars-1.0.0.js"></script>
+  <script src="lib/ember.1.1.2.min.js"></script>
+  
+	<script src="component.js"></script>
+
+</body>
+</html>
