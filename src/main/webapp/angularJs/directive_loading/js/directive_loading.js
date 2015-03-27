@@ -2,7 +2,7 @@
 	
 // of course you can add ngMockE2E directly into myApp, but that will pollute your production code
 // so we add ngMockE2E here 
-var myAppDev = angular.module('myAppDev', ['directive_loading', 'ngMockE2E']);   // last parameter set up $httpBackend
+var myAppDev = angular.module('myAppDev', ['directives', 'ngMockE2E']);   // last parameter set up $httpBackend
 
 // decorate the $httpBackend service to delay response for [2-5] seconds:
 // comes from http://endlessindirection.wordpress.com/2013/05/18/angularjs-delay-response-from-httpbackend/

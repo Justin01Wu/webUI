@@ -1,15 +1,15 @@
 /**
- * declare an angularJs directive "project", type : element 
- * usage:  <project project11="{{selectedProject.id}}"></project>
+ * declare an angularJs directive "project.edit", type : element 
+ * usage:  <project.edit project11="{{selectedProject.id}}"></project.edit>
  * 
  * depend on angularJs 
  * 
  * -- Justin Wu
  */
 
-var myApp = angular.module('directive_loading', []);
+var myApp = angular.module('directives', []);
 
-myApp.directive('project', function(){
+myApp.directive('project.edit', function(){
       return {
         restrict: 'E',  // "A" is for attribute, "E" is for element
 		require: 'project11',		        
