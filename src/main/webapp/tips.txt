@@ -31,4 +31,7 @@ But IE and Firefox will show you which line of JS code
   (5) AngularJs directive name can't have upper lower case letter, 
       if you use Upper case letter, AngularJs(1.2.26) will ignore this directive without any warning.
       This will confuse you. But it support dot in the name, so you can use name like a.b 
+      
+(6) if the element is inside of ng-if , it won't trigger  $watch
+  it will trigger $watch normally when inside of ng-show, so please replace ng-if with ng-show       
             
