@@ -1,3 +1,12 @@
+/**
+ * declare an angularJs directive "project", type : element 
+ * usage:  <project project11="{{selectedProject.id}}"></project>
+ * 
+ * depend on angularJs 
+ * 
+ * -- Justin Wu
+ */
+
 var myApp = angular.module('directive_loading', []);
 
 myApp.directive('project', function(){
