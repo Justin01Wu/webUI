@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="js/libs/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.mockjax.js"></script>
+<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="js/libs/handlebars-v1.3.0.js"></script>
+<script src="js/libs/ember-1.7.0.js"></script>
+
+<meta charset="utf-8">
+<title>Ember async loading</title>
+
+  
+<script src="mockjax.js"></script>
+<script src="promises.js"></script>
+</head>
+<body>
+  
+
+    <script type="text/x-handlebars" data-template-name="application">
+      <h1>this is Ember promises demo</h1>
+      
+      <p>Current route path: "{{currentPath}}"</p>
+      <p>{{#link-to 'user' 1}}user{{/link-to}}</p>
+      <div class="container">
+      {{outlet}}
+  		</div>
+      
+    </script>
+  
+    <script type="text/x-handlebars" data-template-name="user">
+      <h2>user Info</h2>
+       user name: {{model.name}}<br/>
+       user posts: {{model.posts}}
+    </script>
+
+
+  <script type="text/x-handlebars" data-template-name="loading">
+  	loading user...<br/>
+    <img src="loading_circle.gif" />
+  </script>
+ 	  	
+
+</body>
+</html>

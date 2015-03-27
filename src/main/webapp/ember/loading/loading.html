@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="js/libs/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.mockjax.js"></script>
+<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="js/libs/handlebars-v1.3.0.js"></script>
+<script src="js/libs/ember-1.7.0.js"></script>
+  	
+<meta name="description" content="Ember ArrayController and ItemController - Async Loading" />
+<meta charset="utf-8">
+<title>Ember async loading</title>
+
+  
+<script src="mockjax.js"></script>
+<script src="loading.js"></script>
+</head>
+<body>
+  
+
+    <script type="text/x-handlebars" data-template-name="application">
+      <h1>this is Ember Async Loading Testing</h1>
+      
+      <p>Current route path: "{{currentPath}}"</p>
+      <div class="container">
+      {{outlet}}
+  		</div>
+    </script>
+  
+    <script type="text/x-handlebars" data-template-name="index">
+    	Channel name: {{model.name}}
+      <p>{{#link-to 'posts'}}Posts{{/link-to}}</p>
+    </script>
+  
+    <script type="text/x-handlebars" data-template-name="posts">
+      <h2>All Posts ({{total}})</h2>
+      {{outlet}}
+    </script>
+  
+  <script type="text/x-handlebars" data-template-name="posts/index">
+     
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Text</th>
+            <th># chars</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {{#each controller}}
+          {{#if isFulfilled}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{text}}</td>
+            <td>{{numberChars}}</td>
+          </tr>
+          {{else}}
+          <tr>
+            <td>{{id}}</td>
+            <td colspan=3><img src="loading_circle.gif" width='20' /></td>
+          </tr>
+          {{/if}}
+          {{/each}}
+          
+            </td>
+  </tr>
+        </tbody>
+      </table>
+    </script>
+
+
+  <script type="text/x-handlebars" data-template-name="posts/loading">
+    <img src="loading_circle.gif" />
+  </script>
+  
+    <script type="text/x-handlebars" data-template-name="loading">
+    	loading channel<br/>
+    <img src="loading_circle.gif" />
+  </script> 	  	
+
+</body>
+</html>
