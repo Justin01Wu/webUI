@@ -11,6 +11,24 @@
 
 var myApp = angular.module('directives', []);
 
+function _loadProject($scope, $http){
+	console.log("load project " + $scope.projectId + "..." );				
+	var targetUrl = '/api/project/' + $scope.projectId;
+	console.log("targetUrl= " + targetUrl );
+	$scope.loading=true;
+	$http.get(targetUrl)
+	.success(function(data, status) {
+		console.log(data);
+		$scope.project=data;  
+		$scope.loading=false;
+	}).
+	error(function(data, status, headers, config) {
+		// log error
+		$scope.loading=false;
+		alert('error: load failure');
+	}); 
+
+}
 
 function _controller($scope, $http){
 	// example comes from 
@@ -23,21 +41,8 @@ function _controller($scope, $http){
 			console.log("no project selected, so skip loading: " );					
 			return;
 		}
-		console.log("load project " + $scope.projectId + "..." );				
-		var targetUrl = '/api/project/' + $scope.projectId;
-		console.log("targetUrl= " + targetUrl );
-		$scope.loading=true;
-		$http.get(targetUrl)
-		.success(function(data, status) {
-			console.log(data);
-			$scope.project=data;  
-			$scope.loading=false;
-		}).
-		error(function(data, status, headers, config) {
-			// log error
-			$scope.loading=false;
-			alert('error: load failure');
-		}); 
+		_loadProject($scope, $http);
+		
 	});
 };
 
