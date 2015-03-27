@@ -1,19 +1,5 @@
 var myApp = angular.module('directive_loading', []);
 
-myApp.controller('mainController', MainController);
-
-// The controller code
-function MainController($scope) {
-	console.log("MainController init...");
-	$scope.projects = [
-		{id: 0, name: "please select project"},
-		{id: 111, name: 'Project A'},
-		{id: 222, name: 'Project B'},
-		{id: 333, name: 'project C'}
-	];
-	$scope.selectedProject = $scope.projects[0];
-}
-
 myApp.directive('project', function(){
       return {
         restrict: 'E',  // "A" is for attribute, "E" is for element
@@ -88,7 +74,21 @@ myAppDev.config(function($provide) {
         }
         return proxy;
     });
-})
+});
+
+myAppDev.controller('mainController', MainController);
+
+//The controller code
+function MainController($scope) {
+	console.log("MainController init...");
+	$scope.projects = [
+		{id: 0, name: "please select project"},
+		{id: 111, name: 'Project A'},
+		{id: 222, name: 'Project B'},
+		{id: 333, name: 'project C'}
+	];
+	$scope.selectedProject = $scope.projects[0];
+}
 
 myAppDev.run(function ($httpBackend) {
 	var project1 = {
