@@ -9,6 +9,13 @@
 (function () {
 'use strict';
 
+
+var scripts = document.getElementsByTagName("script");
+var currentFile = scripts[scripts.length-1].src;
+var currentPath = currentFile.substr(0, currentFile.lastIndexOf('/')) + "/";
+//console.log("currentPath=" + currentPath);
+
+
 var myApp = angular.module('directives', []);
 
 function _loadProject($scope, $http){
@@ -52,7 +59,7 @@ var myDirective = {
         scope: {
         	projectId: '@project11'  // set up one way binding between a local scope property and the parent scope property 
 		},
-        templateUrl: 'widgets/project.html',
+        templateUrl: currentPath + 'project.html',
         controller: function ($scope, $http) {
             _controller($scope, $http);
         }		
