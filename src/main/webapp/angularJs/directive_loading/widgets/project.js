@@ -46,19 +46,21 @@ function _controller($scope, $http){
 	});
 };
 
-myApp.directive('project.edit', function(){
-      return {
-        restrict: 'E',  // "A" is for attribute, "E" is for element
-		require: 'project11',		        
+var myDirective = {
+		restrict: 'E',	// "A" is for attribute, "E" is for element, "C" for class, "M" for comment, default is "A"		
+		require: 'project11',	
         scope: {
-            projectId: '@project11'  // set up one way binding between a local scope property and the parent scope property 
+        	projectId: '@project11'  // set up one way binding between a local scope property and the parent scope property 
 		},
         templateUrl: 'widgets/project.html',
-		controller: function ($scope, $http) {
-			 _controller($scope, $http);			
-		}
+        controller: function ($scope, $http) {
+            _controller($scope, $http);
+        }		
 		
-      }
-    });
+};
+
+myApp.directive('project.edit', function(){
+      return myDirective;
+});
 
 })();  // close anonymous function
