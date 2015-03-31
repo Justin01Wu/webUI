@@ -15,6 +15,7 @@
 			$scope.myNumber2 = '0.234554234556';
 			$scope.myNumber3 = '2345565363904698.2342342309';
 			$scope.myNumber4 = '-234234556.23487236';
+			$scope.myNumber5 = '-0.2356';
 			$scope.myName = 'Justin719.wu';
 		});		
 	</script>
@@ -26,18 +27,20 @@
 
 	<div ng-app="myApp" ng-controller="myCtrl" >
 		
-		<span>This number is <b>{{myNumber1|currency.usd}}</b></span>
+		<span>This number is <b>{{myNumber1|numberUsd}}</b></span>
 		
 		<br/>
-		<span>This is NOT a number:<b>{{myName|currency.usd|currency.usd}}</b></span>
+		<span>This is NOT a number:<b>{{myName|numberComma|numberUsd}}</b></span>
 		<br/>
-		<span>This number is <b>{{myNumber1|currency.comma}}</b></span>
+		<span>This number is <b>{{myNumber1|numberComma}}</b></span>
 		<br/>
-		<span>This number is <b>{{myNumber2|currency.comma}}</b></span>
+		<span>This number is <b>{{myNumber2|numberComma}}</b></span>
 		<br/>
-		<span>This number is <b>{{myNumber3|currency.comma}}</b></span>
+		<span>This number is <b>{{myNumber3|numberComma}}</b></span>
 		<br/>
-		<span>This number is <b>{{myNumber4|currency.comma|currency.usd}}</b></span>
+		<span>This number is <b>{{myNumber4|numberComma|numberUsd}}</b></span>
+		<br/>
+		<span>This number is percentage: <b>{{myNumber5|numberPercentage}}</b></span>		
 		<br/>
 		
 	</div>

@@ -1,4 +1,4 @@
-/** declare some angularJs filters:  currency.usd currency.comma 
+/** declare some angularJs filters:  numberUsd, numberComma and numberPercentage
  * Justin Wu
  */
 
@@ -13,7 +13,7 @@
         return parts.join(".");
     }
     
-    angular.module('filters').filter('currency.usd', function() {
+    angular.module('filters').filter('numberUsd', function() {
         return function (number, currencyCode) {
         	if(isNaN(number)){
         		return number;
@@ -22,12 +22,28 @@
         };
     });
 
-    angular.module('filters').filter('currency.comma', function() {
+    angular.module('filters').filter('numberComma', function() {
         return function (number, currencyCode) {
         	if(isNaN(number)){
         		return number;
         	}         	
         	return numberWithCommas(number);
+        };
+    });
+    
+    
+    angular.module('filters').filter('numberPercentage', function() {
+        return function (number, currencyCode) {
+        	if(!number){
+        		return number;
+        	}
+        	if(isNaN(number)){
+        		if(window.console){
+        			console.warn(number + " is not a number, so ignore it");
+        		}        		
+        		return number;
+        	}         	
+        	return Number(number) * 100;
         };
     });
     
