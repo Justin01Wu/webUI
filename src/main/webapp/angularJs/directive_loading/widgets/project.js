@@ -37,7 +37,7 @@ function _loadProject($scope, $http){
 
 }
 
-var catModels = ["RMS","Validus"];
+var catModels = ["RMS","AIR"];
 
 function _controller($scope, $http){
 	// example comes from 
@@ -46,13 +46,10 @@ function _controller($scope, $http){
 	
 	$scope.catModels = catModels;
 	$scope.selectedCatModel = $scope.catModels[0];
-	
-	$scope.$watch('selectedCatModel', function(newValue, oldValue) {		 
-		if(newValue === oldValue) {				
-			return;
-		}
-		console.log("selectedCatModel changed from " + oldValue +" to "+ newValue);		
-	});	
+
+	$scope.onChange = function () {
+		_loadProject($scope, $http);
+	};
 	
 	$scope.$watch('projectId', function(newValue, oldValue) {
 		console.log("project changed from " + oldValue +" to "+ newValue); 

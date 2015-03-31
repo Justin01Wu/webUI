@@ -7,10 +7,16 @@
 		
 			<div class="radio">
 				<label> 
-					<input type="radio" value="RMS"	name="catModel" ng-model="selectedCatModel"> RMS
+					<input type="radio" value="RMS"	name="catModel" 
+					ng-model="selectedCatModel"
+					ng-change="onChange()"
+					/> RMS
 				</label>
 				<label>
-					<input type="radio" value="Validus"	name="catModel" ng-model="selectedCatModel"> Validus
+					<input type="radio" value="Validus"	name="catModel" 
+					ng-model="selectedCatModel"
+					ng-change="onChange()"
+					/> AIR
 				</label>
 			</div>  
 			
