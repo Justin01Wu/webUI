@@ -13,11 +13,11 @@
 }
 
 .fixed_headers td:nth-child(1), .fixed_headers th:nth-child(1) {
-    min-width: 200px;
+    width: 200px;
 
 }
 .fixed_headers td:nth-child(2), .fixed_headers th:nth-child(2) {	
-    min-width: 200px; 
+    width: 200px; 
 
 }
 .fixed_headers td:nth-child(3), .fixed_headers th:nth-child(3) {	
