@@ -7,21 +7,21 @@
 
 .fixed_headers th { text-decoration: underline; }
 
-.fixed_headers  th, td {
+.fixed_headers  th, .fixed_headers td {
     padding: 5px;
     text-align: left;
 }
 
-.fixed_headers td:nth-child(1), th:nth-child(1) {
-    width: 20%;
+.fixed_headers td:nth-child(1), .fixed_headers th:nth-child(1) {
+    min-width: 200px;
 
 }
-.fixed_headers td:nth-child(2), th:nth-child(2) {	
-    width: 20%; 
+.fixed_headers td:nth-child(2), .fixed_headers th:nth-child(2) {	
+    min-width: 200px; 
 
 }
-.fixed_headers td:nth-child(3), th:nth-child(3) {	
-    width: 60%;
+.fixed_headers td:nth-child(3), .fixed_headers th:nth-child(3) {	
+    width: 350px;
 
 }
 
@@ -49,6 +49,7 @@
     height: 300px;
     width: 750px;
     overflow-x: hidden;
-    overflow-y: auto;
-    tbody { height: auto; }
+    overflow-y: auto;    
 }
+
+.old_ie_wrapper tbody { height: auto; }
