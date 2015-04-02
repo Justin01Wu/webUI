@@ -1,8 +1,57 @@
-table {
-    width: 100%;
+div.title{
+	position: absolute; 
+	top: 0px; 
+	height: 97px;	
+	width:100%;
 }
 
-.scroll {
-    max-height: 200px;
-    overflow: auto;
+
+div.tableHeader{	
+	position: absolute; 
+	top: 98px; 
+	height: 30px;		
+	overflow-y: scroll;
+	width:100%;
 }
+				
+div.tableBody {
+    position: absolute; 
+    top: 128px; 
+    bottom: 0px;  
+    width:100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+}	
+
+
+table.fixedHeader {
+    width: 100%;
+    text-align: left; 
+}
+
+table.fixedHeader thead {
+  height: 21px;
+  background-color: #BFC2CC;
+}
+
+table.fixedHeader tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+table.fixedHeader th:nth-child(1), table.fixedHeader td:nth-child(1){
+    width: 250px; 	
+}
+table.fixedHeader th:nth-child(2), table.fixedHeader td:nth-child(2){
+    width: 100px; 	
+}
+table.fixedHeader th:nth-child(3), table.fixedHeader th:nth-child(4), table.fixedHeader td:nth-child(3), table.fixedHeader td:nth-child(4){
+    width: 60px; 	
+}
+table.fixedHeader th:nth-child(5), table.fixedHeader th:nth-child(6), table.fixedHeader th:nth-child(7),table.fixedHeader td:nth-child(5), table.fixedHeader td:nth-child(6), table.fixedHeader td:nth-child(7){
+    width: 120px; 	
+}
+
+table.fixedHeader th:nth-child(8), table.fixedHeader td:nth-child(8){
+    width: 80px;
+}
+
