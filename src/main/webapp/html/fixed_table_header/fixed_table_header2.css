@@ -5,7 +5,6 @@ div.title{
 	width:100%;
 }
 
-
 div.tableHeader{	
 	position: absolute; 
 	top: 98px; 
@@ -15,9 +14,15 @@ div.tableHeader{
 }
 				
 div.tableBody {
-    position: absolute; 
-    top: 128px; 
-    bottom: 0px;  
+    
+    position: absolute;    
+    top: 128px;  /* = the total height of top divs */
+    bottom: 0px; /* in this way, this div will use the rest of height*/   
+    
+    /* this skill comes from 
+    	http://stackoverflow.com/questions/7198282/how-to-make-div-occupy-remaining-height
+    */
+
     width:100%;
     overflow-x: auto;
     overflow-y: scroll;
