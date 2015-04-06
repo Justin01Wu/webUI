@@ -5,6 +5,10 @@
     border-collapse: collapse;
 }
 
+table.fixed_headers th + th, table.fixed_headers td + td {
+    border-left: 1px solid #FFFFFF;
+}
+
 .fixed_headers th { text-decoration: underline; }
 
 .fixed_headers  th, .fixed_headers td {
