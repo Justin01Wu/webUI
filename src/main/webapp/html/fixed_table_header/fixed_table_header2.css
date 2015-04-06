@@ -5,6 +5,10 @@ div.title{
 	width:100%;
 }
 
+body{	
+	overflow-x: hidden;
+}
+
 div.tableHeader{	
 	position: absolute; 
 	top: 98px; 
