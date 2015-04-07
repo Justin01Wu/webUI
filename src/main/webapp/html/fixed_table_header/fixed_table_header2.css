@@ -7,9 +7,9 @@ div.title{
 
 body{	
 	/*overflow-x: hidden;*/
-	/* this is bad way to stop Annoying horizontal scrollbar because horizontal scrollbar is required when the page really stretch out */   
+	/* this is bad way to stop annoying horizontal scrollbar because horizontal scrollbar is required when the page really stretch out */   
 	
-	margin: 0;   /* use this to stop Annoying horizontal scrollbar */
+	margin: 0;   /* use this to stop annoying horizontal scrollbar */
 }
 
 div.tableHeader{	
