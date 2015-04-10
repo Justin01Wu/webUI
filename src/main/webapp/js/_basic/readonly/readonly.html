@@ -9,7 +9,8 @@
 	<br />
 
 	<button onClick=readProp();>retrieve readonly properties</button>
-	<button onClick=writereadOnlyProp();>write readonly properties</button>
+	<button onClick=writeReadOnlyProp();>write Read only properties</button>
+	<button onClick=writeReadOnlyStrict();>write Read only properties(Strict mode)</button>
 	<button onClick=writeProp();>write writable properties</button>
 
 	<br />
@@ -36,8 +37,16 @@
 		info.innerHTML = info.innerHTML +' <br/> obj.prop = ' + value;
 	}		
 	
-	function writereadOnlyProp() {
+	function writeReadOnlyProp() {
 		obj.prop ="test2";	//silently fail
+		var value = obj.prop;
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;  // still old value
+	}		
+	
+	function writeReadOnlyStrict() {
+		'use strict';
+		obj.prop ="test2";	//hrows an error in strict mode
 		var value = obj.prop;
 		var info = document.getElementById('infoLabel');
 		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;  // still old value
@@ -55,6 +64,8 @@
 	<br/><br/>
 	<br/><br/>
 	it comes from <a href="http://stackoverflow.com/questions/7757337/defining-read-only-properties-in-javascript" target=_blank>here</a>
+	<br/><br/>
+	and <a href="http://www.2ality.com/2013/08/protecting-objects.html" target=_blank>here</a>
 </body>
 
 </html>
