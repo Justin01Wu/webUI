@@ -4,11 +4,13 @@ As an Web UI component, it must have encapsulation:
 	external event can't affect it 
 	container can only affect it by the interface
 	it know how to handle its own data: retrieve data, save data 
-	it know how to handle its own html element
-	it automatically detect the environment, like which browser version, if a feature is supported
+	it know how to hide and show its own HTML element
+	it still use global CSS style, but may have its own CSS style 
+	it detects and adopt the environment, like which browser version, if a feature is supported
 	it can find all its resources by itself
 	
 it nice have:
     support extension
     support dependency management
     can reuse and depend on other components
+    communicate with other components
