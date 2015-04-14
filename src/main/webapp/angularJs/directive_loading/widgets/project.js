@@ -26,13 +26,14 @@ function _loadProject($scope, $http){
 	$http.get(targetUrl)
 	.success(function(data, status) {
 		console.log(data);
-		$scope.project=data;  
+		$scope.project=data;
+		$scope.message =  null;
 		$scope.loading=false;
 	}).
 	error(function(data, status, headers, config) {
 		// log error
 		$scope.loading=false;
-		alert('error: load failure');
+		$scope.message = 'error: load failure, status=' + status;
 	}); 
 
 }
@@ -48,6 +49,7 @@ function _controller($scope, $http){
 	$scope.selectedCatModel = $scope.catModels[0];
 
 	$scope.onChange = function () {
+		$scope.message = 'model changed';
 		_loadProject($scope, $http);
 	};
 	
