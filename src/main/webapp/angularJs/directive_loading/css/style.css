@@ -1,6 +1,7 @@
 .container {
-	margin: 20px 0px 900px;
-	background: none repeat scroll 0% 0% #0F0;
+	margin: 10px;
+	background: #0F0;
+	padding:10px;
 }
 
 .right {
@@ -13,9 +14,4 @@
 	width: 360px;
 	padding: 20px;
 	float: left;
-}
-
-footer {
-    color: #CCC;
-    background: none repeat scroll 0% 0% #300;
 }
