@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+<title>test HTML anchor</title>
+	<style type="text/css">	
+	
+		div.veryHeight {		    
+		    height: 678px;
+		}
+	</style>
+	
+</head>
+<body>
+	
+	<h1>test HTML anchor</h1>
+
+
+
+	<a href="#tips">This is real anchor(tips), will jump to the tips section(bottom of the page) </a>
+	<br/>
+	<a href="#" onclick="doSomething()">This is action, will scroll page to the top</a>
+	<br/>
+	
+	<a href="#!" onclick="doSomething()">This is action, won't scroll page</a>
+	<!--  this #! skill comes from   
+		http://stackoverflow.com/questions/1601933/how-do-i-stop-a-web-page-from-scrolling-to-the-top-when-a-link-is-clicked-that-tr
+	 -->
+	
+	<br/>
+	<br/>
+	
+	<label id="infoLabel"></label>
+		
+	<div class="veryHeight">
+	</div>
+	
+	<a id="tips"></a>
+	<h1>tips</h1>
+	tips1 ...
+	
+	<script>
+	function doSomething(){
+		if(window.console){
+			console.log("doSomething");	
+		}		 
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/> doSomething() is triggered';		
+	}
+	
+	</script>	
+
+</body>
+</html>
