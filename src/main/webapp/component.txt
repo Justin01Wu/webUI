@@ -15,3 +15,8 @@ it nice have:
     support dependency management
     can reuse and depend on other components
     communicate with other components
+    
+For browser native support for web component, please see:
+    https://css-tricks.com/modular-future-web-components/
+    
+    or search createShadowRoot 
