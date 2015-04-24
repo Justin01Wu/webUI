@@ -7,22 +7,24 @@
 </head>
 <body>
 	
-	<h1>test different input type</h1>
+	<h1>Test different input types</h1>
+	<h2>Some are html5, not supported by all browsers</h2>
 
 	<form >
 	
 		<input type="submit" value="Submit">
 		<br/>
 		<br/>
-
 		
 		Number (between 1 and 5): <input type="number" name="quantity" placeholder="number" min="1" max="5" size="30" required>
-
 		<br/>
 		<br/>
 
-		Email: <input type="email" name="email" placeholder="please input an email" required>	
+		Email: <input type="email" name="email" placeholder="please input an email" required>			
+		<br/>
+		<br/>		
 		
+		Country code(Pattern): <input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code">
 		<br/>
 		<br/>
 		
@@ -56,7 +58,7 @@
 		<br/>
 		<br/>
 		
-		Time: <input type="time" name="usr_time">
+		Time: <input type="time" name="usr_time">		
 			
 	</form>
 
