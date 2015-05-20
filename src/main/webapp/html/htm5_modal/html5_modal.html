@@ -9,29 +9,59 @@
 <body>
 
 
-	<h1>Demo how to create a modal in html5</h1>
+	<h1>Dialog in html5(only supported in Chrome and opera)</h1>
+
+	<br />
+	<h2>&nbsp;</h2>
+	<button onclick="show()">open Html5 dialog</button>
+	<button onclick="showModal()">open Html5 modal</button>
 	
-	<br/>
-	<br/>
-	<br/>	
-	
-	<h1>under cover text , under cover text,  under cover text, under cover text, under cover text</h1>
-	
+	<br />
+
+	<h1>under cover text , under cover text, under cover text, under
+		cover text, under cover text</h1>
+
 	<div id="container">
 		<div style="display: block; opacity: 1;" class="dialog">
 			<div class="body">
 				<div class="content">
-				<h1>this is in dialog</h1>
+					<h1>this is traditional div dialog</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+	<dialog id="dialog222">
+    	<h3>Hello World!</h3>
+    	<p>This is HTML5 native dialog box!</p>
+    	<button id="exit">Exit</button>
+	</dialog>
+
+	<br /> 
+	<a href="http://demosthenes.info/blog/957/Native-Modal-Windows-in-HTML5-Using-the-dialog-Element" target=_blank>it comes from here</a>
 	<br />
-	<a
-		href="http://www.smashingmagazine.com/2009/01/12/10-useful-web-application-interface-techniques/"
-		target=_blank>it comes from here</a>
-	<br />
+	
+	<script>
+	function show(){
+		var dialog = document.getElementById('dialog222');
+		document.getElementById("exit").onclick = function() {
+			dialog.close();
+		}
+		dialog.show();		
+	}
+	function showModal(){
+		var dialog = document.getElementById('dialog222');
+		document.getElementById("exit").onclick = function() {
+			dialog.close();
+		}
+
+		dialog.showModal();		
+	}
+
+	
+	</script>
+	
 
 </body>
 </html>

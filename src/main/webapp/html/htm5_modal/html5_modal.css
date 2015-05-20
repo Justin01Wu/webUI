@@ -12,3 +12,15 @@
     background: url(./dialog.png) 0 0; /* semi-transparent .png image */
     padding: 40px 13px 10px 40px;
 }
+
+dialog { 
+	background-color: yellow;
+	font-family: Avenir, sans-serif; 
+	width: 25%; 
+	text-align: center; 
+	border: 3px solid; 
+}
+
+dialog::backdrop { 
+	background: rgba(0,0,0,0.9); 
+}
