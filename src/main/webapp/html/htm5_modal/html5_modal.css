@@ -1,0 +1,14 @@
+.dialog {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+	height: 200px;
+    margin-left: -315px;
+    width: 430px;
+    z-index: 100001;
+
+}
+.dialog .body {
+    background: url(./dialog.png) 0 0; /* semi-transparent .png image */
+    padding: 40px 13px 10px 40px;
+}
