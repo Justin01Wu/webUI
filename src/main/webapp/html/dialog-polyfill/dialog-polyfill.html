@@ -1,0 +1,59 @@
+<html>
+<head>
+<script src="dialog-polyfill.js"></script>
+<link rel="stylesheet" type="text/css" href="dialog-polyfill.css" />
+</head>
+<body>
+
+	<h1>Dialog polyfill demo</h1>
+	<button onclick="showModal111()">open polyfill dialog box 111 </button>
+	<button onclick="showModal222()">open polyfill dialog box 222 </button>
+	
+	<dialog id="dialog111">
+		<h3>Hello World 111!</h3>
+		<p>This is dialog-polyfill dialog box!</p>
+		<button id="exit1">Exit</button>
+	</dialog>
+	
+	<dialog id="dialog222">
+		<h3>Hello World 222!</h3>
+		<p>This is dialog-polyfill dialog box!</p>
+		<button id="exit2">Exit</button>
+	</dialog>
+
+	<br />
+	<a href="https://github.com/GoogleChrome/dialog-polyfill" target=_blank>it
+		comes from here</a>
+	<br />
+
+	<script>
+	
+	function showModal111(){
+		var dialog = document.getElementById('dialog111');
+		dialogPolyfill.registerDialog(dialog);
+		// Now dialog acts like a native <dialog>.
+		dialog.showModal();
+
+		document.getElementById("exit1").onclick = function() {
+			dialog.close();
+		}
+
+		//dialog.showModal();		
+	}
+	
+	function showModal222(){
+		var dialog = document.getElementById('dialog222');
+		dialogPolyfill.registerDialog(dialog);
+		// Now dialog acts like a native <dialog>.
+		dialog.showModal();
+
+		document.getElementById("exit2").onclick = function() {
+			dialog.close();
+		}
+
+		//dialog.showModal();		
+	}
+
+	</script>
+</body>
+</html>
