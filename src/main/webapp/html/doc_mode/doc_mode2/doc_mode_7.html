@@ -1,4 +1,7 @@
-<html>
+<!doctype html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+</head>
 <body>
 
 <script>
@@ -8,19 +11,6 @@ window.onload = function(e){
 	document.getElementById("compatMode").innerHTML = document.compatMode;
 }
 
-function openDialog(docUrl){
-	var height = 300;
-	var width = 400;
-	var iTop = 200;
-	var iLeft = 250;
-	var para = 'height='+height+', width=' + width ;
-	para = para + 	', scrollbars=false';
-	para = para + 	', location=0, menubar=0, resizable=1';
-	para = para +	', toolbar=0, titlebar=0, status=1';
-	para = para +	', top=' + iTop + ', left=' + iLeft;
-	var win=window.open(docUrl,"doc_mode", para);
-	win.focus();	
-}
 </script>
 
 <h2>Demo how to get document mode (Only IE has document mode setting, so please open this page in IE)</h2>
@@ -28,9 +18,6 @@ function openDialog(docUrl){
 <h3>your current document mode is 
 <label id ="docMode" style="color:red;"></label>&nbsp;
  compatMode is <label id ="compatMode" style="color:red;"></label>
-<input id="open" name="open" value="open IE9 mode" type="button" onClick="openDialog('doc_mode_ie9.html')"/>
-<input id="open" name="open" value="open IE8 mode" type="button" onClick="openDialog('doc_mode_ie8.html')"/>
-
 </h3>
 
 <ul>
@@ -63,13 +50,7 @@ but modern browser and new IE, it is case sensitive.
 	</li>
 </ul>	
 
-<iframe src="doc_mode_ie8.html" style="height:200px;width:600px"></iframe>
-
-<iframe src="doc_mode_none.html" style="height:200px;width:500px"></iframe>
 <br/><br/>
-
-
-It comes from <a href=http://stackoverflow.com/questions/10975107/force-to-use-internet-explorer-ie9-standards-document-mode" target="_blank">here</a>
 
 <br/>
 
