@@ -38,7 +38,10 @@
 		myApp.directive('onlyDigits', function() {
 			return {
 				restrict : 'A',
-				require : '?ngModel',  // ask target element must have ngModel attribute
+				
+				require : 'ngModel',  // ask target element must have "ng-model" attribute
+				// the page will throw exception if target element doesn't have "ng-model" attribute
+						
 				link : function(scope, element, attrs, ngModel) {
 					if (!ngModel){
 						return;
