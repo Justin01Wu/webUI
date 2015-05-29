@@ -37,11 +37,19 @@
 
 		myApp.directive('onlyDigits', function() {
 			return {
-				restrict : 'A',
+				restrict : 'A',  //  "A" is for HTML attribute
 				
-				require : 'ngModel',  // ask target element must have "ng-model" attribute
-				// the page will throw exception if target element doesn't have "ng-model" attribute
+				require : 'ngModel',  // ask target element must have "ng-model" directive
+				// the page will throw exception if target element doesn't have "ng-model" directive
 						
+				/*
+				The linking phase is where you attach the data ( $scope ) to the linking function and it should return you the linked html. 
+				Since the directive also specifies where this html goes or what it changes, it is already good to go. 
+				This is the function where you want to make changes to the linked html, 
+				i.e the html that already has the data attached to it. 
+				In angular if you write code in the linking function its generally the post-link function (by default). 
+				It is kind of a callback that gets called after the linking function has linked the data with the template.
+				*/
 				link : function(scope, element, attrs, ngModel) {
 					if (!ngModel){
 						return;
