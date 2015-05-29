@@ -16,31 +16,34 @@
 	<form ng-app="myAppName" ng-controller="validateCtrl" name="myForm" novalidate>
 
 		<p>
-			Username:<br> <input type="text" name="user" ng-model="user" required> <span style="color: red"
-				ng-show="myForm.user.$dirty && myForm.user.$invalid"> <span ng-show="myForm.user.$error.required">Username
-					is required.</span>
+			Username:<br> <input type="text" name="user" ng-model="user" required> 
+			<span style="color: red" ng-show="myForm.user.$dirty && myForm.user.$invalid"> 
+				<span ng-show="myForm.user.$error.required">Username is required.</span>
 			</span>
 		</p>
 
 		<p>
-			Email:<br> <input type="email" name="email" ng-model="email" required> <span style="color: red"
-				ng-show="myForm.email.$dirty && myForm.email.$invalid"> <span ng-show="myForm.email.$error.required">Email
-					is required.</span> <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+			Email:<br> <input type="email" name="email" ng-model="email" required> 
+			<span style="color: red" ng-show="myForm.email.$dirty && myForm.email.$invalid"> 
+				<span ng-show="myForm.email.$error.required">Email is required.</span>
+				<span ng-show="myForm.email.$error.email">Invalid email address.</span>
 			</span>
 		</p>
 		
 		<p>
-			Age:<br> <input type="number" name="age" min="1" max="1500" ng-model="age" required> 
-			<span style="color: red"
-				ng-show="myForm.age.$dirty && myForm.age.$invalid"> <span ng-show="myForm.age.$error.required">Age
-					is required.</span> <span ng-show="myForm.age.$error.email">Invalid age, need number.</span>
+			Age:<br> <input type="number" name="age" min="1" max="150" ng-model="age" required> 
+			<span style="color: red" ng-show="myForm.age.$dirty && myForm.age.$invalid"> 
+				<span ng-show="myForm.age.$error.required">Age is required.</span> 
+				<span ng-show="myForm.age.$error.number">Invalid age, need number.</span>
+				<span ng-show="myForm.age.$error.min">Invalid age, need positive number.</span>
+				<span ng-show="myForm.age.$error.max">Invalid age, max age is 150</span>
 			</span>
-		</p>
-		
+		</p>		
 
 		<p>
 			<input type="submit"
-				ng-disabled="myForm.user.$dirty && myForm.user.$invalid 
+				ng-disabled="
+				  myForm.user.$dirty && myForm.user.$invalid 
 				||myForm.email.$dirty && myForm.email.$invalid
 				||myForm.age.$dirty && myForm.age.$invalid"
 				>
