@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body>
+	<h1>Digits Only Example</h1>
+
+
+	<div ng-app="myAppName" ng-controller="validateCtrl">
+		<p>
+			Age:<br> <input type="number" name="age" min="1" max="150"
+				ng-model="age" only-digits>
+		</p>
+	</div>
+
+	<br />
+	<a
+		href="http://stackoverflow.com/questions/16091218/angularjs-allows-only-numbers-to-be-typed-into-a-text-box">it
+		comes from here</a>
+
+	<script>
+		var myApp = angular.module('myAppName', []);
+
+		myApp.controller('validateCtrl', function($scope) {
+			$scope.age = 35;
+		});
+
+		myApp.directive('onlyDigits', function() {
+			return {
+				restrict : 'A',
+				require : '?ngModel',  // ask target element must have ngModel attribute
+				link : function(scope, element, attrs, ngModel) {
+					if (!ngModel){
+						return;
+					}						
+					ngModel.$parsers.unshift(function(inputValue) {
+						
+						// remove all no digits chars from input string 
+						var digits = inputValue.split('').filter(function(s) {
+							return (!isNaN(s) && s != ' ');
+						}).join('');
+						 
+						
+						ngModel.$viewValue = digits;
+						ngModel.$render();
+						return digits;
+					});
+				}
+			};
+		});
+	</script>
+
+</body>
+</html>
