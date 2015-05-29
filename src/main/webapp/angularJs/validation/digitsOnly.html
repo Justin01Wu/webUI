@@ -13,8 +13,12 @@
 
 	<div ng-app="myAppName" ng-controller="validateCtrl">
 		<p>
-			Age:<br> <input type="number" name="age" min="1" max="150"
-				ng-model="age" only-digits>
+			Age(number type):<br/> 
+			<input type="number" name="age" ng-model="age" only-digits />
+			
+			<br/><br/>
+			Age(text type):<br/>
+			<input type="text" name="age2" ng-model="age2" only-digits />
 		</p>
 	</div>
 
@@ -28,6 +32,7 @@
 
 		myApp.controller('validateCtrl', function($scope) {
 			$scope.age = 35;
+			$scope.age2 = 36;
 		});
 
 		myApp.directive('onlyDigits', function() {
