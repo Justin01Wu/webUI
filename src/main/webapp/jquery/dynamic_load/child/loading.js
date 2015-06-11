@@ -22,11 +22,14 @@
 	info.innerHTML = info.innerHTML +' <br/> loading file:' + childHtml;  
 
 	$.get(childHtml, function(data) {
-		$(".result").html(data);
+		
 		//alert("Load was performed.");
 		var info = document.getElementById('infoLabel');
-		info.innerHTML = info.innerHTML +' <br/> loaded file:' + childHtml;  
+		info.innerHTML = info.innerHTML +' <br/> loaded file:' + childHtml;
+		
+		$(".result").html(data);
 
 	});
+	
 
 })(jQuery, window, document);
