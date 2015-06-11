@@ -1,0 +1,11 @@
+<div class="child">
+	<h2>Child content</h2>
+</div>
+
+<script>
+	console.log("child page is running...");
+	var info = document.getElementById('infoLabel');
+	info.innerHTML = info.innerHTML + ' <br/> child page is running...';
+</script>
+
+<script src="child/child.js"></script>
