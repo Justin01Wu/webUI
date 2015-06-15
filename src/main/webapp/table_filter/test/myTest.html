@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="ISO-8859-1">
+        <script src="tablefilter.js"></script>
+        <link rel="stylesheet" href="filtergrid.css">
+        <title>test table filter</title>
+
+        <style>
+
+            table.data-list thead {
+                height: 21px;
+                background-color: #BFC2CC;
+            }   
+
+            table#referenceContractTable{
+                border-spacing: 1px;
+                min-width: 400px;
+            }
+
+            table#referenceContractTable tr:nth-child(even) {
+                background-color: #ddd;
+            }
+
+            table#referenceContractTable > tbody tr:hover {
+                background-color: LightBlue;
+            }
+
+            div#referenceContainer .hidden{
+                display:none
+            }
+            div#referenceContainer.hasError .hidden{
+                display:block
+            }
+            div#referenceContainer.hasError #referenceContractTable{
+                display:none
+            }
+
+            body#pricingView #openRef{
+                display:none
+            }
+
+        </style>      
+           
+    </head>
+
+
+    <body>
+        <h1>test table filter </h1>	
+        <table id="referenceContractTable" class="data-list">
+            <thead><tr>
+                    <td>Client</td>
+                    <td>program</td>
+                    <td>contract</td>
+                    <td>contractId</td>
+                    <td>createdBy</td>
+                    <td>MFID</td>
+                    <td>limit</td>
+                    <td>attachment</td>
+                </tr></thead>
+            <tbody>
+                <tr>
+                    <td>AIG</td>
+                    <td>2016_REF_Catastrophe XOL_US Property</td>
+                    <td>REFA2016</td>
+                    <td>1298545</td>
+                    <td>Justin Wu</td>
+                    <td>boft56</td>
+                    <td>12006000</td>
+                    <td>569045</td>
+                </tr>                
+                <tr>
+                    <td>3M</td>
+                    <td>2016_REF_Catastrophe XOL_US Property</td>
+                    <td>REFB2016_</td>
+                    <td>1298546</td>
+                    <td>James Botelho</td>
+                    <td>tof123</td>
+                    <td>55564000</td>
+                    <td>780000</td>
+                </tr>
+            </tbody>
+        </table>
+        <script language="javascript" type="text/javascript">  
+            var tf1 = setFilterGrid("referenceContractTable");  
+        </script>    
+
+		<br/>
+		<a href="http://tablefilter.free.fr/" target="_blank">it comes from here</a>   
+		
+    </body>
