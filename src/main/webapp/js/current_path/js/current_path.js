@@ -16,7 +16,11 @@ function getJSPath() {
 function getContextPath() {
 	
 	if( "file:" === window.location.protocol){			
-		var docUrl = document.URL;
+
+		//var docUrl = document.URL;
+		var docUrl = window.location.href;  
+		// IE will return \ as separator in document.URL, so use window.location.href to replace it
+		
 		var separator = "src/main/webapp";
 		var res = docUrl.split(separator, 2);
 		var contextPath = res[0] + separator ;
