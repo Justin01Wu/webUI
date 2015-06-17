@@ -38,7 +38,7 @@
 	}		
 	
 	function writeReadOnlyProp() {
-		obj.prop ="test2";	//silently fail
+		obj.prop ="test2";	// silently fail
 		var value = obj.prop;
 		var info = document.getElementById('infoLabel');
 		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;  // still old value
@@ -46,7 +46,7 @@
 	
 	function writeReadOnlyStrict() {
 		'use strict';
-		obj.prop ="test2";	//hrows an error in strict mode
+		obj.prop ="test2";	// throws an error in strict mode
 		var value = obj.prop;
 		var info = document.getElementById('infoLabel');
 		info.innerHTML = info.innerHTML +' <br/> obj.prop still = ' + value;  // still old value
