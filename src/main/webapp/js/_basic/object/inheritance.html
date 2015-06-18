@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta charset=utf-8 />
+</head>
+<body>
+
+	<h1>test JavaScript Inheritance</h1>
+	<ul>
+	<li>JavaScript use prototype to implement inheritance</li>	
+	</ul>
+	<br />
+
+	<button onClick=testOrigClass();>test original class</button>
+	<button onClick=testExtendedClass();>test extended class</button>
+	<button onClick=testOverride();>test override method</button>
+
+	<br />
+	<label id="infoLabel"></label>
+	
+	<br/><br/>
+
+	<a href = "http://stackoverflow.com/questions/1646698/what-is-the-new-keyword-in-javascript" target=_blank>it comes from here</a>
+	
+	and 
+	<a href = "http://stackoverflow.com/questions/1744426/does-javascripts-new-operator-do-anything-but-make-life-difficult" target=_blank>here</a>
+
+	<script>
+	
+//---------------------------------------------------------
+// how JavaScript declare an class
+//---------------------------------------------------------
+
+function MyClass() {
+	this.a = 'first';
+};
+
+MyClass.prototype.sayHi = function() {
+	var info = document.getElementById('infoLabel');
+	info.innerHTML = info.innerHTML +' <br/> hi ' + this.a ;  //outpot 'first'
+};
+
+MyClass.prototype.b = 'second';
+//like all functions, MyClass has an accessible prototype property that 
+//we can alter. I just added a property called 'b' to it. Like 
+//all objects, MyClass also has an inaccessible [[prototype]] property
+//that we can't do anything with
+
+
+MyClass2 = function () {};
+MyClass2.prototype = new MyClass(); // note: this pattern is deprecated!, ECMAScript 5: MyClass2.prototype = Object.create(MyClass.prototype);
+
+
+function testOrigClass(){
+	var obj1 = new MyClass();
+	obj1.sayHi();
+}
+
+function testExtendedClass(){
+	var obj2 = new MyClass2();
+	obj2.sayHi();  
+	// if testOverride() is run, then this will output 'second', otherwise it will output 'first'  
+}
+
+function testOverride(){
+	var obj2 = new MyClass2();
+	
+	
+	MyClass2.prototype.sayHi=function(){
+		var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/> hi ' + this.b ;  //outpot 'output'		
+	}
+	
+	obj2.sayHi();
+}
+
+
+
+</script>
+</body>
+
+</html>
