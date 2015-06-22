@@ -43,6 +43,10 @@
 	
 	var myJs3Obj = new MyJs3({id : "lab4"});
 	myJs3Obj.show();
+	myJs3Obj.options.callBack=function(msg){
+		console.log(msg);		
+	}
+	myJs3Obj.show();
 	
 </script>
 

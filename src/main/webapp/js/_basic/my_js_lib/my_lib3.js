@@ -30,7 +30,12 @@
 			if(that.options.id){
 				var target = document.getElementById(that.options.id);
 				if(target){
-					alert('find target  Element by Id:' + that.options.id);	
+					var msg = 'find target  Element by Id: ' + that.options.id; 
+					if(that.options.callBack){
+						that.options.callBack(msg);
+					}else{
+						alert(msg);
+					}
 				}				
 			}
 
@@ -40,7 +45,7 @@
 	window.MyJs3= MyJs3;
 
 	/*
-	 * MODAL PRIVATE METHODS =====================
+	 * MyJs3 PRIVATE METHODS =====================
 	 */
 
 	function _getCurrentPath() {
