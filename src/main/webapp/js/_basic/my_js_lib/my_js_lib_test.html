@@ -6,6 +6,7 @@
 <script src="my_js_lib.js"></script>
 <script src="my_js_lib2.js"></script>
 <script src="my_js_lib2.js"></script>
+<script src="my_lib3.js"></script>
 <title>test my JS lib</title>
 </head>
 
@@ -13,6 +14,7 @@
 	<h1>test my JavaScript lib</h1>
 
 	<br />
+	<label id="lab4">test my JavaScript lib</label>
 	<br /> it comes from
 	<a
 		href="http://stackoverflow.com/questions/2421911/what-is-the-purpose-of-wrapping-whole-javascript-files-in-anonymous-functions-li"
@@ -38,6 +40,9 @@
 	
 	// extend existing library sample
 	myObj.sayMsg3();
+	
+	var myJs3Obj = new MyJs3({id : "lab4"});
+	myJs3Obj.show();
 	
 </script>
 
