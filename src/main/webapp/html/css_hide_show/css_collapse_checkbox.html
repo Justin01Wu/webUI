@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>test pure CSS hide and show</title>
+
+<style>
+.collapse{
+  font-size: 31px;
+  display:block;
+}
+.collapse + input{
+  display:none;
+}
+.collapse + input + *{
+  display:none;
+}
+.collapse+ input:checked + *{
+  display:block;
+}
+</style>
+
+</head>
+<body>
+
+	<h1>test pure CSS hide and show(checkBox solution)</h1>
+
+<label class="collapse" for="_1">Collapse 1</label>
+  <input id="_1" type="checkbox">
+  <div>Content 1</div>
+
+  <label class="collapse" for="_2">Collapse 2</label>
+  <input id="_2" type="checkbox">
+  <div>Content 2
+  		<a href="#link">link</a>
+		<br/>
+		<input type="text" name="input34"/>  
+  </div>
+	
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	it comes from <a href="hhttp://stackoverflow.com/questions/19170781/show-hide-divs-on-click-in-html-and-css-without-jquery" target=_blank>here</a>
+	
+
+</body>
+</html>

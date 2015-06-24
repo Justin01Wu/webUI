@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>test pure CSS hide and show</title>
+
+<style>
+.collapse {
+	display: block;
+}
+
+.collapse+input {
+	display: none;
+}
+
+.collapse+input+* {
+	display: none;
+}
+
+.collapse+input:checked+* {
+	display: block;
+}
+</style>
+
+</head>
+<body>
+
+	<h1>test pure CSS hide and show(radio solution, auto close others))</h1>
+
+	<label class="collapse" for="_1">
+		<h2>Collapse 1</h2>
+	</label>
+	<input id="_1" type="radio" name="test">
+	<div>Content 1</div>
+
+	<label class="collapse" for="_2">
+		<h2>Collapse 2</h2>
+	</label>
+	<input id="_2" type="radio" name="test">
+	<div>
+		Content 2...
+		<a href="#link">link</a>
+		<br/>
+		<input type="text" name="input34"/>  
+
+	</div>
+	
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	it comes from <a href="http://stackoverflow.com/questions/29601992/show-hide-div-closes-when-clicking-anywhere-outside-css-only" target=_blank>here</a>
+	
+
+</body>
+</html>
