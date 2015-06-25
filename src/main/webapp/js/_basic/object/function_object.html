@@ -8,6 +8,7 @@
 	<br />
 
 	<button onClick=test();>test object with default</button>
+	<button onClick=testFunction();>test Class still can be function</button>
 	<button onClick=testAnotherName();>test object with another
 		name</button>
 	<button onClick=printProp();>print all properties</button>
@@ -37,12 +38,20 @@ function Person(myName) {
   	var info = document.getElementById('infoLabel');
   	info.innerHTML = info.innerHTML +' <br/> hi ' + this.name;
   }
+  
+  return "Person is a function now";
 }
 
 // here Person is used as contructor
 function test(){
 	var person1 = new Person();
 	person1.sayHi();
+}
+
+function testFunction(){
+	var result = Person();
+  	var info = document.getElementById('infoLabel');
+  	info.innerHTML = info.innerHTML +' <br/> ' + result;
 }
 
 function testAnotherName(){
