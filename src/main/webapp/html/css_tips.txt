@@ -1,4 +1,19 @@
 (1) Chrome doesn't support multiple styles on the same element, but old IE support it , fox example:
    <input type="text" id="pm_name"  class="edline" style="width:310;" readonly style="font-weight:bold"/>
    Chrome will miss the second style
-   
+
+(2) Grey or gray. Use one or the other, not a mix
+
+	CSS spec 2.1 and recommendation 3 specify 'gray' only. 
+	They do not directly specify light or dark varieties of this color.
+	CSS3 extended keywords (read x11) spec both versions of the color and its varieties as the same.
+	I.E. lightgrey = lightgray; darkgrey = dark gray; grey = gray.
+
+    personally I would chose gray as it is CSS backwards compatible and is more correct as a core keyword rather than on extended keyword. 
+    It also fits with the US-english used throughout the rest of the CSS specs and recommendations.
+	the standard is in US-en
+
+    I know this has come about because of previous inconsistent browser support, 
+    but CSS2 and 3 do spec gray, and this is only the case with legacy browsers  
+    
+    this section comes from  https://github.com/CSSLint/csslint/issues/217
