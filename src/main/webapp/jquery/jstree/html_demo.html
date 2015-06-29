@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="jstree.3.1.1/jstree.js"></script>
+<link rel="stylesheet" href="jstree.3.1.1/themes/default/style.min.css" />
+<title>test jsTree</title>
+</head>
+
+<body>
+	<h1>test jsTree on html UL</h1>
+	
+	
+	<h2>before start jsTree:</h2>
+	<div>
+		<ul>
+			<li>Root node 1</li>
+			<li>Root node 2</li>
+		</ul>
+	</div>
+	
+	<br/><br/>
+	
+	<h2>after start jsTree:</h2>
+	<div id="html4">
+		<ul>
+			<li>Root node 1</li>
+			<li>Root node 2</li>
+		</ul>
+	</div>
+
+	<script>
+	$('#html4').jstree();
+	</script>
+
+</body>
+</html>
