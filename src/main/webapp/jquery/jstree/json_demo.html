@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="jstree.3.1.1/jstree.js"></script>
+<link rel="stylesheet" href="jstree.3.1.1/themes/default/style.min.css" />
+<title>test jsTree</title>
+</head>
+
+<body>
+	<h1>test jsTree on Json Data</h1>
+	
+	
+	<div id="using_json">
+	</div>
+	
+	<br/><br/><br/>
+	
+	it comes from <a href="http://www.jstree.com/docs/json/" target=_blank>here</a>	
+
+	<script>
+	$('#using_json').jstree({ 'core' : {
+	    'data' : [
+	       'Simple root node',
+	       {
+	         'text' : 'Root node 2',
+	         'state' : {
+	           'opened' : true,
+	           'selected' : true
+	         },
+	         'children' : [
+	           { 'text' : 'Child 1' },
+	           'Child 2'
+	         ]
+	      }
+	    ]
+	} });
+	</script>
+
+</body>
+</html>
