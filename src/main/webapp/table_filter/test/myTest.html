@@ -1,8 +1,8 @@
 <html>
     <head>
         <meta charset="ISO-8859-1">
-        <script src="tablefilter.js"></script>
-        <link rel="stylesheet" href="filtergrid.css">
+        <script src="TableFilter_2.5.1/tablefilter.js"></script>
+        <link rel="stylesheet" href="TableFilter_2.5.1/filtergrid.css">
         <title>test table filter</title>
 
         <style>
@@ -46,6 +46,9 @@
 
     <body>
         <h1>test table filter </h1>	
+        
+        <input type="button" value="load more data" onClick="loadData()" /> 
+        
         <table id="referenceContractTable" class="data-list">
             <thead><tr>
                     <td>Client</td>
@@ -59,8 +62,8 @@
                 </tr></thead>
             <tbody>
                 <tr>
-                    <td>AIG</td>
-                    <td>2016_REF_Catastrophe XOL_US Property</td>
+                    <td>IBM</td>
+                    <td>2016_REF_Hwllo</td>
                     <td>REFA2016</td>
                     <td>1298545</td>
                     <td>Justin Wu</td>
@@ -69,19 +72,84 @@
                     <td>569045</td>
                 </tr>                
                 <tr>
-                    <td>3M</td>
-                    <td>2016_REF_Catastrophe XOL_US Property</td>
+                    <td>Richo</td>
+                    <td>2016_REF_world</td>
                     <td>REFB2016_</td>
                     <td>1298546</td>
-                    <td>James Botelho</td>
+                    <td>David Lee</td>
                     <td>tof123</td>
                     <td>55564000</td>
                     <td>780000</td>
                 </tr>
             </tbody>
         </table>
-        <script language="javascript" type="text/javascript">  
-            var tf1 = setFilterGrid("referenceContractTable");  
+        <script type="text/javascript">  
+            
+            var table11_Props = {  
+            		base_path: 'TableFilter_2.5.1/',
+                    filters_row_index: 1  
+                };  
+            var myTableFilter = setFilterGrid("referenceContractTable", table11_Props);  
+            
+            
+            function loadData() {
+
+            	var dataSet= 
+            		[
+            		  {
+            		    "clientName": "VOP",
+            		    "contractId": 1298545,
+            		    "contractName": "REFA2016",
+            		    "programId": 57799,
+            		    "programName": "2016_Justin Test",
+            		    "modelFileId": "ako98",
+            		    "underwriter": "Yan Wu",
+            		    "limit": 5684.3,
+            		    "attachment": 6684.45,            		    
+            		    "inceptionDate": "Jan 23, 2016"
+            		  },
+            		  {
+            		    "clientName": "3M",
+            		    "contractId": 1298546,
+            		    "contractName": "REFB2016_",
+            		    "programId": 57799,
+            		    "programName": "2016_REF_Justin test",
+            		    "modelFileId": "abc345",
+            		    "underwriter": "Rita Wang",
+            		    "limit": 123456,
+            		    "attachment": 6684.45,
+            		    "inceptionDate": "Jan 23, 2016"
+            		  }
+            		];
+            	
+                var myBody = document.createElement('tbody');
+                var len = dataSet.length;
+                for (var i = 0; i < len; i++) {
+
+                    var columns = [];
+                    columns.push(document.createTextNode(dataSet[i].clientName));
+                    columns.push(document.createTextNode(dataSet[i].programName));
+                    columns.push(document.createTextNode(dataSet[i].contractName));
+                    columns.push(document.createTextNode(dataSet[i].contractId));
+                    columns.push(document.createTextNode(dataSet[i].underwriter));
+                    columns.push(document.createTextNode(dataSet[i].modelFileId));
+                    columns.push(document.createTextNode(dataSet[i].limit));
+                    columns.push(document.createTextNode(dataSet[i].attachment));
+                    
+                    var row = myBody.insertRow();
+
+                    for (var j = 0; j < columns.length; j++) {
+                        var td = document.createElement('td');
+                        td.appendChild(columns[j]);
+                        row.appendChild(td);
+                    }
+                }
+                var myOldBody = document.getElementById('referenceContractTable').getElementsByTagName('tbody')[0];
+                myOldBody.parentNode.replaceChild(myBody, myOldBody);
+                
+                //myTableFilter.RefreshGrid();  // sometimes table filter can't find data changing, so force to refresh
+
+            }
         </script>    
 
 		<br/>
