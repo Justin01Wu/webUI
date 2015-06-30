@@ -1,3 +1,6 @@
+	
+	CSS tips
+
 (1) Chrome doesn't support multiple styles on the same element, but old IE support it , fox example:
    <input type="text" id="pm_name"  class="edline" style="width:310;" readonly style="font-weight:bold"/>
    Chrome will miss the second style
@@ -17,3 +20,34 @@
     but CSS2 and 3 do spec gray, and this is only the case with legacy browsers  
     
     this section comes from  https://github.com/CSSLint/csslint/issues/217
+    
+(3) use CSS override rather than use JavaScript or jQuery to hide and show multiple elements, for example:
+	
+	DivA
+	    elementB
+	    elementC classX
+	    DivD
+	    	elementE
+	    	elementF classX 
+    I want hide element C and F based on some JavaScript calculation
+    we can hide them directly by JavaScript, or get them by classX, but they are not good
+    
+    the better way is using CSS override
+
+    Div .classX{
+    	display:block;
+    }
+    
+    Div.hideCD .classX{
+    	display:none;
+    }
+    
+    
+    This way, it has some benefits:
+    	A. efficient, because they are hidden by browser CSS engine, so it is very quick when you want to hide tons of elements
+    	B. maintainable, Developer can easily find what caused the hiding
+    	C. can easily to combine multiple rules to hide and show elements.
+    	
+    This way doesn't work for readonly and disable because CSS has no way to control readonly and disable
+    	  
+    
