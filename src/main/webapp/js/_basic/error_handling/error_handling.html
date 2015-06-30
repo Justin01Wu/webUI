@@ -8,97 +8,94 @@
 
 	<br />
 	<br />
-	<h1>test javascript error handling  </h1>
+	<h1>test javascript error handling</h1>
 
 
-it comes from <a href="http://www.nczonline.net/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/" target=_blank>The art of throwing JavaScript errors, Part 2</a>
-<br/><br/>	
+	it comes from
+	<a href="http://www.nczonline.net/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/" target=_blank>The art of throwing JavaScript
+		errors, Part 2</a>
+	<br />
+	<br />
 
-<div class="buttons">
-    <input type="button" value="click to throw a string error(open console to see it)" onclick="throwStringError()"><br/><br/>	
-    
-    <input type="button" value="click to handle an error message" onclick="handleError2()"><br/><br/>	
-    
-    <input type="button" value="click to handle an error with stack(open console to see it)" onclick="handleError3()"><br/><br/>
-    
-    <input type="button" value="click to handle a ReferenceError(open console to see it)" onclick="handleReferenceError()"><br/><br/>	
-    
-    <input type="button" value="click to handle my error type(open console to see it)" onclick="handleMyError()"><br/><br/>	
-    
-</div>
+	<div class="buttons">
+		<input type="button" value="click to throw a string error(open console to see it)" onclick="throwStringError()"><br /> <br /> <input
+			type="button" value="click to handle an error message" onclick="handleError2()"><br /> <br /> <input type="button"
+			value="click to handle an error with stack(open console to see it)" onclick="handleError3()"><br /> <br /> <input type="button"
+			value="click to handle a ReferenceError(open console to see it)" onclick="handleReferenceError()"><br /> <br /> <input type="button"
+			value="click to handle my error type(open console to see it)" onclick="handleMyError()"><br /> <br />
 
-<br/><br/>	
+	</div>
 
-	
+	<br />
+	<br />
+
+
 	<script>
+		function throwStringError() {
+			throw "my error string";
+		}
 
-		function throwStringError(){
-			throw "my error string";	
-    }
-    
- 		function handleError2(){
- 			try{
-				throw "my own error2";	
-			}catch(E){
+		function handleError2() {
+			try {
+				throw "my own error2";
+			} catch (E) {
 				alert(E);
 			}
-    }
-    
-    function handleError3(){
- 			try{
-				throw new Error("my own error3");	
+		}
+
+		function handleError3() {
+			try {
+				throw new Error("my own error3");
 				// this way, it will have stack in modern browser
-			}catch(E){
-				if(window.console) {
+			} catch (E) {
+				if (window.console) {
 					console.log(E);
-					if(E.stack) {
+					if (E.stack) {
 						// IE doesn't have stack
-						console.log(E.stack);	
+						console.log(E.stack);
 					}
 				}
 			}
-    }
+		}
 
-    function handleReferenceError(){
- 			try{
-				throw new ReferenceError("my ReferenceError");	
+		function handleReferenceError() {
+			try {
+				throw new ReferenceError("my ReferenceError");
 				// this is one of javascript predefined error
-			}catch(E){
-				if(window.console) {
+			} catch (E) {
+				if (window.console) {
 					console.log(E.name);
 					console.log(E);
-					if(E.stack) {
+					if (E.stack) {
 						// IE doesn't have stack
-						console.log(E.stack);	
+						console.log(E.stack);
 					}
 				}
 			}
-    }
-    
-    function MyError(message){
-    	this.message = message;
+		}
+
+		function MyError(message) {
+			this.message = message;
 		}
 
 		MyError.prototype = new Error();
-    
-    function handleMyError(){    	
-    	try{
+
+		function handleMyError() {
+			try {
 				throw new MyError("this is my error type");
 				// this is one of javascript predefined error
-			}catch(E){
-				if(window.console) {
+			} catch (E) {
+				if (window.console) {
 					console.log(E.name);
 					console.log(E);
-					if(E.stack) {
+					if (E.stack) {
 						// IE doesn't have stack
-						console.log(E.stack);	
+						console.log(E.stack);
 					}
 				}
 			}
 
-    }
-     
-    
+		}
 	</script>
 
 </body>
