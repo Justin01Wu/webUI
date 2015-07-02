@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>test default color in different browser</title>
+</head>
+<body>
+
+
+	<h1>test default color in different browser</h1>
+
+
+	normal Input:
+	<input type="text" />
+
+	<br />
+	<br /> disabled Input:<br />
+	chrome: background-color: rgb(235, 235, 228);<br />
+	<input disabled type="text" />
+
+	<br />
+	<br /> read only Input:
+	<input readonly type="text" />
+
+	<br />
+	<br /> normal select:
+	<select style="width: 100px">
+		<option value="AF">Afghanistan</option>
+		<option value="AX">Åland Islands</option>
+	</select>
+
+	<br />
+	<br /> disabled select:<br />
+	chrome: color: graytext;  (color: rgb(128, 128, 128);)<br />
+	
+	<select disabled style="width: 100px">
+		<option value="AF">Afghanistan</option>
+		<option value="AX">Åland Islands</option>
+	</select>
+
+	<br />
+	<br />  select doesn't have readonly attribue
+
+
+</body>
+</html>
