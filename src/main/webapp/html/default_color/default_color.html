@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta charset="ISO-8859-1">
 <title>test default color in different browser</title>
+
+<style>
+	input.simulate_disabled {  
+		/*
+		background-color: rgb(235, 235, 228);    // for Chrome 
+		*/
+		background-color: #EDEDED /* for IE */
+	}  
+</style>
 </head>
 <body>
 
@@ -17,6 +27,10 @@
 	<br /> disabled Input:<br />
 	chrome: background-color: rgb(235, 235, 228);<br />
 	<input disabled type="text" />
+
+	<br />
+	<br /> normal input simulate disabled color:
+	<input type="text" class="simulate_disabled"/>
 
 	<br />
 	<br /> read only Input:
