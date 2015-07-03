@@ -5,7 +5,13 @@
    <input type="text" id="pm_name"  class="edline" style="width:310;" readonly style="font-weight:bold"/>
    Chrome will miss the second style
 
-(2) Grey or gray. Use one or the other, not a mix
+(2) image button always need an image, 
+    the image path is relative to the current document if you add it directly on it
+    so you can use background-image in the css file, then create image button with this css
+    In this way, image is relative to the css path, and you can reuse it  
+
+
+(3) Grey or gray. Use one or the other, not a mix
 
 	CSS spec 2.1 and recommendation 3 specify 'gray' only. 
 	They do not directly specify light or dark varieties of this color.
@@ -21,7 +27,7 @@
     
     this section comes from  https://github.com/CSSLint/csslint/issues/217
     
-(3) use CSS override rather than use JavaScript or jQuery to hide and show multiple elements, for example:
+(4) use CSS override rather than use JavaScript or jQuery to hide and show multiple elements, for example:
 	
 	DivA
 	    elementB
