@@ -13,6 +13,7 @@
 		<li>workers can only use message to talk with main thread</li>
 		<li>importScripts() can add multiple files, they may be downloaded in any order, but will be executed in the order in which you pass the filenames into importScripts() . This is done synchronously;</li> 
 		<li>importScripts() does not return until all the scripts have been loaded and executed.</li>
+		<li>importScripts() use relative path to current js file,importScripts(relativeToCurrentJs), rather than to general document(new worker(relativePathToDoc))</li>
 	</ul>
 	
 	<p>

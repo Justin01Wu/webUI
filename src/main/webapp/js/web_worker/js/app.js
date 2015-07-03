@@ -9,7 +9,7 @@ function startWorker() {
 
 	if (typeof (Worker) !== "undefined") {
 		if (typeof (w) == "undefined") {
-			w = new Worker("js/demo_workers.js");
+			w = new Worker("js/worker/demo_workers.js");
 		}
 		w.onmessage = function(event) {
 			document.getElementById("result").innerHTML = event.data;
