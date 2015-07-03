@@ -3,6 +3,8 @@ if(console){
 	console.log("inside demo_worker");
 }
 
+importScripts("shared/shared.js");
+
 var i = 0;
 
 function timedCount() {
@@ -12,3 +14,7 @@ function timedCount() {
 }
 
 timedCount();
+
+globalX = "global X set in worker";
+
+print();

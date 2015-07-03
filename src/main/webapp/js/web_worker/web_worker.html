@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="js/shared/shared.js"></script>
 <body>
 	<h1>Web worker example</h1>
 	<ul>
@@ -25,7 +26,11 @@
 	<script>
 		var w;
 
-		function startWorker() {
+		function startWorker() {			
+			
+			globalY = "global Y set in main";
+			print();
+			
 			if (typeof (Worker) !== "undefined") {
 				if (typeof (w) == "undefined") {
 					w = new Worker("js/demo_workers.js");
