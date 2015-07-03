@@ -1,3 +1,8 @@
+
+if(console){
+	console.log("inside demo_worker");
+}
+
 var i = 0;
 
 function timedCount() {
