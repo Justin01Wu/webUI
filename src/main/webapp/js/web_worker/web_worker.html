@@ -2,6 +2,17 @@
 <html>
 <body>
 	<h1>Web worker example</h1>
+	<ul>
+		<li>workers run in another global context that is different from the current</li>
+		<li>Workers can spawn another worker</li>
+		<li>Workers can NOT access DOM</li>
+		<li>workers code must be hosted within the same origin of the parent page</li>		
+		<li>workers can use importScripts() to share functions with others, but remember rule 1, it is in another context</li>
+		<li>workers can only use message to talk with main thread</li>
+		<li>importScripts() can add multiple files, they may be downloaded in any order, but will be executed in the order in which you pass the filenames into importScripts() . This is done synchronously;</li> 
+		<li>importScripts() does not return until all the scripts have been loaded and executed.</li>
+	</ul>
+	
 	<p>
 		Count numbers:
 		<output id="result"></output>
