@@ -25,13 +25,15 @@
 	<script>
 		var jsTreeData = {
 			'data' : [ 'Simple root node', {
+				"id" : 12346789,
 				'text' : 'Root node 2',
+				
 				'state' : {
 					'opened' : true,
 					'selected' : true
 				},
 				'children' : [ {
-					"id" : 12346789,
+					
 					'text' : 'Child 1',
 					a_attr : {
 						title : "child 1 title"
@@ -79,7 +81,10 @@
 	    
 	    landinEle.bind('ready.jstree', function(e, data) {
           	var info = document.getElementById('infoLabel');
-          	info.innerHTML = info.innerHTML +' <br/> jsTree now is ready ' ;            
+          	info.innerHTML = info.innerHTML +' <br/> jsTree now is ready ' ;         
+          	
+          	// add title on 'Root node 2', which id is 12346789
+          	landinEle.find("#12346789").attr("title", "added by ready.jstree event");
         });
 	    
 	    // finally we create jsTree
