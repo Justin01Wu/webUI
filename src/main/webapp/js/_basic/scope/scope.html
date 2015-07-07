@@ -12,6 +12,7 @@
 <button onClick=printClosureStatus();>print closure status</button>
 <button onClick=changeValueTest();>change String value to 'changed'(it will come back after it return)</button>
 <button onClick=changeRefTest();>change ref value to 'changed'(it will keep it after it return)</button>
+<button onClick=testFromParameter();>test variable from parameter</button>
 <br/>
 <label id="infoLabel"></label>
 
@@ -70,6 +71,22 @@ function changeRefTest() {
 	var info = document.getElementById('infoLabel');
   info.innerHTML = info.innerHTML +' <br/> name = ' + person.name;
 	
+}
+
+function testFromParameter(){
+	
+	fun23('from parameter');
+	
+	function fun23(fromParameter){
+
+		var x = fromParameter;
+		innerFunction();
+	  	function innerFunction(fromParameter){
+			var info = document.getElementById('infoLabel');
+		  	info.innerHTML = info.innerHTML +' <br/> name = ' + fromParameter;			 // this will output undefined
+		  	info.innerHTML = info.innerHTML +' <br/> name = ' + x;			 // this will output 'from parameter'
+	  	}
+	}
 }
 
 </script>
