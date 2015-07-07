@@ -11,7 +11,7 @@
 
 <body>
 	<h1>test jsTree customized menu</h1>
-
+	<h2>right click on the node to see context menu</h2>
 
 	<div id="using_json"></div>
 	
@@ -39,7 +39,7 @@
 			} ]
 		};
 
-	    var contextmenu ={
+	    var contextMenu ={
 	        "items": function ($node) {
 	            return {
 	                "Create4": {
@@ -69,8 +69,8 @@
 		
 		$('#using_json').jstree({ 
 			'core' : jsTreeData,
-			"plugins": [ "contextmenu"], // this line enable jsTree default context menu
-			"contextmenu": contextmenu
+			"plugins": [ "contextmenu"],   // this line enable jsTree default context menu
+			"contextmenu": contextMenu    // this line customize   context menu
 		});
 
 	</script>
