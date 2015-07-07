@@ -11,38 +11,35 @@
 
 <body>
 	<h1>test jsTree on Json Data</h1>
-	
-	
-	<div id="using_json">
-	</div>
-	
-	<br/><br/><br/>
-	
-	it comes from <a href="http://www.jstree.com/docs/json/" target=_blank>here</a>	
+
+
+	<div id="using_json"></div>
+
+	<br />
+	<br />
+	<br /> it comes from
+	<a href="http://www.jstree.com/docs/json/" target=_blank>here</a>
 
 	<script>
-	
-	var jsTreeData = {
-		    'data' : [
-		   	       'Simple root node',
-		   	       {
-		   	         'text' : 'Root node 2',
-		   	         'state' : {
-		   	           'opened' : true,
-		   	           'selected' : true
-		   	         },
-		   	         'children' : [
-		   	           { 'text' : 'Child 1',
-		   	        	a_attr  : {
-		   	        		title: "child 1 title"} 
-		   	           },
-		   	           'Child 2'
-		   	         ]
-		   	      }
-		   	    ]
-		   	};
-	
-	$('#using_json').jstree({ 'core' : jsTreeData });
+		var jsTreeData = {
+			'data' : [ 'Simple root node', {
+				'text' : 'Root node 2',
+				'state' : {
+					'opened' : true,
+					'selected' : true
+				},
+				'children' : [ {
+					'text' : 'Child 1',
+					a_attr : {
+						title : "child 1 title"
+					}
+				}, 'Child 2' ]
+			} ]
+		};
+
+		$('#using_json').jstree({
+			'core' : jsTreeData
+		});
 	</script>
 
 </body>
