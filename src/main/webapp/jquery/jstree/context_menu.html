@@ -23,24 +23,34 @@
 	<a href="http://stackoverflow.com/questions/14133984/create-custom-item-in-jstree-context-menu" target=_blank>here</a>
 
 	<script>
-		var jsTreeData = {
-			'data' : [ 'Simple root node', {
-				"id" : 12346789,
-				'text' : 'Root node 2',
-				
-				'state' : {
+		var layerData =  [ 
+            {
+ 				id : 11,
+				text : 'Simple root node'
+
+            },
+			{
+				"id" : 22,
+				'text' : 'Root node 2',				
+				'state' : 
+				{
 					'opened' : true,
 					'selected' : true
 				},
-				'children' : [ {
-					
-					'text' : 'Child 1',
-					a_attr : {
-						title : "child 1 title"
-					}
-				}, 'Child 2' ]
+				'children' : 
+					[ 
+					{					
+						"id" : 2211,
+						'text' : 'Child 1',
+						a_attr : 
+						{
+							title : "child 1 title"
+						}
+					}, 
+					'Child 2' 
+					]
 			} ]
-		};
+		;
 
 	    var contextMenu ={
 	        "items": function ($node) {
@@ -83,16 +93,24 @@
           	var info = document.getElementById('infoLabel');
           	info.innerHTML = info.innerHTML +' <br/> jsTree now is ready ' ;         
           	
-          	// add title on 'Root node 2', which id is 12346789
-          	landinEle.find("#12346789").attr("title", "added by ready.jstree event");
+          	// add title on 'Root node 2', which id is 22
+          	var id = layerData[1].id;
+          	landinEle.find("#"+id).attr("title", "added by ready.jstree event");
         });
 	    
-	    // finally we create jsTree
-	    landinEle.jstree({ 
-			'core' : jsTreeData,
+	    
+	    // for jsTree data format details, please see http://www.jstree.com/docs/json/
+        var jsTreeInitObj = {
+            core: {
+            	animation: 0,
+                data: layerData
+            },
 			"plugins": [ "contextmenu"],   // this line enable jsTree default context menu
 			"contextmenu": contextMenu    // this line customize   context menu
-		});
+        };
+        
+	    // finally we create jsTree
+	    landinEle.jstree(jsTreeInitObj);
 	    
 
 		// this will be triggered when mouse hover on
