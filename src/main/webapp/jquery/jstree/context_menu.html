@@ -72,6 +72,17 @@
 			"plugins": [ "contextmenu"],   // this line enable jsTree default context menu
 			"contextmenu": contextMenu    // this line customize   context menu
 		});
+	    
+
+		// this will be triggered when mouse hover on
+	    $("#using_json").bind("hover_node.jstree", function (e, data) {
+	    	//alert(data.node.text);
+	    	var info = document.getElementById('infoLabel');
+	    	info.innerHTML = info.innerHTML +' <br/> move into  ' + data.node.text  ;
+	    	//alert(data.rslt.obj.attr("id"));
+	    })
+
+
 
 	</script>
 
