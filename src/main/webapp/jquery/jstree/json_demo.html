@@ -37,9 +37,11 @@
 			} ]
 		};
 
-		$('#using_json').jstree({
-			'core' : jsTreeData
+		$('#using_json').jstree({ 
+			'core' : jsTreeData,
+			"plugins": [ "contextmenu"] // this line enable jsTree default context menu
 		});
+
 	</script>
 
 </body>
