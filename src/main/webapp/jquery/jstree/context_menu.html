@@ -31,6 +31,7 @@
 					'selected' : true
 				},
 				'children' : [ {
+					"id" : 12346789,
 					'text' : 'Child 1',
 					a_attr : {
 						title : "child 1 title"
@@ -67,7 +68,22 @@
 	        }
 	    }
 		
-		$('#using_json').jstree({ 
+		var landinEle = $('#using_json');
+	    
+	    landinEle.bind('loaded.jstree', function(e, data) {
+		    // invoked after jstree has loaded
+		    //$(this).jstree("open_node", $(nodes[i]));
+          	var info = document.getElementById('infoLabel');
+          	info.innerHTML = info.innerHTML +' <br/> jsTree now is loaded ' ;
+		});
+	    
+	    landinEle.bind('ready.jstree', function(e, data) {
+          	var info = document.getElementById('infoLabel');
+          	info.innerHTML = info.innerHTML +' <br/> jsTree now is ready ' ;            
+        });
+	    
+	    // finally we create jsTree
+	    landinEle.jstree({ 
 			'core' : jsTreeData,
 			"plugins": [ "contextmenu"],   // this line enable jsTree default context menu
 			"contextmenu": contextMenu    // this line customize   context menu
@@ -77,9 +93,12 @@
 		// this will be triggered when mouse hover on
 	    $("#using_json").bind("hover_node.jstree", function (e, data) {
 	    	//alert(data.node.text);
-	    	var info = document.getElementById('infoLabel');
-	    	info.innerHTML = info.innerHTML +' <br/> move into  ' + data.node.text  ;
-	    	//alert(data.rslt.obj.attr("id"));
+	    	//var info = document.getElementById('infoLabel');
+	    	//info.innerHTML = info.innerHTML +' <br/> move into  ' + data.node.text  ;
+	    	if(window.console){
+	    		console.log(' move into  ' + data.node.text  );
+	    	}
+	    	
 	    })
 
 
