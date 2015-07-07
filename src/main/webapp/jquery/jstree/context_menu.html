@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="jstree.3.1.1/jstree.js"></script>
+<link rel="stylesheet" href="jstree.3.1.1/themes/default/style.min.css" />
+<title>test jsTree</title>
+</head>
+
+<body>
+	<h1>test jsTree customized menu</h1>
+
+
+	<div id="using_json"></div>
+	
+	<label id="infoLabel"></label>
+
+	<br />
+	<br />
+	<br /> it comes from
+	<a href="http://www.jstree.com/docs/json/" target=_blank>here</a>
+
+	<script>
+		var jsTreeData = {
+			'data' : [ 'Simple root node', {
+				'text' : 'Root node 2',
+				'state' : {
+					'opened' : true,
+					'selected' : true
+				},
+				'children' : [ {
+					'text' : 'Child 1',
+					a_attr : {
+						title : "child 1 title"
+					}
+				}, 'Child 2' ]
+			} ]
+		};
+
+	    var contextmenu ={
+	        "items": function ($node) {
+	            return {
+	                "Create4": {
+	                    "label": "Create a new employee",
+	                    "action": function (obj) {
+	                      	var info = document.getElementById('infoLabel');
+	                      	info.innerHTML = info.innerHTML +' <br/> click ' + obj.item.label + ' on ' + obj.reference[0].text;
+	                    }
+	                },
+	                "Rename7": {
+	                    "label": "Rename an employee",
+	                    "action": function (obj) {
+	                      	var info = document.getElementById('infoLabel');
+	                      	info.innerHTML = info.innerHTML +' <br/> click ' + obj.item.label + ' on ' + obj.reference[0].text; 
+	                    }
+	                },
+	                "Delete9": {
+	                    "label": "Delete an employee",
+	                    "action": function (obj) {
+	                      	var info = document.getElementById('infoLabel');
+	                      	info.innerHTML = info.innerHTML +' <br/> click ' + obj.item.label + ' on ' + obj.reference[0].text;
+	                    }
+	                }
+	            };
+	        }
+	    }
+		
+		$('#using_json').jstree({ 
+			'core' : jsTreeData,
+			"plugins": [ "contextmenu"], // this line enable jsTree default context menu
+			"contextmenu": contextmenu
+		});
+
+	</script>
+
+</body>
+</html>
