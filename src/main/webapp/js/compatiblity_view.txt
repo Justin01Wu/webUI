@@ -17,7 +17,9 @@ but modern browser and new IE, it is case sensitive.
 (7)	this.document will works in Compatibility View. 
    But in standard view you have to use window.document, this means current object, not window
 
-(8) in Compatibility View (old IE). JSON.parse can handle tab character in a JSON string, which is not allowed in modern browsers because it is not allowed in JSON Sepc.
+(8) in Compatibility View (old IE). it doesn't have JSON.parse function, so some polyfill is uesd to do this job
+   but some polyfill didn't follow JSons spec, will can handle tab character in a JSON string, 
+   which is not allowed in modern browsers because it is not allowed in JSON Sepc.
 
 	From JSON standard:
 	
