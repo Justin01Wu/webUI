@@ -80,22 +80,22 @@
 	        }
 	    }
 		
-		var landinEle = $('#using_json');
+		var landingEle = $('#using_json');
 	    
-	    landinEle.bind('loaded.jstree', function(e, data) {
+	    landingEle.bind('loaded.jstree', function(e, data) {
 		    // invoked after jstree has loaded
 		    //$(this).jstree("open_node", $(nodes[i]));
           	var info = document.getElementById('infoLabel');
           	info.innerHTML = info.innerHTML +' <br/> jsTree now is loaded ' ;
 		});
 	    
-	    landinEle.bind('ready.jstree', function(e, data) {
+	    landingEle.bind('ready.jstree', function(e, data) {
           	var info = document.getElementById('infoLabel');
           	info.innerHTML = info.innerHTML +' <br/> jsTree now is ready ' ;         
           	
           	// add title on 'Root node 2', which id is 22
           	var id = layerData[1].id;
-          	landinEle.find("#"+id).attr("title", "added by ready.jstree event");
+          	landingEle.find("#"+id).attr("title", "added by ready.jstree event");
         });
 	    
 	    
@@ -110,7 +110,7 @@
         };
         
 	    // finally we create jsTree
-	    landinEle.jstree(jsTreeInitObj);
+	    landingEle.jstree(jsTreeInitObj);
 	    
 
 		// this will be triggered when mouse hover on
