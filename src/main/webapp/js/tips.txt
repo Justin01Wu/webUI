@@ -1,5 +1,5 @@
 
-(1) compare to JAVA, JavaScript doesn't match parameters of the function, so please long function name if you comes from Java
+(1) compare to JAVA, JavaScript doesn't match parameters of the function, so please use long function name if you comes from Java
 		for example, you have 
 		
 			function abc(p1){...}
@@ -8,4 +8,24 @@
 
 
 (2)  compare to JAVA, JavaScript doesn't have private function, so please start function name with _ when you don't want somebody else to call
+
+(3) To avoid global function, you can put a function inside another function, like
+      
+      function A(){
+      	B();
+      	
+      	function B(){
+      	}      
+      }	
+      
+      now B is only available inside A
+      
+(4) json file can't have comments, but you can do something like this :
+	{
+  		"__description": "this is a mock up data",
+	...
+	}
+	
+
+
 
