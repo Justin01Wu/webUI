@@ -26,11 +26,11 @@
 	
 	var currentFile = getJSPath2();
 	var info = document.getElementById('infoLabel');
-	info.innerHTML = info.innerHTML +' <br/>JavaScript path (2)  is ' + currentFile;
+	info.innerHTML = info.innerHTML +' <br/>JavaScript path (1)  is ' + currentFile;
 	
 	var currentFile = getJSPath3();
 	var info = document.getElementById('infoLabel');
-	info.innerHTML = info.innerHTML +' <br/>JavaScript path (3) is ' + currentFile;
+	info.innerHTML = info.innerHTML +' <br/>JavaScript path (2) is ' + currentFile;
  
 })();
 

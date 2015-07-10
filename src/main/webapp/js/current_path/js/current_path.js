@@ -41,7 +41,7 @@ function load(){
 
 	currentFile = getJSPath3();
 	var info = document.getElementById('infoLabel');
-	info.innerHTML = info.innerHTML +' <br/>JavaScript path (4) is ' + currentFile;  // this will oupput current_path.js even the code is in current_path2.js
+	info.innerHTML = info.innerHTML +' <br/>JavaScript path (4) is (wrong)' + currentFile;  // this will output current_path.js even the code is in current_path2.js
 
 	
 	var contextPath = getContextPath();
