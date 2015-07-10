@@ -39,6 +39,11 @@ function load(){
 	var info = document.getElementById('infoLabel');
 	info.innerHTML = info.innerHTML +' <br/>JavaScript path is ' + currentFile;
 
+	currentFile = getJSPath2();
+	var info = document.getElementById('infoLabel');
+	info.innerHTML = info.innerHTML +' <br/>JavaScript path is ' + currentFile;
+
+	
 	var contextPath = getContextPath();
 	info.innerHTML = info.innerHTML +' <br/>Context Path is ' + contextPath;
 
