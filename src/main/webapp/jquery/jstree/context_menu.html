@@ -26,7 +26,8 @@
 		var layerData =  [ 
             {
  				id : 11,
-				text : 'Simple root node'
+				text : 'Simple root node',
+				type: "boss"
 
             },
 			{
@@ -79,6 +80,13 @@
 	            };
 	        }
 	    }
+	    
+	    
+        var types = {
+            boss: {
+                "icon": "image/boss.jpg"
+            }
+        };
 		
 		var landingEle = $('#using_json');
 	    
@@ -105,8 +113,11 @@
             	animation: 0,
                 data: layerData
             },
-			"plugins": [ "contextmenu"],   // this line enable jsTree default context menu
-			"contextmenu": contextMenu    // this line customize   context menu
+			"plugins": [ "contextmenu",  // this line enable jsTree default context menu 
+			             "types"],       // this will enable customize icon
+			"contextmenu": contextMenu,	// this line customize   context menu
+			"types": types
+			
         };
         
 	    // finally we create jsTree
