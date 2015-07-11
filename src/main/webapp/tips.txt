@@ -1,8 +1,12 @@
+
+   general web development tips
+
 (1) In Chrome (version 38 -40, didn't try others), the exception comes from JOSN.parse won't show up which line of JS code it comes from.
 But IE and Firefox will show you which line of JS code
   
 (2)  IE always cache AJAX response until you explicitly appending a query string parameter "_=[TIMESTAMP]"
- which means 	jQuery.ajax({cache: false, ...  
+ which means 	jQuery.ajax({cache: false, ... 
+ other browser never cache  AJAX response
  
  (3) when a page has multiple frame in frame set, you need to choose correct frame in Chrome console to run command properly,
  it is a drop down list on the top of Chrome console
