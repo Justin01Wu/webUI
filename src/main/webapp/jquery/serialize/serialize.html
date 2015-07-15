@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<title>test jQuery serialize</title>
+</head>
+<body>
+	
+	<h1>test jQuery serialize</h1>
+	
+	<form id="myForm" method="POST">
+		First Name: <input type="text" name="firstName" value="Justin" /><br /> 
+		Last Name: <input type="text" name="lastName" value="Wu" /><br /> 
+		Desc: <input type="text" name="x.desc" value="Justin Wu create a page" /><br /> 
+		favour Color: 
+			<select name="favourColor">
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+			</select>
+		<br /> 
+		<input type="button" value="test serialize" onClick="test()">
+		<input type="button" value="test serializeArray" onClick="test2()">
+	</form>
+
+	<script>
+		function test(){
+			alert($('#myForm').serialize());
+		}
+		
+		function test2(){
+			var x = $('#myForm').serializeArray(); 
+			console.log(x);
+			alert("please see console");
+		}
+
+		
+	</script>
+	
+</body>
+</html>
