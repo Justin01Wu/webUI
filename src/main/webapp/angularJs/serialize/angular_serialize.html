@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+	<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+
+<title>test Angular serialize</title>
+</head>
+<body>
+	
+	<h1>test Angular serialize</h1>
+	<ul>
+		<li>Angular keep model in the memory rather html fields</li>
+		<li>So Angular don't need hidden field for internal fields(like agenda)</li>
+	</ul>
+	
+	<div ng-app="" ng-controller="myController">
+		
+		<form name="myForm" >
+	
+			First Name: <input ng-model="user.firstName"  /> <br /> 
+			Last Name: <input ng-model="user.lastName"  /><br /> 
+			
+			<button ng-click="showAlert()">submit</button>
+			<button ng-click="revert()" ng-disabled="!canRevert()">Revert Changes</button>
+
+		</form>
+	</div>
+
+	<script>
+	
+		var user = {
+			firstName: "Justin",
+			lastName: "Wu",
+			agenda: "male"
+		}
+	
+		function myController($scope){
+			
+			$scope.user = user;
+
+			$scope.showAlert=function(){
+		        
+		    	/* while compiling form , angular created this object*/		        
+		        var data = $scope.user;
+		    	
+		        /* post to server*/		        
+		        alert(JSON.stringify(data));
+		        //$http.post(url, data);        
+		    }
+		    
+		    var original = angular.copy($scope.user);
+		    
+		    $scope.revert = function() {
+		    	$scope.user = angular.copy(original);
+		    	$scope.userInfoForm.$setPristine();
+		    };
+		    
+		    $scope.canRevert = function() {
+		    	return !angular.equals($scope.user, original);
+		    };
+	
+		}
+
+		
+	</script>
+	
+</body>
+</html>
