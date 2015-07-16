@@ -32,6 +32,8 @@ But IE and Firefox will show you which line of JS code
                 alert(msg);
             }
 
-    
-   
+ (5) Eclipse always set JavaScript build path to src\main\webapp when import a maven project, 
+     if your JavaScript is not there, you need manually add it 
+     otherwise you will get this error when click the link of  a JavaScript function:     
+       "the source is not on the include path of a JavaScript project"
             
