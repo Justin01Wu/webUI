@@ -21,7 +21,8 @@
 						a_attr : 
 						{
 							title : "child 1 title"
-						}
+						},
+						'children' : ["child3"]
 					}, 
 					'Child 2' 
 					]
@@ -123,3 +124,12 @@
 	    	}
 	    	
 	    })
+	    
+	    function refreshJsTree(){
+	    	
+	    	var tree = landingEle.jstree(true);	    	// get existing jsTree
+	    	tree.settings.core.data[0].text = 'Simple node(customized icon)';
+	    	tree.settings.core.data[0].a_attr = {	title : "node 1 title"	};
+	    	tree.refresh();	    	
+
+	    }
