@@ -36,4 +36,6 @@ But IE and Firefox will show you which line of JS code
      if your JavaScript is not there, you need manually add it 
      otherwise you will get this error when click the link of  a JavaScript function:     
        "the source is not on the include path of a JavaScript project"
+       
+     you can change it Project Explorer view, right-click the required project and select Properties | JavaScript | JavaScript Libraries.
             
