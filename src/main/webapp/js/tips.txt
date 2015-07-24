@@ -27,6 +27,8 @@
 	...
 	}
 	
+(5) using closure variable only when it is necessary, such as in callback
+	
 
 
 
