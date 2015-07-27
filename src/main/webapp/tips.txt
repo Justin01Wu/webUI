@@ -29,10 +29,11 @@ But IE and Firefox will show you which line of JS code
     		    }
     			var msg = "loading all clients error with status: " + jqXHR.status;
     			console.error(msg);
-                alert(msg);
+                //alert(msg);  // this one will block JS execuation, so remove it
+                jQuery("#userColumn").addClass("hasError");
             }
 
- (5) Eclipse always set JavaScript build path to src\main\webapp when import a maven project, 
+ (5) Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
      if your JavaScript is not there, you need manually add it 
      otherwise you will get this error when click the link of  a JavaScript function:     
        "the source is not on the include path of a JavaScript project"
