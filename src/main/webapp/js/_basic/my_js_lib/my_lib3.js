@@ -19,6 +19,9 @@
 		if(options && options.id){
 			this.options.id = options.id;	
 		}
+		if(options && options.callBack){
+			this.options.callBack = options.callBack;	
+		}
 		
 	};
 
