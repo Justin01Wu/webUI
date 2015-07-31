@@ -15,7 +15,11 @@
 	}
 	
 	var MyJs3 = function(options) {
-		this.options = options
+		this.options = {};
+		if(options && options.id){
+			this.options.id = options.id;	
+		}
+		
 	};
 
 	MyJs3.prototype = {

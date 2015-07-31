@@ -19,5 +19,3 @@ var myPlugin = (function() {
  }
 })();
 
-myPlugin.public_function1();
-myPlugin.public_function2();

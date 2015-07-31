@@ -13,6 +13,10 @@
 <body>
 	<h1>test my JavaScript lib</h1>
 
+	<button onclick="testLib1()">test lib 1 </button>
+	<button onclick="testLib2()">test lib 2 </button>
+	<button onclick="testLib3()">test lib 3 </button>
+	
 	<br />
 	<label id="lab4">test my JavaScript lib</label>
 	<br /> it comes from
@@ -21,32 +25,47 @@
 		target=_blank>here</a>
 	<br />
 	<br />
+	
+	
 
 </body>
 
 <script>
 	
-	//use my lib
-	var setting = {msg :"message from outside"}; 
-	var myObj = new Justin_JS_LIB34.Person(setting);
-	myObj.sayMsg1();
-	myObj.sayMsg2();
 	
-	Justin_JS_LIB34.Person.prototype.sayMsg3 = function() { //extend exists prototype 
-		if(window.console){
-			console.log("sayMsg3: " + this.msg);
-		}
-	};
-	
-	// extend existing library sample
-	myObj.sayMsg3();
-	
-	var myJs3Obj = new MyJs3({id : "lab4"});
-	myJs3Obj.show();
-	myJs3Obj.options.callBack=function(msg){
-		console.log(msg);		
+	function testLib1(){
+		myPlugin.public_function1();
+		myPlugin.public_function2();
 	}
-	myJs3Obj.show();
+	
+	function testLib2(){
+		//use my lib
+		var setting = {msg :"message from outside"}; 
+		var myObj = new Justin_JS_LIB34.Person(setting);
+		myObj.sayMsg1();
+		myObj.sayMsg2();
+		
+		Justin_JS_LIB34.Person.prototype.sayMsg3 = function() { //extend exists prototype 
+			if(window.console){
+				console.log("sayMsg3: " + this.msg);
+			}
+		};
+		
+		// extend existing library sample
+		myObj.sayMsg3();
+	}
+	
+
+	function testLib3(){
+		
+		var myJs3Obj = new MyJs3({id : "lab4"});
+		myJs3Obj.show();
+		myJs3Obj.options.callBack=function(msg){
+			console.log(msg);		
+		}
+		myJs3Obj.show();
+	}
+
 	
 </script>
 
