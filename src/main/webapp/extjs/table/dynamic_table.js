@@ -42,7 +42,6 @@ Ext.define('DueDateListPanel', {
     height: 160,
     width: 362,
     autoScroll: true,	
-	renderTo: Ext.getBody(), 
     title: 'Table Layout',
     layout: {
         type: 'table',            
