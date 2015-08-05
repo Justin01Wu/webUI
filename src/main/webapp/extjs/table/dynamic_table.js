@@ -22,11 +22,19 @@ function prepareDueDateItemsForTable(dueDateFields) {
 		dueDateList.push(label);
 		
 		var dueDate = {
-	        xtype: 'datefield',
-	        format : 'Y-m-d',	        
-	        emptyText: 'Select ' + dueDateFields[i],
-	        name: dueDateFields[i]
-	    };
+				xtype : 'datefield',
+				format : 'Y-m-d',
+				emptyText : 'Select ' + dueDateFields[i],
+				itemId : dueDateFields[i],
+				name : dueDateFields[i]
+			};
+			
+//			var dueDate = Ext.create('Ext.form.field.Date', {			
+//				format : 'Y-m-d',
+//				emptyText : 'Select ' + dueDateFields[i],
+//				itemId : dueDateFields[i],
+//				name : dueDateFields[i]
+//			});
 		
 		dueDateList.push(dueDate);
 	}
@@ -39,6 +47,9 @@ console.log(" got " + dueDateItems.length + " dueDateItems");
 
 Ext.define('DueDateListPanel', {
 	extend: 'Ext.panel.Panel',
+	extend : 'Ext.form.Panel',  // need this form.Panel rather than panel.Panel to support item.getForm() in AJAX call;
+	panelType: 'baseData',  // need this type to gather fields for AJAX call
+	itemId : "myDueDateListPanel",
     height: 160,
     width: 362,
     autoScroll: true,	
@@ -50,9 +61,11 @@ Ext.define('DueDateListPanel', {
 });
 
 
+var container;  // set global for debug
+
 Ext.onReady(function() {
   var a = Ext.create('DueDateListPanel',  {  items: dueDateItems});
-  var container = Ext.create('Ext.panel.Panel',{
+  container = Ext.create('Ext.panel.Panel',{
 		renderTo: Ext.getBody(),
 		width:420
 	} );
@@ -61,6 +74,10 @@ Ext.onReady(function() {
 
 });
 
+
+function refresh(){
+	Ext.resumeLayouts(true);
+}
 
 
     
