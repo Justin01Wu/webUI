@@ -10,8 +10,6 @@
 
 var dueDateFields = [ 'dueDate1', 'dueDate2', 'dueDate3', 'dueDate4', 'dueDate5', 'dueDate6', 'dueDate7', 'dueDate8'];
 
-
-
 function prepareDueDateItemsForTable(dueDateFields) {
 	var dueDateList = [];
 	for(var i =0; i< dueDateFields.length; i++){
@@ -39,7 +37,8 @@ function prepareDueDateItemsForTable(dueDateFields) {
 var dueDateItems = prepareDueDateItemsForTable(dueDateFields);
 console.log(" got " + dueDateItems.length + " dueDateItems");
 
-Ext.create('Ext.panel.Panel', {
+Ext.define('DueDateListPanel', {
+	extend: 'Ext.panel.Panel',
     height: 160,
     width: 362,
     autoScroll: true,	
@@ -48,12 +47,20 @@ Ext.create('Ext.panel.Panel', {
     layout: {
         type: 'table',            
         columns: 2
-    },       
-        
-    items: dueDateItems    
-        
-    });
+    }
+});
 
+
+Ext.onReady(function() {
+  var a = Ext.create('DueDateListPanel',  {  items: dueDateItems});
+  var container = Ext.create('Ext.panel.Panel',{
+		renderTo: Ext.getBody(),
+		width:420
+	} );
+
+	container.add(a);
+
+});
 
 
 
