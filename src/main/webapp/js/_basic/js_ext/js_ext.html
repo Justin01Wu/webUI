@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+
+	<h1>test how to run no JS code or js code as string</h1>
+
+	<button onClick=confirm('sss');>test execScript with vbscript (IE only)</button>
+	
+	<button onClick=testExecScript()>test execScript (IE only)</button>
+
+	<button onClick=testEval()>test eval</button>
+	
+	<button onClick=testNewFunction()>test new function</button>
+	
+	
+	<script>
+	window.confirm = function(str) {
+    	execScript('n = msgbox("' + str + '","4132")', "vbscript");
+    	return (n == 6);
+	}
+	
+	function returnAStr(x){
+		return "string is set by "+ x;
+	}
+	
+	function testExecScript(){
+		var str = 'returnAStr(execScript)';
+		var vv = null;
+		execScript('vv=' + str, "JavaScript");
+		alert("vv="+ vv);
+	}
+	
+	function testEval(){
+		var str = 'returnAStr("eval")';
+		var vv = null;
+		eval('vv=' + str);
+		alert("vv="+ vv);
+	}
+
+	function testNewFunction(){
+		var vv = new Function('var c = returnAStr("newFunction"); return c;')();
+		//var vv = eval('(function(){ return 1 + 2 })()');
+		alert("vv=" + vv);
+	}
+
+	
+</script>
+</body>
+</html>
