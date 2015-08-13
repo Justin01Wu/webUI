@@ -27,7 +27,11 @@
 	<!--  this #! skill comes from   
 		http://stackoverflow.com/questions/1601933/how-do-i-stop-a-web-page-from-scrolling-to-the-top-when-a-link-is-clicked-that-tr
 	 -->
-	
+	 <br/>
+	 
+	 <a href="#" onclick="testReturnFalse()">test return false, stop follow original link(doesn't work in Chrome )</a>
+     <br/>
+	 
 	<br/>
 	<br/>
 	
@@ -39,6 +43,8 @@
 	<a id="tips"></a>
 	<h1>tips</h1>
 	tips1 ...
+	<a href="https://code.google.com/p/chromium/issues/detail?id=48792" id="chromeIssue" >chrome issue</a>
+	
 	
 	<script>
 	function doSomething(){
@@ -47,6 +53,11 @@
 		}		 
 		var info = document.getElementById('infoLabel');
 		info.innerHTML = info.innerHTML +' <br/> doSomething() is triggered';		
+	}
+	
+	function testReturnFalse(){
+		document.getElementById("chromeIssue").click();
+		return false;
 	}
 	
 	</script>	
