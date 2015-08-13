@@ -32,6 +32,9 @@
 	 <a href="#" onclick="testReturnFalse()">test return false, stop follow original link(doesn't work in Chrome )</a>
      <br/>
 	 
+	 <a href="#" onclick="testPreventDefault(event)">correct way to stop following original link(work in everywhere )</a>
+     <br/>
+	 
 	<br/>
 	<br/>
 	
@@ -58,6 +61,11 @@
 	function testReturnFalse(){
 		document.getElementById("chromeIssue").click();
 		return false;
+	}
+	
+	function testPreventDefault(event){
+		event.preventDefault();
+		document.getElementById("chromeIssue").click();
 	}
 	
 	</script>	
