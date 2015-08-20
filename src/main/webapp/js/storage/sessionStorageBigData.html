@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+
+    </head>
+    <body>
+
+        <h1>test save large data into session storage</h1>
+
+        <h2>can't run in the file protocol, must run in the web server if you are testing it in IE</h2>
+
+        <ul>
+            <li> IE support session storage since IE 8</li>
+
+            <li> can't run in the file protocol, must run in the web server if you are testing it in IE </li>
+
+            <li> session storage save data into browser session, it will be automatically cleared when session is ended (closing tab, closing windows)</li>
+
+            <li> Opening a page in a new tab or window will cause a new session to be initiated. so can't get saved data from opener</li>
+
+        </ul>	
+
+        <button onClick=loadLargeData();>load large data and save into session storage</button>
+
+        <button onClick=getFromSession();>retrieve from session storage</button>
+
+        <button onClick=getSessionStorageStats();>get session storage status</button>
+
+        <button onClick=clearSessionStorage();>clear session storage</button>
+
+        <br/>
+
+        <label id="infoLabel"></label>
+
+        <script>
+
+            function saveToSession() {
+                if (window.console) {
+                    console.log("saveToSession");
+                }
+                var userNameField = document.getElementById("userName");
+                var userDescField = document.getElementById("userDesc");
+                var user = {};
+                user.name = userNameField.value;
+                user.desc = userDescField.value;
+                console.log("saving user:");
+                console.log(user);
+                var key = window.location.pathname;
+                console.log("key=" + key);
+                sessionStorage.setItem(key, JSON.stringify(user));
+
+                var info = document.getElementById('infoLabel');
+                info.innerHTML = info.innerHTML + ' <br/> saveToSession() is done';
+            }
+
+            function getSessionStorageStats() {
+                var msg = sessionStorage.length + " object saved in sessionStorage";
+                alert(msg);
+            }
+
+            function clearSessionStorage() {
+                sessionStorage.clear();
+                var info = document.getElementById('infoLabel');
+                info.innerHTML = info.innerHTML + ' <br/> sessionStorage is cleared';
+
+            }
+
+            function getFromSession() {
+                var info = document.getElementById('infoLabel');
+                var key = window.location.pathname;
+                if (sessionStorage.getItem(key)) {
+                    var dataStr = sessionStorage.getItem(key);
+                    var data = JSON.parse(dataStr);
+                    info.innerHTML = info.innerHTML + ' <br/> getFromSession() is done, get ' + data.length + " records";
+
+                } else {
+                    info.innerHTML = info.innerHTML + " <br/> getFromSession() do nothing because didn't find saved data";
+                }
+
+            }
+
+            function loadLargeData() {
+                var xmlhttp;
+
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                        if (xmlhttp.status === 200 || xmlhttp.status === 0) {
+                            var key = window.location.pathname;
+                            console.log("key=" + key);
+                            var dataStr = xmlhttp.responseText;
+                            sessionStorage.setItem(key, dataStr);
+
+                            var info = document.getElementById('infoLabel');
+                            info.innerHTML = info.innerHTML + ' <br/> saveToSession() is done';
+                        }
+                        else if (xmlhttp.status === 400) {
+                            alert('There was an error 400');
+                        }
+                        else {
+                            alert('something else other than 200 was returned: ' + xmlhttp.status);
+                        }
+                    }
+                };
+                xmlhttp.open("GET", "all.json", true);
+                xmlhttp.send();
+            }
+
+        </script>	
+
+    </body>
+</html>
