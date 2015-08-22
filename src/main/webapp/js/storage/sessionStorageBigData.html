@@ -19,6 +19,8 @@
             <li> session storage save data into browser session, it will be automatically cleared when session is ended (closing tab, closing windows)</li>
 
             <li> Opening a page in a new tab or window will cause a new session to be initiated. so can't get saved data from opener</li>
+            <li> IE can save 4.75M data, Chrome and firefox can save 5M data</li>
+            <li> IE and chrome will throw QuotaExceededError when data is too big, firefox will silently fail</li>
 
         </ul>	
 
@@ -82,37 +84,22 @@
             }
 
             function loadLargeData() {
-                var xmlhttp;
+            	
+            	var bigArray =[];
+            	for(var i=0;i<90000;i++){
+            		var str1 = "I am 64 bytes string,I am 64 bytes string,I am 64 bytes string.";
+            		bigArray.push(str1);
+            	}
+            	// bigArray size = 80000*64 =  5M
+            	
+                var key = window.location.pathname;
+                console.log("key=" + key);
+                var dataStr = JSON.stringify(bigArray);
+                sessionStorage.setItem(key, dataStr);
 
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-
-                xmlhttp.onreadystatechange = function () {
-                    if (xmlhttp.readyState === XMLHttpRequest.DONE) {
-                        if (xmlhttp.status === 200 || xmlhttp.status === 0) {
-                            var key = window.location.pathname;
-                            console.log("key=" + key);
-                            var dataStr = xmlhttp.responseText;
-                            sessionStorage.setItem(key, dataStr);
-
-                            var info = document.getElementById('infoLabel');
-                            info.innerHTML = info.innerHTML + ' <br/> saveToSession() is done';
-                        }
-                        else if (xmlhttp.status === 400) {
-                            alert('There was an error 400');
-                        }
-                        else {
-                            alert('something else other than 200 was returned: ' + xmlhttp.status);
-                        }
-                    }
-                };
-                xmlhttp.open("GET", "all.json", true);
-                xmlhttp.send();
+                var info = document.getElementById('infoLabel');
+                info.innerHTML = info.innerHTML + ' <br/> saveToSession() is done';
+                
             }
 
         </script>	
