@@ -1,7 +1,7 @@
 // define anonymous object in lib
-(function(window) {
+(function() {
 
-	"use strict"
+	"use strict";
 
 	/*
 	 * MyJs3 CLASS DEFINITION ======================
@@ -47,7 +47,7 @@
 			}
 
 		}
-	}
+	};
 	
 	window.MyJs3= MyJs3;
 
@@ -62,4 +62,4 @@
 		return currentPath;
 	}
 
-})(window);
+})();

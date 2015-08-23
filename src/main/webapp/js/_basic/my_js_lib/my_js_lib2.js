@@ -1,6 +1,6 @@
 
 // define anonymous object in lib
-(function(window) {
+(function() {
 
 	if(window.Justin_JS_LIB34){
 		if(window.console){
@@ -20,7 +20,7 @@
 			if(window.console){
 				console.log("sayMsg2: " + this.msg);
 			}			
-		}
+		};
 	};
 	
 	self.Person.prototype.sayMsg1 = function() { //add prototype method
@@ -29,5 +29,5 @@
 		}
 	};
 
-})(window);
+})();
 

@@ -16,6 +16,8 @@ var myPlugin = (function() {
     	}
     },
     public_function2: private_function
- }
+ };
+ 
+ 
 })();
 
