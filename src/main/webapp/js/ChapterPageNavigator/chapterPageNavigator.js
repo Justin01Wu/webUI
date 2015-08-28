@@ -229,11 +229,11 @@ if (!window.console) {
 //        	console.log("saved ChapterPageNavigator" );
         	
         	
-        	// IE doesn't support save object into different framevery well 
+        	// IE doesn't support save object into different frame very well 
         	//  it will throw this error : Can't execute code from a freed script
-        	// so change to this following behaviour: serialize it
+        	// so change to this following behavior: serialize it
         	var cacheObj = JSON.stringify(this);  
-        	VCache.put(cacheObj, 600, this.cacheKey);   //   cache 10 minutes
+        	VCache.put(cacheObj, VCache.DefaultCacheTime, this.cacheKey);
         	console.log("saved ChapterPageNavigator" );
 
         }

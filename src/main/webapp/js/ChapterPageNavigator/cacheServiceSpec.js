@@ -1,5 +1,27 @@
 describe('test cacheService.js', function () {
 
+    it("test DefaultCacheTime is read only", function () {
+
+    	'use strict';
+
+    	expect(VCache.DefaultCacheTime).toEqual(600);
+    	
+        expect( function(){ 
+        	VCache.DefaultCacheTime=300;
+        }).toThrow();
+
+    });
+
+    it("test silent failure if change DefaultCacheTime without strict mode", function () {
+
+    	expect(VCache.DefaultCacheTime).toEqual(600);
+    	
+       	VCache.DefaultCacheTime=300;
+       	
+    	expect(VCache.DefaultCacheTime).toEqual(600);  // still old value    	
+
+    });
+    
 
     it("test saved object tree is retrieved and exact the same", function () {
 

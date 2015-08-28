@@ -23,8 +23,14 @@ if (!window.console) {
     }
 
     window.VCache = {};
-
+    
     var self = window.VCache;
+    
+    Object.defineProperty(self, "DefaultCacheTime", {
+		value: 600,
+		writable: false
+	});
+
 
     self.put = function (obj, seconds, key) {
     	if(!key){
@@ -114,7 +120,7 @@ if (!window.console) {
     
  // this is short way to save field value into cache
     self.saveField  =  function(fieldId, expires){
-    	var myExpires = expires? expires : 60;  // default is 10 minutes
+    	var myExpires = expires? expires : self.DefaultCacheTime;  // default is 10 minutes
 		var cacheKey =  getKey() + "#" + fieldId;
     	var targetField = document.getElementById(fieldId);
     	if(!targetField){
