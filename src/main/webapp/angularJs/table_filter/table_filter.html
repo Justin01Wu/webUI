@@ -22,6 +22,8 @@
         <th>Country</th>
         <th>Population</th>
       </tr>
+      
+      <!-- filter and orderBy without quote means angular field, with quote means field name , you can use '-population' to descend order -->
       <tr ng-repeat="country in countries | filter:query | orderBy:'population'">
         <td>{{country.name}}</td>
         <td>{{country.population}}</td>
