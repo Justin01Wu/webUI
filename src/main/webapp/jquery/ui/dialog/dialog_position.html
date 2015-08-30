@@ -22,7 +22,7 @@ and open the template in the editor.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button id="buttonA" onclick="openDialA()">open dialog left bottom to this button</button>
 
-        <button id="buttonB" onclick="openDialB()">open dialog right top to this button</button>
+        <button id="buttonB" onclick="openDialB(this)">open dialog right top to this button</button>
 
         <div style="display:none">
             <div id="testDialog" title="test dialog">
@@ -44,8 +44,7 @@ and open the template in the editor.
                 });
             }
 
-            function openDialB() {
-                var button = document.getElementById("buttonB");
+            function openDialB(button) {                
                 $("#testDialog").dialog({
                     position: {my: "left top", at: "right top", of: button}
                 });
