@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test jquery UI dialog</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="../jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="../jquery-ui-1.11.4/themes/redmond/jquery-ui.min.css">        
+    </head>
+    <body>
+
+
+        <h1>test jQuery UI Dialog position</h1>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="buttonA" onclick="openDialA()">open dialog left bottom to this button</button>
+
+        <button id="buttonB" onclick="openDialB()">open dialog right top to this button</button>
+
+        <div style="display:none">
+            <div id="testDialog" title="test dialog">
+
+                <h1>This is my dialog box</h1>			
+
+            </div>
+        </div>
+
+
+        <script>
+
+            
+
+            function openDialA() {
+                var button = document.getElementById("buttonA");
+                $("#testDialog").dialog({
+                    position: {my: "left top", at: "left bottom", of: button}
+                });
+            }
+
+            function openDialB() {
+                var button = document.getElementById("buttonB");
+                $("#testDialog").dialog({
+                    position: {my: "left top", at: "right top", of: button}
+                });
+            }
+        </script>
+
+    </body>
+</html>

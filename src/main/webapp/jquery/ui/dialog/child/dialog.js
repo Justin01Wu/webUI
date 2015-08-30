@@ -6,7 +6,7 @@
         return;
     }
     var myDialog = {
-    		childContent: null,
+    		childContent: null
     };
 
     myDialog.loadHtml = loadHtml;
@@ -50,7 +50,12 @@
             height: 280,
             width: 400,
             closeOnEscape: true,
-            modal: true,
+            
+            modal: true,  
+            // If set to true, the dialog will have modal behavior; 
+            // other items on the page will be disabled, i.e., cannot be interacted with. 
+            // Modal dialogs create an overlay below the dialog but above other page elements.
+            
             closeText: "cancel",
             
             open: function () {
