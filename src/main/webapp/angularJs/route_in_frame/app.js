@@ -8,7 +8,7 @@ demoApp.config(function ($routeProvider) {
             // route for the home page
             .when('/', {
                 templateUrl: 'submenu/subMenuHome.html',
-                controller: 'mainController'
+                controller: 'homeController'
             })
 
             .when('/subMenuA', {
@@ -23,15 +23,8 @@ demoApp.config(function ($routeProvider) {
 
 });
 
-demoApp.controller('mainController', function ($scope, $location) {
-});
 
-demoApp.controller('subMenuAController', function ($scope, $location, $routeParams) {
 
-});
 
-demoApp.controller('subMenuBController', function ($scope, $routeParams) {
-
-});
 
 
