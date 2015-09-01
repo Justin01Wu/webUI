@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+        <script  src="jquery.jsonSuggest-2/jquery.jsonSuggest-2.js"></script>
+        <link rel="stylesheet" href="jquery.jsonSuggest-2/jquery-ui-1.8.9.custom.css">
+        <link rel="stylesheet" href="jquery.jsonSuggest-2/jsonSuggest-2.css">
+    </head>
+    <body>
+
+        <h1>test jsonSuggest</h1>
+
+        
+        Country : <input id="countryName" type="text" value="" maxlength="100" style="width: 220px" autocomplete="off" placeholder="please input char c here">
+
+        <br/>
+        
+        <label id="infoLabel"></label>
+        
+        <script>
+
+            jQuery(function () {
+
+                var countryList = [
+                    {
+                        id: 1,
+                        text: "China"
+                    },
+                    {
+                        id: 2,
+                        text: "Canada"
+                    }                    
+                ];
+
+                var jsonSuggestPara = {
+                    data: countryList,
+                    minCharacters: 1,
+                    maxResults: 10,
+                    onSelect: selectCallBack
+                };
+
+                $("#countryName").jsonSuggest(jsonSuggestPara);
+                return;
+
+                function selectCallBack(item) {
+                    
+                    var info = document.getElementById('infoLabel');
+                    info.innerHTML = info.innerHTML +' <br/>' + "selected country id is " + item.id;
+                }
+            });
+
+
+        </script>        
+
+
+    </body>
+</html>

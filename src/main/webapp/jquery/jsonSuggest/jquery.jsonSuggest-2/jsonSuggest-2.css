@@ -1,0 +1,17 @@
+/****
+*	Custom styling for the select menu items with images and extra 
+*	text in them.
+*/
+.jsonSuggest li a img {
+	float:left;
+	margin-right:5px;
+}
+.jsonSuggest li a small {	
+	display:block;
+	text-align:right;
+}
+
+.jsonSuggest { 
+	font-size:0.8em; 
+	white-space: normal;
+}
