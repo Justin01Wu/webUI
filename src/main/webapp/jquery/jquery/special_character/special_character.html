@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <h1 id="aaa:bbb">how to use jQuery to get element with special character</h1>
+        <ul>
+            <li>Because jQuery uses CSS syntax for selecting elements, some characters are interpreted as CSS notation</li>
+            <li>The colon (":") and period (".") are problematic within the context of a jQuery selector because they indicate a pseudo-class and class, respectively</li>
+            <li>JAVA JSF and JSP page usually generate id with colon (":") like um:selectButton</li>
+            <li>so we need escape them in jQuery selector</li>
+        </ul>
+
+        <button onclick="commonWay()">without special handle, get nothing</button>
+        <button onclick="escapeCh1()">escape colon by double slash </button>
+        <button onclick="escapeCh2()">escape colon by quote</button>
+
+        <br />
+        <br />
+        <br /> it comes from
+        <a href="http://stackoverflow.com/questions/7434215/jquery-selecting-an-id-with-a-colon-in-it"
+           target=_blank>here</a>
+
+        <script>
+
+            function commonWay() {
+                var element = $('#aaa:bbb');
+                alert(element.text());
+            }
+
+            function escapeCh1() {
+                var element = $('#aaa\\:bbb');
+                alert(element.text());
+            }
+
+            function escapeCh2() {
+                var element = $("[id='aaa:bbb']");
+                alert(element.text());
+            }
+
+        </script>        
+    </body>
+
+
+</html>
