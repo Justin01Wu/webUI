@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -20,13 +16,17 @@ and open the template in the editor.
 
         <h1>test jsonSuggest</h1>
 
-        
+
         Country : <input id="countryName" type="text" value="" maxlength="100" style="width: 220px" autocomplete="off" placeholder="please input char c here">
 
+        <br/><br/>
+        <a href="http://stackoverflow.com/questions/7434215/jquery-selecting-an-id-with-a-colon-in-it"
+           target=_blank>here</a>
+
         <br/>
-        
+        <br/>
         <label id="infoLabel"></label>
-        
+
         <script>
 
             jQuery(function () {
@@ -39,7 +39,7 @@ and open the template in the editor.
                     {
                         id: 2,
                         text: "Canada"
-                    }                    
+                    }
                 ];
 
                 var jsonSuggestPara = {
@@ -53,9 +53,9 @@ and open the template in the editor.
                 return;
 
                 function selectCallBack(item) {
-                    
+
                     var info = document.getElementById('infoLabel');
-                    info.innerHTML = info.innerHTML +' <br/>' + "selected country id is " + item.id;
+                    info.innerHTML = info.innerHTML + ' <br/>' + "selected country id is " + item.id;
                 }
             });
 
