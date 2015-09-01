@@ -4,7 +4,7 @@ describe('test cacheService.js', function () {
 
     	'use strict';
 
-    	expect(VCache.DefaultCacheTime).toEqual(600);
+    	expect(VCache.DefaultCacheTime).toEqual(900);
     	
         expect( function(){ 
         	VCache.DefaultCacheTime=300;
@@ -14,11 +14,11 @@ describe('test cacheService.js', function () {
 
     it("test silent failure if change DefaultCacheTime without strict mode", function () {
 
-    	expect(VCache.DefaultCacheTime).toEqual(600);
+    	expect(VCache.DefaultCacheTime).toEqual(900);
     	
        	VCache.DefaultCacheTime=300;
        	
-    	expect(VCache.DefaultCacheTime).toEqual(600);  // still old value    	
+    	expect(VCache.DefaultCacheTime).toEqual(900);  // still old value    	
 
     });
     

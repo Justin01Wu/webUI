@@ -27,7 +27,7 @@ if (!window.console) {
     var self = window.VCache;
     
     Object.defineProperty(self, "DefaultCacheTime", {
-		value: 600,
+		value: 900,  // 15 miutes
 		writable: false
 	});
 
@@ -127,8 +127,9 @@ if (!window.console) {
     		console.warn("can't find " + fieldId);	
     		return;
     	}        
-       	console.log('save '+ fieldId + 'into cache ' + cacheKey);
-    	if(targetField.type === "text"){
+       	
+    	//console.log('save '+ fieldId + 'into cache ' + cacheKey);
+    	if(targetField.type === "text" || targetField.type === "hidden"){
     		VCache.put(targetField.value, myExpires, cacheKey);   
        	}else if(targetField.type === "select-one"){
        		var cacheObj ={
@@ -161,9 +162,9 @@ if (!window.console) {
     	}
     	var cacheObj = VCache.get(cacheKey);   
         if(cacheObj){
-        	console.log('get ' + fieldId + ' from cache ' + cacheKey);
+        	//console.log('get ' + fieldId + ' from cache ' + cacheKey);
         	
-        	if(targetField.type === "text"){            		
+        	if(targetField.type === "text" || targetField.type === "hidden"){            		
         		targetField.value = cacheObj;
            		return true;
            	}else if(targetField.type === "select-one"){
