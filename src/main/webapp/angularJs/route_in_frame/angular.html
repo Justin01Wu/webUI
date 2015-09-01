@@ -15,19 +15,19 @@
     </head>
       
     <body ng-app="demoApp" >
-
-        <h1> this is a demo of AngularJs single page application for multiple pages</h1>
-
         <!-- MAIN CONTENT AND INJECTED VIEWS -->
         <div id="main">		
             <a href = "#/">home</a> | 
             <a href = "#/subMenuA">sub menu A</a> |
-            <a href = "#/subMenuB">sub menu B</a>
+            <a href = "#/subMenuB">sub menu B</a> | 
+            
+            <a href = "./submenu/subMenuC.html">sub menu C(real html page)</a>
 
             <!-- angular template -->
             <!-- this is where content will be injected -->
             <div ng-view></div>
-        </div>
+        </div>        
+        
 
     </body>
 
