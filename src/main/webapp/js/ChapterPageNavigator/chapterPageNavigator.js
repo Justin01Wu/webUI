@@ -323,7 +323,7 @@ if (!window.console) {
         var oldValue = this.pageSize;
         this.pageSize = newValue;
 
-        console.log("pageSize changed from " + this.pageSize + " to " + newValue);
+        console.log("pageSize changed from " + oldValue + " to " + newValue);
 
         //  recalculate page position when user set different row per page:			  
         //	    (1) remember the current page start row (from the allRows)
