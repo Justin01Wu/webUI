@@ -125,12 +125,13 @@ if (!window.console) {
     	var targetField = document.getElementById(fieldId);
     	if(!targetField){
     		console.warn("can't find " + fieldId);	
-    		return;
+    		return false;
     	}        
        	
     	//console.log('save '+ fieldId + 'into cache ' + cacheKey);
     	if(targetField.type === "text" || targetField.type === "hidden"){
-    		VCache.put(targetField.value, myExpires, cacheKey);   
+    		VCache.put(targetField.value, myExpires, cacheKey);
+    		return true;
        	}else if(targetField.type === "select-one"){
        		var cacheObj ={
        			selectedIndex: targetField.selectedIndex,
@@ -145,8 +146,10 @@ if (!window.console) {
        			cacheObj.options.push(oneOption);
        		}
        		VCache.put(cacheObj, myExpires, cacheKey);   	
+       		return true;
        	}else {
        		console.warn("don't know this type, so ignore it:  " + fieldId);
+       		return false;
        	}
        		
 	},

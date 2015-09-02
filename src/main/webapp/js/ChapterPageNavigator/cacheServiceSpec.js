@@ -167,6 +167,54 @@ describe('test cacheService.js', function () {
 
     });
     
+    it("test cacheService can restore saved text Field", function () {
+
+    	var fieldIdStr = "textTestField";
+    	var textField = document.getElementById(fieldIdStr);
+    	expect(textField).not.toEqual(null);
+    	expect(textField.value).toEqual("initValue");
+       	var success = VCache.saveField(fieldIdStr);
+       	expect(success).toEqual(true);
+       	
+       	textField.value="newValue";
+
+       	success = VCache.getField(fieldIdStr);
+       	expect(success).toEqual(true);
+       	expect(textField.value).toEqual("initValue");  // value is reset by cache value
+
+
+    });
+    
+    it("test cacheService can restore saved select Field", function () {
+
+    	var fieldIdStr = "selectTestField";
+    	var selectField = document.getElementById(fieldIdStr);
+    	expect(selectField).not.toEqual(null);
+    	expect(selectField.options.length).toEqual(4);
+    	expect(selectField.selectedIndex).toEqual(1);
+    	expect(selectField.options[0].value).toEqual("0");
+    	expect(selectField.options[0].text).toEqual("str0");
+    	
+       	var success = VCache.saveField(fieldIdStr);
+       	expect(success).toEqual(true);
+       	
+       	selectField.selectedIndex = 2;  //  set another option
+       	selectField.options.length = 3;  // remove last option
+       	selectField.options[0].value = 99;  // change one option
+       	selectField.options[0].text = "str99";  // change one option text
+
+       	success = VCache.getField(fieldIdStr);
+       	expect(success).toEqual(true);
+
+    	expect(selectField.options.length).toEqual(4);
+    	expect(selectField.selectedIndex).toEqual(1);
+    	expect(selectField.options[0].value).toEqual("0");
+    	expect(selectField.options[0].text).toEqual("str0");
+
+
+    });    
+    
+    
     // disabled this test case because it need to wait, 
     xit("test saved object can only survive specified seconds", function(done) {
         
