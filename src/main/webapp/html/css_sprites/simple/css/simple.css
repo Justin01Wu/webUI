@@ -1,0 +1,20 @@
+
+
+.sprite {
+    background-image: url(../img/spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-icon_collapse {
+    width: 16px;  
+    height: 16px;
+    background-position: -5px -5px;
+}
+
+.sprite-icon_expand {
+    width: 14px;   /* the original image size is different, so target width is different*/
+    height: 14px;
+    background-position: -31px -5px;
+}
+
