@@ -23,7 +23,7 @@
                     //        });            
 
                     $scope.errMsg = null;
-                    $scope.countries =  null;
+                    $scope.countries = null;
                     var promise = $http.get('countries.json');
 
                     promise.then(
@@ -40,7 +40,7 @@
                 $scope.searchWrongData = function () {
 
                     $scope.errMsg = null;
-                    $scope.countries =  null;
+                    $scope.countries = null;
                     var promise = $http.get('countries2.json');
 
                     promise.then(
@@ -60,7 +60,9 @@
     </head>
     <body ng-controller="CountryCtrl">
         <h1>demo how to use promise</h1>
-
+        <ul>
+            <li> the main benefits of promise is centralizing error handling in the ajax request chain  </li>
+        </ul>
         <button ng-click="search()">query correct data</button>
         <button ng-click="searchWrongData()">query wrong data</button>
         <label style="color: red">{{errMsg}}</label>
@@ -76,5 +78,10 @@
                 <td>{{country.population}}</td>
             </tr>
         </table>
+
+        please see 
+        <a href = "http://blog.parse.com/learn/engineering/whats-so-great-about-javascript-promises/" target=_blank>here</a>
+        for benefits
+
     </body>
 </html>
