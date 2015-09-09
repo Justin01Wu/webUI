@@ -1,0 +1,80 @@
+<html ng-app="countryApp">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Angular.js Example</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
+
+
+        <script>
+
+
+            var myApp = angular.module('countryApp', []);
+            myApp.controller('CountryCtrl', MyController);
+
+            function MyController($scope, $http) {
+
+                $scope.search = function () {
+
+                    //        this is old call back way to call ajax
+                    //        
+                    //        $http.get('countries.json').success(function(data) {
+                    //          $scope.countries = data;
+                    //        });            
+
+                    $scope.errMsg = null;
+                    $scope.countries =  null;
+                    var promise = $http.get('countries.json');
+
+                    promise.then(
+                            function (payload) {  //  handle success
+                                $scope.countries = payload.data;
+                            },
+                            function (errorPayload) { // handle failure
+                                $scope.errMsg = 'failure loading countries';
+                            }
+                    );
+
+                };
+
+                $scope.searchWrongData = function () {
+
+                    $scope.errMsg = null;
+                    $scope.countries =  null;
+                    var promise = $http.get('countries2.json');
+
+                    promise.then(
+                            function (payload) {  //  handle success
+                                $scope.countries = payload.data;
+                            },
+                            function (errorPayload) { // handle failure
+                                $scope.errMsg = 'failure loading countries';
+                            }
+                    );
+
+                };
+            }
+
+        </script>
+
+    </head>
+    <body ng-controller="CountryCtrl">
+        <h1>demo how to use promise</h1>
+
+        <button ng-click="search()">query correct data</button>
+        <button ng-click="searchWrongData()">query wrong data</button>
+        <label style="color: red">{{errMsg}}</label>
+        <br/>
+        <table>
+            <tr>
+                <th>Country</th>
+                <th>Population</th>
+            </tr>
+
+            <tr ng-repeat="country in countries">
+                <td>{{country.name}}</td>
+                <td>{{country.population}}</td>
+            </tr>
+        </table>
+    </body>
+</html>
