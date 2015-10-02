@@ -1,0 +1,45 @@
+<html>
+    <body>
+
+        <h1>test adjust options</h2>
+        <select id="country" style="width:100px">
+            <option value="0"></option>
+            <option value="1">China</option>
+            <option value="2">US</option>
+            <option value="3">Canada</option>
+            <option value="4">Japan</option>
+            <option value="5">France</option>
+        </select>
+
+        <br/>
+        <br/>
+        
+        <button type="button" onclick="remove4Country();">remove all countries except Japan</button>
+        
+        <br/>
+        <br/>
+
+        <script>
+
+            function remove4Country() {
+
+                var willBeRemoved = {
+                    "3": true,
+                    "1": true,
+                    "2": true,
+                    "5": true
+                };
+                
+                var selectobject = document.getElementById("country");
+                for (var i = selectobject.length-1; i >= 0; i--) {   // have to use reverse order
+                    if (selectobject.options[i].value in willBeRemoved) {
+                        selectobject.remove(i);
+                    }
+                }
+
+            }
+        </script>
+
+
+</body>
+</html>
