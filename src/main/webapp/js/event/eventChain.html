@@ -1,0 +1,72 @@
+<html>
+    <body>
+
+        <h1>test how to trigger onChange when by programmatically changing html element value like select or input</h1>
+        
+        <select id="country" style="width:100px">
+            <option value="0"></option>
+            <option value="1">China</option>
+            <option value="2">US</option>
+            <option value="3">Canada</option>
+            <option value="4">Japan</option>
+            <option value="5">France</option>
+        </select>
+
+        <br/>        
+        <input type="text" placeholder="Please input a country" id ="countryInput"/>
+        
+        <br/>        
+        <input type="text" placeholder="no onChange event" id ="countryInput2"/>
+        
+        <br/>
+        <button type="button" onclick="changeCountryToJapan();">change all input to Japan</button>       
+        
+        
+        <br/>
+        <br/>
+
+        <script>
+            
+            var selectElm = document.getElementById("country");            
+            selectElm.onchange = function(){
+                console.log("country onChange is fired");
+                var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/>country value is changed to ' + this.options[this.selectedIndex].text;                
+            };
+            
+            selectElm = document.getElementById("countryInput");
+            selectElm.onchange = function(){
+                console.log("countryInput onChange is fired");
+                var info = document.getElementById('infoLabel');
+		info.innerHTML = info.innerHTML +' <br/>country input value is changed to ' + this.value;                
+            };
+
+
+            function changeCountryToJapan() {
+                
+                var selectElm = document.getElementById("country");
+                selectElm.value= "4"; // set to Japan                
+                selectElm.onchange();
+                console.log("triggered country onChange");
+                
+                selectElm = document.getElementById("countryInput");
+                selectElm.value= "Japan"; // set Japan                
+                selectElm.onchange();
+                console.log("triggered countryInput onChange");
+                
+                selectElm = document.getElementById("countryInput2");
+                selectElm.value= "Japan"; // set Japan   
+                if(selectElm.onchange){
+                    selectElm.onchange();
+                }
+                
+
+            }
+        </script>
+        
+        
+        <label id="infoLabel"></label>
+
+
+</body>
+</html>

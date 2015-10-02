@@ -13,6 +13,7 @@
 
 	<input type="button" value="append Option" onclick="appendOption()"><br/><br/>
 	<input type="button" value="change default Option" onclick="setDefaultOption()"><br/><br/>
+        <input type="button" value="change wrong Option" onclick="setWrongOption()"><br/><br/>
 
 	<br />
 	<select id="mySelection" size="10">
@@ -34,6 +35,20 @@
 		var mySelection = appendOption();
 		
 		mySelection.value=1;
+                console.log(mySelection.value);
+		
+	}
+        
+        function setWrongOption(){	
+                var mySelection = document.getElementById('mySelection');		
+                
+		mySelection.value=999;   
+                //  wrong value, different browser has differnt behaviour, 
+                //  Chrome remove selected, and set it back if next time set to correct value
+                // IE remove selected, but can NOT set it back if next time set to correct value
+                // Firefox will ignore this operation and keep original value
+                
+                console.log(mySelection.value);
 		
 	}
 
