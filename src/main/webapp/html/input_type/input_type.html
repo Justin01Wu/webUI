@@ -70,7 +70,10 @@
             function validateForm(){
                 var valid = document.forms["myForm"].checkValidity();
                 if(!valid){                    
-                    document.getElementById("submitBt").click(); // only this one trigger the error message
+                      // If the form is invalid, submit it. The form won't actually submit;
+                      // this will just cause the browser to display the native HTML5 error messages.
+                      // this tips comes from http://stackoverflow.com/questions/11866910/how-to-force-a-html5-form-validation-without-submitting-it-via-jquery
+                    document.getElementById("submitBt").click(); 
                     alert("form has invalid input ");
                 }
             }
