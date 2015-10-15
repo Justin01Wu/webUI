@@ -68,9 +68,9 @@
         
         <script>
             function validateForm(){
-                var valid = document.forms[0].checkValidity();
+                var valid = document.forms["myForm"].checkValidity();
                 if(!valid){                    
-                    document.getElementById("submitBt").click(); // only this one trigger the error meassage
+                    document.getElementById("submitBt").click(); // only this one trigger the error message
                     alert("form has invalid input ");
                 }
             }
