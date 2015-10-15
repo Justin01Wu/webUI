@@ -10,13 +10,17 @@
 	<h1>Test different input types</h1>
 	<h2>Some are html5, not supported by all browsers</h2>
 
-	<form >
+	<form id="myForm">
 	
-		<input type="submit" value="Submit">
+		<input type="submit" id="submitBt" value="Submit">
+                
+                <input type="button" value="validate only" onclick="validateForm()">
+                
+                
 		<br/>
 		<br/>
 		
-		Number (between 1 and 5): <input type="number" name="quantity" placeholder="number(1-5)" min="1" max="5" size="30" required title="please inputs an integer between 1 and 5">
+		Number (between 1 and 5): <input type="number" name="quantity" placeholder="number(1-5)" min="1" max="5" required title="please inputs an integer between 1 and 5">
 		<br/>
 		<br/>
 
@@ -61,6 +65,17 @@
 		Time: <input type="time" name="usr_time">		
 			
 	</form>
+        
+        <script>
+            function validateForm(){
+                var valid = document.forms[0].checkValidity();
+                if(!valid){                    
+                    document.getElementById("submitBt").click(); // only this one trigger the error meassage
+                    alert("form has invalid input ");
+                }
+            }
+            
+        </script>
 
 </body>
 </html>
