@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>integate jquery</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="jquery.toolbar.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>  
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+        <link rel="stylesheet" href="jquery.toolbar.css">      
+        <style>
+            #format-toolbar1, 
+            #format-toolbar2, 
+            #format-toolbar3 {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #toolbar-options { display: none; }
+        </style>
+
+    </head>
+    <body>
+        <h1>Demo how angularJs call Jquery UI function</h1>
+        <div ng-app="Toolbar">
+            <div class="btn-toolbar" toolbar-tip="{content: '#toolbar-options', position: 'top'}" id="format-toolbar1">
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="btn-toolbar" toolbar-tip="{content: '#toolbar-options', position: 'right', style: 'primary'}" id="format-toolbar2">
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="btn-toolbar" toolbar-tip="{content: '#toolbar-options', position: 'bottom', style: 'primary', animation: 'flip'}" id="format-toolbar3">
+                <i class="fa fa-cog"></i>
+            </div>
+
+            <div id="toolbar-options">
+                <a href="#"><i class="fa fa-plane"></i></a>
+                <a href="#"><i class="fa fa-car"></i></a>
+                <a href="#"><i class="fa fa-bicycle"></i></a>
+            </div>
+        </div>
+
+        <a href=https://amitgharat.wordpress.com/2013/02/03/an-approach-to-use-jquery-plugins-with-angularjs/">it comes from here</a>
+
+        <script>
+            var App = angular.module('Toolbar', []);
+
+            App.directive('toolbarTip', function () {
+                return {
+                    
+                    restrict: 'A',  // Restrict it to be an attribute in this case
+                    
+                    // responsible for registering DOM listeners as well as updating the DOM
+                    link: function (scope, element, attrs) {
+                        var toolBarProp = scope.$eval(attrs.toolbarTip);
+                        console.log(toolBarProp);
+                        jQuery(element).toolbar(toolBarProp);
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>
