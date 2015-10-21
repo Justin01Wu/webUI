@@ -31,13 +31,13 @@ and open the template in the editor.
     <body>
         <h1>Demo how angularJs call Jquery UI function</h1>
         <div ng-app="Toolbar">
-            <div class="btn-toolbar" toolbar-tip="{content: '#toolbar-options', position: 'top'}" id="format-toolbar1">
+            <div class="btn-toolbar" toolbar-tip='{"content": "#toolbar-options", "position": "top"}' id="format-toolbar1">
                 <i class="fa fa-cog"></i>
             </div>
-            <div class="btn-toolbar" toolbar-tip="{content: '#toolbar-options', position: 'right', style: 'primary'}" id="format-toolbar2">
+            <div class="btn-toolbar" toolbar-tip='{"content": "#toolbar-options", "position": "right", "style": "primary"}' id="format-toolbar2">
                 <i class="fa fa-cog"></i>
             </div>
-            <div class="btn-toolbar" toolbar-tip="{content: '#toolbar-options', position: 'bottom', style: 'primary', animation: 'flip'}" id="format-toolbar3">
+            <div class="btn-toolbar" toolbar-tip='{"content": "#toolbar-options", "position": "bottom", "style": "primary", "animation": "flip"}' id="format-toolbar3">
                 <i class="fa fa-cog"></i>
             </div>
 
@@ -60,7 +60,10 @@ and open the template in the editor.
                     
                     // responsible for registering DOM listeners as well as updating the DOM
                     link: function (scope, element, attrs) {
-                        var toolBarProp = scope.$eval(attrs.toolbarTip);
+                        
+                        var toolBarProp = JSON.parse(attrs.toolbarTip);
+                        // var toolBarProp = scope.$eval(attrs.toolbarTip);  // if attrs has angularJs express, please use this line
+                        
                         console.log(toolBarProp);
                         jQuery(element).toolbar(toolBarProp);
                     }
