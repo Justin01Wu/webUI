@@ -20,7 +20,7 @@ var ImageResizer = {
 		this._origImg=null;
 		this._origFile=null;
 		this._dataurl=null;
-		this._ctx=null
+		this._ctx=null;
 	},
 	
 	setup:function(readerEvent, file){
@@ -30,22 +30,22 @@ var ImageResizer = {
 		this._reset();
 		if(file.type.match("image/gif")){
 			if(file.size>this.MAX_GIF_SIZE){
-				return new Error(this.maxGifError)
+				return new Error(this.maxGifError);
 			}else{
 				console.log("can't compress GIF file, so just use original image ");
 				this._passOrigImage(readerEvent, file);
-				return
+				return;
 			}
 		}else{
 			if(!file.type.match("image/jpeg") && !file.type.match("image/png")){
 				alert("file must be an image");
 				return new Error(this.error_validType);
-				return
+				return;
 			}
 		}if(file.size<this.MAX_SIZE){
 			console.log("original file size < MAX_SIZE, so just use original image ");
 			this._passOrigImage(readerEvent, file);
-			return
+			return;
 		}
 		console.log("original file size > MAX_SIZE, so going to compress image ");
 		var img = new Image;
@@ -54,8 +54,8 @@ var ImageResizer = {
 		this._origFile = file;
 		var l = this;
 		img.onload=function(){
-			l._resize()
-		}
+			l._resize();
+		};
 	},
 		
 	_passOrigImage:function(m,l){
@@ -68,11 +68,11 @@ var ImageResizer = {
 	_handleFinalResult:function(){
 		var blob=this._dataURItoBlob(this._dataurl);
 		console.log("targetFile.size = " + blob.size);
-		this.handleFinalResult(blob, this._dataurl)
+		this.handleFinalResult(blob, this._dataurl);
 	},
 	
 	handleFinalResult:function(blob, targetUrl){
-		alert("code error, need to initialize handleFinalResult")
+		alert("code error, need to initialize handleFinalResult");
 	},
 		
 	_targetSize:function(){
@@ -83,13 +83,13 @@ var ImageResizer = {
 		var m="data:image/png;base64,";
 		var l=(this._dataurl.length-m.length)*3/4;
 		console.log("size = "+l);
-		return l
+		return l;
 	},
 		
 	_handleBigJpeg:function(){
 		console.log("_handleBigJpeg..");
 		var l=this._getDefaultQuality();
-		this._increaseCompression(l-0.1)
+		this._increaseCompression(l-0.1);
 	},
 											
 	_handleBigPng:function(){
@@ -105,7 +105,7 @@ var ImageResizer = {
 		if(o){
 			console.log("Has transparency at "+l);
 			console.log("so have to submit big file ");
-			this._handleFinalResult()
+			this._handleFinalResult();
 		}else{
 			console.log("no transparency, so convert to jepg ");
 		this._dataurl=this._canvas.toDataURL("image/jpeg");
@@ -113,10 +113,10 @@ var ImageResizer = {
 		var m=this._targetSize();
 		if(m<this.MAX_SIZE){
 			this._handleFinalResult();
-			return
+			return;
 			}
 		else{
-			this._handleBigJpeg()
+			this._handleBigJpeg();
 			}
 		}
 	},
@@ -126,11 +126,11 @@ var ImageResizer = {
 			var o=parseFloat((l).toFixed(2));
 			var n=this._canvas.toDataURL("image/jpeg",o);
 			if(n==this._dataurl){console.log("The default quality value is: "+o);
-			return o
+			return o;
 		}
-			l=l-0.01
+			l=l-0.01;
 		}
-		return 1
+		return 1;
 	},
 													
 	_dataURItoBlob:function(m){
@@ -139,10 +139,10 @@ var ImageResizer = {
 		var q=new ArrayBuffer(r.length);
 		var o=new Uint8Array(q);
 		for(var p=0;p<r.length;p++){
-			o[p]=r.charCodeAt(p)
+			o[p]=r.charCodeAt(p);
 		}
 		var n=new Blob([q],{type:l});
-		return n
+		return n;
 	},
 															
 	_increaseCompression:function(m){
@@ -152,13 +152,13 @@ var ImageResizer = {
 		var l=this._targetSize();
 		if(l<this.MAX_SIZE){
 			this._handleFinalResult();
-			return
+			return;
 		}else{
 			if(m>0.2){
 			this._increaseCompression(m-0.1)
 			}else{
 				console.log("quality is too low, now have to submit ");
-				this._handleFinalResult()
+				this._handleFinalResult();
 			}
 		}
 	},
@@ -173,12 +173,12 @@ var ImageResizer = {
 		var l=this._targetSize();
 		if(l<this.MAX_SIZE){
 			this._handleFinalResult();
-			return
+			return;
 		}
 		if(this._origFile.type==="image/png"){
-			this._handleBigPng()
+			this._handleBigPng();
 		}else{
-			this._handleBigJpeg()
+			this._handleBigJpeg();
 		}
 	},
 				
@@ -187,21 +187,21 @@ var ImageResizer = {
 		var l=this._origImg.height;
 		if(m>=l){
 			if(m>this.MAX_WIDTH){
-				l*=this.MAX_WIDTH/m;m=this.MAX_WIDTH
+				l*=this.MAX_WIDTH/m;m=this.MAX_WIDTH;
 			}
 		}else{
 			if(l>this.MAX_HEIGHT){
 				m*=this.MAX_HEIGHT/l;
-				l=this.MAX_HEIGHT
+				l=this.MAX_HEIGHT;
 			}
 		}
 		this._canvas.width=m;this._canvas.height=l;
 		console.log("target image width = "+m);
-		console.log("target image height = "+l)
+		console.log("target image height = "+l);
 	}
 	
 	
-}
+};
 
 
 window.uploadPhotos = function(event){
@@ -222,8 +222,8 @@ window.uploadPhotos = function(event){
         		document.getElementById('targetImg').src = targetUrl;
         		document.getElementById('infoLabel').innerHTML = 'original file size: ' + file.size + '    target file size: ' + blob.size;
         	};
-        }
+        };
         reader.readAsDataURL(file);
     }
-}
+};
 
