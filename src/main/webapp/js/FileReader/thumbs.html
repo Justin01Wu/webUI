@@ -5,10 +5,16 @@
         margin: 10px 5px 0 0;
     }
 </style>
-<h1> comes from <a href="http://www.html5rocks.com/en/tutorials/file/dndfiles/">here</a></h1>
+
+<h1> demo image thumbs</h1>
 <br/>
-<input type="file" id="files" name="files[]" multiple />
+
+please choose a text file or CSV file  
+<input type="file" id="files" name="files[]" multiple accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" />
+
 <output id="list"></output>
+
+it comes from <a href="http://www.html5rocks.com/en/tutorials/file/dndfiles/">here</a>
 
 <script>
     function handleFileSelect(evt) {
@@ -19,6 +25,9 @@
 
             // Only process image files.
             if (!f.type.match('image.*')) {
+                if(window.console){
+                    console.log("not image file. so quit");
+                }
                 continue;
             }
 

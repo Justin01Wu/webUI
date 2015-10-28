@@ -1,0 +1,51 @@
+<html>
+
+    <style>
+        #byte_content {
+            margin: 5px 0;
+            height: 150px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <h1>read first 5 lines of a text file</h1>
+    
+    please choose a text file or CSV file 
+    <input type="file" id="files" name="file" accept="text/plain,.csv" onchange="read5Lines(event)" /> 
+
+    <div id="byte_content"></div>
+    
+    it comes from <a href="http://stackoverflow.com/questions/23331546/how-to-use-javascript-to-read-local-text-file-and-read-line-by-line" target="_blank">here</a>
+    
+
+    <script>
+
+
+        function read5Lines(event) {
+
+            var file = event.currentTarget.files[0];  //this.files[0];
+
+            var reader = new FileReader();
+            reader.onload = function (progressEvent) {
+                // Entire file
+                //console.log(this.result);
+
+                // By lines
+                var lines = this.result.split('\n');
+                var str = "";
+                for (var line = 0; line < 5; line++) {
+                    str = str + "<br/>" + lines[line];
+                }
+                document.getElementById('byte_content').innerHTML = str;
+
+            };
+            reader.readAsText(file);
+        }
+        ;
+
+
+
+    </script>
+
+</html>
