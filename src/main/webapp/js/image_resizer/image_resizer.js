@@ -122,29 +122,32 @@ var ImageResizer = {
 	},
 												
 	_getDefaultQuality:function(){
-		var l=1;
+		var ratio=1;
                 for(var m=0;m<100;m++){
-			var quality=parseFloat((l).toFixed(2));
-			var n=this._canvas.toDataURL("image/jpeg",quality);
-			if(n==this._dataurl){
-                            console.log("The default quality value is: "+quality);
-                            return quality;
-                        }
-			l=l-0.01;
+                    var quality=parseFloat((ratio).toFixed(2));
+                    var n=this._canvas.toDataURL("image/jpeg",quality);
+                    if(n==this._dataurl){
+                        console.log("The default quality value is: "+quality);
+                        return quality;
+                    }
+                    ratio = ratio - 0.01;
 		}
 		return 1;
 	},
 													
 	_dataURItoBlob:function(dataurl){
-		var r=atob(dataurl.split(",")[1]);
-		var l=dataurl.split(",")[0].split(":")[1].split(";")[0];
-		var q=new ArrayBuffer(r.length);
-		var o=new Uint8Array(q);
-		for(var p=0;p<r.length;p++){
-			o[p]=r.charCodeAt(p);
+            //  comes from http://stackoverflow.com/questions/12168909/blob-from-dataurl
+            
+            // convert base64 to raw binary data held in a string
+		var byteString =atob(dataurl.split(",")[1]);
+		var type = dataurl.split(",")[0].split(":")[1].split(";")[0];
+		var arrayBuffer = new ArrayBuffer(byteString.length);
+		var bytes=new Uint8Array(arrayBuffer);
+		for(var i=0;i<byteString.length;i++){
+			bytes[i]=byteString.charCodeAt(i);
 		}
-		var n=new Blob([q],{type:l});
-		return n;
+		var blob = new Blob([arrayBuffer],{type:type});
+		return blob;
 	},
 															
 	_increaseCompression:function(ratio){
