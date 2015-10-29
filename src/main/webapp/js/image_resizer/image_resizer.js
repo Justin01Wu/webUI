@@ -54,12 +54,13 @@ var ImageResizer = {
             self._resize();
         };
     },
-    _passOrigImage: function (m, l) {
-        this._dataurl = m.target.result;
-        this._origFile = l;
+    _passOrigImage: function (readerEvent, file) {
+        this._dataurl = readerEvent.target.result;
+        this._origFile = file;
         this._targetFileType = this._origFile.type;
         this._handleFinalResult();
     },
+    
     _handleFinalResult: function () {
         var blob = this._dataURItoBlob(this._dataurl);
         console.log("targetFile.size = " + blob.size);
@@ -74,36 +75,36 @@ var ImageResizer = {
             this._targetFileType = this._origFile.type;
         }
         var m = "data:image/png;base64,";
-        var l = (this._dataurl.length - m.length) * 3 / 4;
-        console.log("size = " + l);
-        return l;
+        var size = (this._dataurl.length - m.length) * 3 / 4;
+        console.log("size = " + size);
+        return size;
     },
     _handleBigJpeg: function () {
         console.log("_handleBigJpeg..");
-        var l = this._getDefaultQuality();
-        this._increaseCompression(l - 0.1);
+        var quality = this._getDefaultQuality();
+        this._increaseCompression(quality - 0.1);
     },
     _handleBigPng: function () {
         console.log("png file, so detect transparency firstly ");
-        var p = this._ctx.getImageData(0, 0, this._canvas.width, this._canvas.height).data;
-        var o = false, l = 0;
-        for (var n = 3; n < p.length; n += 4) {
-            if (p[n] == 0) {
-                o = true;
-                l = Math.floor(n / 4);
+        var imageData = this._ctx.getImageData(0, 0, this._canvas.width, this._canvas.height).data;
+        var hasTransparency = false, location = 0;
+        for (var n = 3; n < imageData.length; n += 4) {
+            if (imageData[n] == 0) {
+                hasTransparency = true;
+                location = Math.floor(n / 4);
                 break
             }
         }
-        if (o) {
-            console.log("Has transparency at " + l);
+        if (hasTransparency) {
+            console.log("Has transparency at " + location);
             console.log("so have to submit big file ");
             this._handleFinalResult();
         } else {
             console.log("no transparency, so convert to jepg ");
             this._dataurl = this._canvas.toDataURL("image/jpeg");
             this._targetFileType = "image/jpeg";
-            var m = this._targetSize();
-            if (m < this.MAX_SIZE) {
+            var size = this._targetSize();
+            if (size < this.MAX_SIZE) {
                 this._handleFinalResult();
                 return;
             }
@@ -114,10 +115,10 @@ var ImageResizer = {
     },
     _getDefaultQuality: function () {
         var ratio = 1;
-        for (var m = 0; m < 100; m++) {
+        for (var i = 0; i < 100; i++) {
             var quality = parseFloat((ratio).toFixed(2));
-            var n = this._canvas.toDataURL("image/jpeg", quality);
-            if (n == this._dataurl) {
+            var test = this._canvas.toDataURL("image/jpeg", quality);
+            if (test == this._dataurl) {
                 console.log("The default quality value is: " + quality);
                 return quality;
             }
@@ -163,8 +164,8 @@ var ImageResizer = {
         this._setCanvasSize();
         this._ctx = this._canvas.getContext("2d");
         this._ctx.drawImage(this._origImg, 0, 0, this._canvas.width, this._canvas.height);
-        var l = this._targetSize();
-        if (l < this.MAX_SIZE) {
+        var size = this._targetSize();
+        if (size < this.MAX_SIZE) {
             this._handleFinalResult();
             return;
         }
