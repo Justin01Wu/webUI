@@ -45,15 +45,17 @@
                 //console.log(this.result);
 
                 // By lines
-                var lines = this.result.split('\n');
+                //var lines = this.result.split('\n');
+                var lines = this.result.slice(0, 5000).split('\n');
+                var maxLine = lines.length<5? lines.length:5;
                 var str = "";
-                for (var line = 0; line < 5; line++) {
+                for (var line = 0; line < maxLine ; line++) {
                     str = str + "<br/>" + lines[line];
                 }
                 document.getElementById('byte_content').innerHTML = str;
 
             };
-            reader.readAsText(file);
+            reader.readAsText(file,'ISO-8859-1');
         }
         ;
 
