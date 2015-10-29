@@ -52,9 +52,9 @@ var ImageResizer = {
 		img.src = readerEvent.target.result;
 		this._origImg = img;
 		this._origFile = file;
-		var l = this;
+		var self = this;
 		img.onload=function(){
-			l._resize();
+			self._resize();
 		};
 	},
 		
@@ -62,7 +62,7 @@ var ImageResizer = {
 		this._dataurl=m.target.result;
 		this._origFile=l;
 		this._targetFileType=this._origFile.type;
-		this._handleFinalResult()
+		this._handleFinalResult();
 	},
 		
 	_handleFinalResult:function(){
@@ -78,7 +78,7 @@ var ImageResizer = {
 	_targetSize:function(){
 		if(!this._dataurl){
 			this._dataurl=this._canvas.toDataURL(this._origFile.type);
-			this._targetFileType=this._origFile.type
+			this._targetFileType=this._origFile.type;
 		}
 		var m="data:image/png;base64,";
 		var l=(this._dataurl.length-m.length)*3/4;
@@ -122,20 +122,22 @@ var ImageResizer = {
 	},
 												
 	_getDefaultQuality:function(){
-		var l=1;for(var m=0;m<100;m++){
-			var o=parseFloat((l).toFixed(2));
-			var n=this._canvas.toDataURL("image/jpeg",o);
-			if(n==this._dataurl){console.log("The default quality value is: "+o);
-			return o;
-		}
+		var l=1;
+                for(var m=0;m<100;m++){
+			var quality=parseFloat((l).toFixed(2));
+			var n=this._canvas.toDataURL("image/jpeg",quality);
+			if(n==this._dataurl){
+                            console.log("The default quality value is: "+quality);
+                            return quality;
+                        }
 			l=l-0.01;
 		}
 		return 1;
 	},
 													
-	_dataURItoBlob:function(m){
-		var r=atob(m.split(",")[1]);
-		var l=m.split(",")[0].split(":")[1].split(";")[0];
+	_dataURItoBlob:function(dataurl){
+		var r=atob(dataurl.split(",")[1]);
+		var l=dataurl.split(",")[0].split(":")[1].split(";")[0];
 		var q=new ArrayBuffer(r.length);
 		var o=new Uint8Array(q);
 		for(var p=0;p<r.length;p++){
@@ -145,17 +147,17 @@ var ImageResizer = {
 		return n;
 	},
 															
-	_increaseCompression:function(m){
-		console.log("decrease quality of jpeg image to: "+m);
-		this._dataurl=this._canvas.toDataURL("image/jpeg",m);
+	_increaseCompression:function(ratio){
+		console.log("decrease quality of jpeg image to: "+ratio);
+		this._dataurl=this._canvas.toDataURL("image/jpeg",ratio);
 		this._targetFileType="image/jpeg";
 		var l=this._targetSize();
 		if(l<this.MAX_SIZE){
 			this._handleFinalResult();
 			return;
 		}else{
-			if(m>0.2){
-			this._increaseCompression(m-0.1)
+			if(ratio>0.2){
+                            this._increaseCompression(ratio-0.1);
 			}else{
 				console.log("quality is too low, now have to submit ");
 				this._handleFinalResult();
@@ -183,21 +185,22 @@ var ImageResizer = {
 	},
 				
 	_setCanvasSize:function(){
-		var m=this._origImg.width;
-		var l=this._origImg.height;
-		if(m>=l){
-			if(m>this.MAX_WIDTH){
-				l*=this.MAX_WIDTH/m;m=this.MAX_WIDTH;
+		var width=this._origImg.width;
+		var height=this._origImg.height;
+		if(width>=height){
+			if(width>this.MAX_WIDTH){
+				height*=this.MAX_WIDTH/width;
+                                width=this.MAX_WIDTH;
 			}
 		}else{
-			if(l>this.MAX_HEIGHT){
-				m*=this.MAX_HEIGHT/l;
-				l=this.MAX_HEIGHT;
+			if(height>this.MAX_HEIGHT){
+				width*=this.MAX_HEIGHT/height;
+				height=this.MAX_HEIGHT;
 			}
 		}
-		this._canvas.width=m;this._canvas.height=l;
-		console.log("target image width = "+m);
-		console.log("target image height = "+l);
+		this._canvas.width=width;this._canvas.height=height;
+		console.log("target image width = "+width);
+		console.log("target image height = "+height);
 	}
 	
 	
