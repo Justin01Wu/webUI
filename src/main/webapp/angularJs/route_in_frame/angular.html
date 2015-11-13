@@ -14,11 +14,17 @@
 
     </head>
       
-    <body ng-app="demoApp" >
+    <body ng-app="demoApp" ng-controller="MenuCtrl">
         <!-- MAIN CONTENT AND INJECTED VIEWS -->
+        URL location: {{location.url()}}
         <div id="main">		
             <a href = "#/">home</a> | 
-            <a href = "#/subMenuA">sub menu A</a> |
+            
+            
+            <a href = "#/subMenuA" ng-hide="location.url() === '/subMenuA'">sub menu A</a> 
+            <label ng-show="location.url() === '/subMenuA'">sub menu A</label> 
+            
+            |
             <a href = "#/subMenuB">sub menu B</a> | 
             
             <a href = "./submenu/subMenuC.html">sub menu C(real html page)</a>

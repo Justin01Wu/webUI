@@ -24,6 +24,11 @@ demoApp.config(function ($routeProvider) {
 });
 
 
+    function MenuCtrl($scope, $location) {
+        
+        $scope.location = $location;
+    }
+    demoApp.controller('MenuCtrl', MenuCtrl);
 
 
 
