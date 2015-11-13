@@ -15,10 +15,14 @@ demoApp.config(function ($routeProvider) {
                 templateUrl: 'submenu/subMenuA.html',
                 controller: 'subMenuAController'
             })
-            .when('/subMenuB', {
+            .when('/subMenuB/menu2b', {
                 templateUrl: 'submenu/subMenuB.html',
                 controller: 'subMenuBController'
-            });
+            })
+            .otherwise({
+                redirectTo: '/'
+            })        
+    ;
 
 
 });
