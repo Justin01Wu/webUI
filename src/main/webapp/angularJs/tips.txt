@@ -1,10 +1,30 @@
 Angular tips: 
             
 (1) AngularJs directive name can't have upper case letter, 
-      if you use Upper case letter, AngularJs(1.2.26) will ignore this directive without any warning.
+      if you use Upper case letter, AngularJs(1.2.*) will ignore this directive without any warning.
       This will confuse you. But it support dot in the name, so you can use name like a.b 
       
 (2) if the element is inside of ng-if , it won't trigger  $watch
-  it will trigger $watch normally when inside of ng-show, so please replace ng-if with ng-show  if necessary    
+  it will trigger $watch normally when inside of ng-show, so please replace ng-if with ng-show if necessary    
 
-(3) AngularJs directive properties name can't have upper case letter 
+(3) AngularJs directive properties name can't have upper case letter.
+    AngularJs prefer dash style, like para-name="justin", but inside of JavaScript it will convert to paraName,
+    this usually confuses beginner.
+
+    For example:
+     <currency.select field-name="currencyId" /> 
+
+       var myDirective = {
+        restrict: 'E',
+        require: ['fieldName'],
+        scope: {
+            innerFieldName: '@fieldName'  // angulrsJs will automatically convert field-name to fieldName, it won't support fieldName directly  
+        },
+        ...
+
+(4) AngularJs 1.2.* can NOT use two directives at the same place, for example: 
+   <currency.select field-name="currencyId" />   <currency.select field-name="currencyId2" />  
+   Then user can't see the second currency.select.
+   but if it is wraped by some HTML element, then it should be OK:  
+            <div><currency.field field-id="currencyId2" /></div>
+            <div><currency.field field-id="currencyId" /></div>
