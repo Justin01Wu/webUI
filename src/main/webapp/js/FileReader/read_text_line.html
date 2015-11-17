@@ -3,7 +3,7 @@
     <style>
         #byte_content {
             margin: 5px 0;
-            height: 150px;
+            height: 200px;
             overflow-y: auto;
             overflow-x: hidden;
         }
@@ -45,8 +45,8 @@
                 //console.log(this.result);
 
                 // By lines
-                //var lines = this.result.split('\n');
-                var lines = this.result.slice(0, 5000).split('\n');
+                var first5000bytes = this.result.slice(0, 5000);
+                var lines = first5000bytes.split('\n');  // if it is windows file, the remaining \r will become a white space, and can be trimmed later 
                 var maxLine = lines.length<5? lines.length:5;
                 var str = "";
                 for (var line = 0; line < maxLine ; line++) {
