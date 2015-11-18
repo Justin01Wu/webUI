@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h1>test no selected </h1>
+        
+        <ul>
+            <li> if  selectedIndex is out of valid range(<0 or >=length), then selection won't display which item is selected </li>
+            
+            <li> selectedIndex will be automatically changed to -1 if it is invalid</li>
+            
+            <li> if  selection value is out of valid list, then selection won't display which item is selected </li>
+            
+            <li> selection value is empty if  selectedIndex is out of valid range</li>
+            
+            <li> selection value is empty if  selection value is invalid</li>
+
+        </ul>	
+        
+        <select id="country" style="width:100px">
+            <option value="1">China</option>
+            <option value="2">US</option>
+            <option value="3">Canada</option>
+            <option value="4">Japan</option>
+            <option value="5">France</option>
+        </select>
+
+        <br/>
+        value: <label id="infoLabel"></label>
+        <br/>
+        <br/>        
+        <button type="button" onclick="setSelectedIndex(-1);">set selected index to -1</button>
+        <button type="button" onclick="setSelectedIndex(100);">set selected index to 100</button>
+        <button type="button" onclick="setValue('3');">set value to 3(Canada)</button>
+        <button type="button" onclick="getValue();">get value</button>
+        <br/>
+        <br/>
+        
+
+        <script>
+            var selectobject = document.getElementById("country");
+            selectobject.value = "6";         
+            
+            function setSelectedIndex(index) {
+                document.getElementById("country").selectedIndex = index;
+            }            
+            
+            function setValue(value) {
+                document.getElementById("country").value = value;
+            }                  
+            
+            function getValue() {
+                var value = document.getElementById("country").value;
+                var info = document.getElementById('infoLabel');
+		info.innerHTML =  value;  // this will be empty if value is not in the valid list
+            }
+            
+        </script>
+        
+    </body>
+</html>

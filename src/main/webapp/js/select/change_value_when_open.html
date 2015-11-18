@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h1>test how to change value when drop down list is opened</h1>
+
+
+        <ul>
+            <li> JavaScript won't throw exception if the select drop down list is opened and JS is changing the value</li>
+
+            <li> Chrome will change anchor part display value, IE10  anchor part is invisible when drop down list is opened </li>
+
+            <li> Neither Chrome or IE won't change drop down list selection</li>
+
+            <li>user selection will be kept, if user cancel selection, then JS selection is kept</li>
+            
+            <li>chrome will go back original selection when page is refreshed, but IE10 keep current selection unless the page is changed</li>
+
+        </ul>	
+
+        <select id="country" style="width:100px">
+            <option value="1" selected>China</option>
+            <option value="2">US</option>
+            <option value="3">Canada</option>
+            <option value="4">Japan</option>
+            <option value="5">France</option>
+        </select>
+
+        <br/>
+        value: <label id="infoLabel"></label>
+        <br/>
+        <br/>        
+        <button type="button" onclick="changeValueIn3Seconds();">will change value in 3 seconds</button>
+        <br/>
+        <br/>
+
+
+        <script>
+
+
+            function changeValueIn3Seconds() {
+                setTimeout(function () {
+                    console.log("changing...");
+                    document.getElementById("country").selectedIndex = 3;
+                }, 3000);
+
+            }
+
+        </script>
+
+    </body>
+</html>
