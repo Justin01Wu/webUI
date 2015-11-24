@@ -39,4 +39,30 @@ But IE and Firefox will show you which line of JS code
        "the source is not on the include path of a JavaScript project"
        
      you can change it Project Explorer view, right-click the required project and select Properties | JavaScript | JavaScript Libraries.
+
+(6)download behavior:
+
+    <a href="/images/a.jpg" download>
+    with download , chrome and FireFox are silently download,  but IE still open it in the page
+
+    after set attachment, chrome and FireFox are still silently downloading, but IE ask "do you want to open or save..."
+    for attachment, IE will automatically close window which is opened by target="_blank", but chrome and FireFox won't close it.
+
+(7) console.log
+    Basically IE browser doesn’t have console object if users didn’t open developer console.
+    So any code are using console.log or warn will fail.
+
+    To stop this , JavaScript code must have this dummy definition in the beginning:
+    if (!window.console) {
+           window.console = {
+                 log : function() {},
+                 warn : function() {},
+                 error : function() {}
+           };
+    }
+
+    by the way, some JS library has some kind of logging service, but none of them can be traced by browser: 
+    In some browser, console.log will automatically write down which line of which file generate the log
+    you can click on it to open related code
+
             
