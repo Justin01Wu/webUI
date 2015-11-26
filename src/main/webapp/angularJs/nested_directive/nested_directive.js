@@ -8,11 +8,12 @@ app.controller('MainCtrl', function ($scope) {
 app.directive('outerDirective', function () {
     return{
         scope: {},
-        transclude: true,  // allow to include child content
-        template: "<fieldset>" +
-            "<legend>outer directive</legend>"+            
-            " <div ng-transclude/> "+
-            "</fieldset>",
+        transclude: true,  // allow to include child content    
+        template: [
+            '<fieldset>',
+            '<legend>outer directive</legend>',
+            '<div ng-transclude/>'   // use this div to hold child directive because ng-transclude must attach to an element
+        ].join('\n'),    
         restrict: 'E',
         controller: function ($scope) { 
             // $scope is the appropriate scope for the directive
