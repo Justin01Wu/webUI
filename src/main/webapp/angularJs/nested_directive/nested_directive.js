@@ -11,8 +11,8 @@ app.directive('outerDirective', function () {
         restrict: 'AE',
         controller: function ($scope, $compile, $http) { //dependencies can be injected
             // $scope is the appropriate scope for the directive
-            this.addChild = function (nestedDirective) {
-                console.log('Got the message from nested directive: ' + nestedDirective.message);
+            this.addChild = function (message) {
+                console.log('Got the message from nested directive: ' + message);
             };
         }
     };
@@ -24,9 +24,9 @@ app.directive('innerDirective', function () {
         restrict: 'AE',
         require: '^outerDirective',
         link: function (scope, elem, attrs, controllerInstance) {
-            //the 4th argument is the controller instance you require
-            scope.message = "Hi, Parent directive";
-            controllerInstance.addChild(scope);
+            //the 4th argument is the controller instance you required outerDirective
+            var message = "Hi, Parent directive";
+            controllerInstance.addChild(message);
         }
     };
 });
