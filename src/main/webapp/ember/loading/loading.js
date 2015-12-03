@@ -130,7 +130,10 @@ App.PostController.reopen({
 				post.text = "text #" + response.title + ": " + response.text;
 				resolve(post);
 			}).fail(function(xhr, status, error) {
-				reject("can't load post item");
+				//reject("can't load post item");
+                                post.title = "opps: error" ;
+                                post.text = "opps: server error";
+                                resolve(post);
 			});
 
 		}));
