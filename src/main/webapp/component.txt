@@ -3,6 +3,7 @@ As an Web UI component, it must have encapsulation:
 	container can only affect it by the interface
 	container(page) can have multiple instances of the same component, they won't affect each others
 	it know how to handle its own data: retrieve data, save data, how to use cache	
+        Streaming: load data only if it is needed
 	it has robust error handling 
 	it know how to hide and show its own HTML element
 	it still use global CSS style, but may have its own CSS style 
