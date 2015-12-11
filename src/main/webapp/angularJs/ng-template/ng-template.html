@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <title>ng-template demo</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
+
+
+        <!-- angularJs use this way to simulate a file tempA.html-->
+        <script type="text/ng-template" id="tempA.html">
+            <fieldset>
+                <legend>fieldset directive</legend>
+                <ul>
+                    <li>This is a demo of ng-template</li>
+                    <li>ng-template use javascript block to simulate html file</li>
+                    <li>in this way , we can add many html file into a single file to avoid multiple requests</li>
+                </ul>                
+            </fieldset>
+        </script>        
+
+    </head>
+    <body>
+        <div><!-- please always wrap your directive in some element, otherwise the following item won't come-->
+            <my-directive/>
+        </div>
+    <br/>
+    <br/>
+    For more details, please see 
+    <a href="https://blog.logentries.com/2015/03/template-caching-in-angular-how-to-avoid-the-storm/" target="_blank">here</a>
+
+
+    <script>
+var app = angular.module('myApp', []);
+app.directive('myDirective', function () {
+    return{
+        templateUrl: 'tempA.html',
+        restrict: 'E'
+    };
+});
+
+    </script>
+</body>
+
+
+</html>
