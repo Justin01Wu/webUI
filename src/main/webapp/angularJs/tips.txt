@@ -22,9 +22,10 @@ Angular tips:
         },
         ...
 
-(4) AngularJs 1.2.* can NOT use two directives at the same place, for example: 
-   <currency.select field-name="currencyId" />   <currency.select field-name="currencyId2" />  
+(4) AngularJs 1.2.* can NOT use / to end an directive, otherwise it will hide the following elements, for example: 
+       <currency.select field-name="currencyId" />   
+       <currency.select field-name="currencyId2" />  
    Then user can't see the second currency.select.
-   but if it is wraped by some HTML element, then it should be OK:  
-            <div><currency.field field-id="currencyId2" /></div>
-            <div><currency.field field-id="currencyId" /></div>
+   so it should be used like this::  
+       <currency.field field-id="currencyId2"></currency.field> 
+       <currency.field field-id="currencyId"></<currency.field>
