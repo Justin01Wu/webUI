@@ -65,4 +65,11 @@ But IE and Firefox will show you which line of JS code
     In some browser, console.log will automatically write down which line of which file generate the log
     you can click on it to open related code
 
+ (8) to run your web page on your local , you have to disable some browser security setting
+    in Chrome: you can add some parameter to disable it: 
+        "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
+    In Firefox: 
+        Go to about:config
+        Find security.fileuri.strict_origin_policy parameter
+        Set it to false
             
