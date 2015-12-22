@@ -29,3 +29,46 @@ Angular tips:
    so it should be used like this::  
        <currency.field field-id="currencyId2"></currency.field> 
        <currency.field field-id="currencyId"></<currency.field>
+
+(5) I just had a  little thought about how to prevent stale browser cache for next generation web application:
+
+    Because we are making a single page application on AngularJs. So the correct solution should be:
+
+    (1) set physical page (ie, main page) to "Cache-Control: No-cache". 
+    The physical page should be small, because logical pages are all dynamically loaded by JavaScript, 
+    so loading physical page itself should be fast
+    This can be done on filter if main page is html page
+
+    (2) for "partial" page (ie logical page), change the folder name every time when you release a new build, 
+
+    For example: when a new release is deployed, assume the physical page is index.html
+
+    Inside index.html, All JavaScript, css and angularJs Template file are all in a folder asset-{{TimeStamp}}. 
+    Because index.html has no cache, so browser will always get latest index.html. 
+    Because all JS , css and other template html files are in different folder from last release. 
+    so the browser will load all files from the new folder rather than from cache.
+
+    you can create a build process to do it automatically: 
+       search all js , css files in index.html and replace folder name asset/** with asset-{{TimeStamp}}/**
+       copy all files to asset-{{TimeStamp}} from asset folder
+
+
+
+    Now you don't have headache cache issue but browser do leverage local cache to speed up your web page .
+
+    (3) for angularJs template file, because it is also loaded by JS, 
+        so we strongly suggest you use relative path ( related to currently running JS code) to get it
+
+    some sample JS code like this: 
+
+    function _getCurrentJSPath() {
+            var scripts = document.getElementsByTagName("script");
+            var currentFile = scripts[scripts.length - 1].src;
+            var currentPath = currentFile.substr(0, currentFile.lastIndexOf('/')) + "/";
+            return currentPath;
+        }
+                    ...
+                    templateUrl: _getCurrentJSPath() + 'currencyField.html',
+
+    (4) for image, I also strongly suggest you use relative path in CSS:
+        span.expand {  	background-image: url('../images/icon_expand.gif');  ...
