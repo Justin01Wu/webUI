@@ -1,40 +1,30 @@
+
 div.title{
-	position: absolute; 
-	top: 0px; 
 	height: 97px;	
 	width:100%;
 }
 
 body{	
-	/*overflow-x: hidden;*/
-	/* this is bad way to stop annoying horizontal scrollbar because horizontal scrollbar is required when the page really stretch out */   
-	
-	margin: 0;   /* use this to stop annoying horizontal scrollbar */
-        overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    /* this is bad way to stop annoying horizontal scrollbar because horizontal scrollbar is required when the page really stretch out */   
+
+    margin: 0;   /* use this to stop annoying horizontal scrollbar */
+    overflow-x: hidden;
 }
 
 div.tableHeader{	
-	position: absolute; 
-	top: 98px; 
 	height: 23px;		
 	overflow-y: scroll;
 	width:100%;
         padding-right: 20px;
 }
-				
-div.tableBody {
-    
-    position: absolute;    
-    top: 128px;  /* = the total height of top divs */
-    bottom: 0px; /* in this way, this div will use the rest of height*/   
-    
-    /* this skill comes from 
-    	http://stackoverflow.com/questions/7198282/how-to-make-div-occupy-remaining-height
-    */
 
+div.tableBody {
+    position: absolute;
+    height: calc( 100% - 150px ); /* header occupy 120px, why is it 150px ? */
     width:100%;
     overflow-x: auto;
-    overflow-y: scroll;
+    overflow-y: scroll;    
 }	
 
 
@@ -44,8 +34,8 @@ table.fixedHeader {
 }
 
 table.fixedHeader thead {
-  height: 21px;
-  background-color: #BFC2CC;
+    height: 21px;
+    background-color: #BFC2CC;
 }
 
 table.fixedHeader tr:nth-child(even) {
