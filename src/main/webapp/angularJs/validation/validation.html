@@ -16,14 +16,14 @@
 	<form ng-app="myAppName" ng-controller="validateCtrl" name="myForm" novalidate>
 
 		<p>
-			Username:<br> <input type="text" name="user" ng-model="user" required> 
+			Username:<br> <input type="text" name="user" ng-model="input.user" required> 
 			<span style="color: red" ng-show="myForm.user.$dirty && myForm.user.$invalid"> 
 				<span ng-show="myForm.user.$error.required">Username is required.</span>
 			</span>
 		</p>
 
 		<p>
-			Email:<br> <input type="email" name="email" ng-model="email" required> 
+			Email:<br> <input type="email" name="email" ng-model="input.email" required> 
 			<span style="color: red" ng-show="myForm.email.$dirty && myForm.email.$invalid"> 
 				<span ng-show="myForm.email.$error.required">Email is required.</span>
 				<span ng-show="myForm.email.$error.email">Invalid email address.</span>
@@ -31,7 +31,7 @@
 		</p>
 		
 		<p>
-			Age:<br> <input type="number" name="age" min="1" max="150" ng-model="age" required> 
+			Age:<br> <input type="number" name="age" min="1" max="150" ng-model="input.age" required> 
 			<span style="color: red" ng-show="myForm.age.$dirty && myForm.age.$invalid"> 
 				<span ng-show="myForm.age.$error.required">Age is required.</span> 
 				<span ng-show="myForm.age.$error.number">Invalid age, need number.</span>
@@ -41,12 +41,7 @@
 		</p>		
 
 		<p>
-			<input type="submit"
-				ng-disabled="
-				  myForm.user.$dirty && myForm.user.$invalid 
-				||myForm.email.$dirty && myForm.email.$invalid
-				||myForm.age.$dirty && myForm.age.$invalid"
-				>
+                    <input type="submit" ng-disabled="myForm.$invalid" ng-click="submit()" >
 		</p>
 
 	</form>
@@ -54,9 +49,16 @@
 	<script>
 	var myApp = angular.module('myAppName', [ ]);
 	myApp.controller('validateCtrl', function($scope) {
-		$scope.user = 'John Doe';
-		$scope.email = 'john.doe@gmail.com';
-		$scope.age = 35;
+            var input = {
+                user: 'John Doe',
+                email : 'john.doe@gmail.com',
+                age : 35
+            };
+            $scope.input = input;
+                
+            $scope.submit= function(){
+                alert(JSON.stringify($scope.input));
+            };
 	});
 	</script>
 
