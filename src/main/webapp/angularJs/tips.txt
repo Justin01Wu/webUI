@@ -72,3 +72,12 @@ Angular tips:
 
     (4) for image, I also strongly suggest you use relative path in CSS:
         span.expand {  	background-image: url('../images/icon_expand.gif');  ...
+
+(6) General rule about DOM manipulation  
+    from http://csharperimage.jeremylikness.com/2014/12/the-top-5-mistakes-angularjs-developers_13.htm
+
+    1. Any imperative DOM manipulation must happen inside a directive
+
+    2. Use services to mediate between controllers and directives or directives and other directives
+
+    3. Services never depend on directives
