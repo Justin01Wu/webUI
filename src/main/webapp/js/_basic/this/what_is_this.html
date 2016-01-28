@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>this in JS</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>demo what is this in JavaScript</h1>
+        <h2>please see result in the console</h2>
+
+        <script>
+            var myClass = function () {
+                this.name = "Justin";
+                // because we return others, the object is others, not default this
+                return {
+                    name: "ReturnOthers"
+                };
+            };
+
+            var obj = new myClass();
+            console.log(obj.name); // ReturnOthers
+        </script>
+    </body>
+
+
+</html>

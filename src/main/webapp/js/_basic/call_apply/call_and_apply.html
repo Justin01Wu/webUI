@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>call and apply </title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>call and apply is used to change default this inside function</h1>
+        <h2>please see result in the console</h2>
+
+        <script>
+            var name = "GlobalName";
+
+            var func = function () {
+                console.log(this.name);
+            };
+
+            func(); // "GlobalName"
+
+            var obj = {
+                name: "Justin",
+                getName: function () {
+                    console.log(this.name);
+                }
+            };
+
+            obj.getName.apply(window); // forward this to window
+            func.apply(obj); //  this point to obj
+        </script>
+    </body>
+</html>
