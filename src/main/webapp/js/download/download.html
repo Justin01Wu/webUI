@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test download </title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>test download without server help</h1>
+
+        <ul>
+            <li> More and more pages consume RESTful API</li>
+            <li> One case is query result list page</li>
+            <li> User will ask to download query result</li>
+            <li> This sample will convert JSON data to a plain text file </li>
+            <li> and trigger download function of browser </li>
+            <li> we can also download binary data (like drawing in the canvas or take a photo from a camera)by using btoa with proper meta </li>
+        </ul>
+        <textarea rows="8" cols="50" id="myJson"  maxlength="400"  name="myJson">
+	{"name":"Justin","country":"Canada"}
+	</textarea>
+        <br/>
+        <button onclick="testDownload()">test download</button>
+            
+        <script>
+
+            function testDownload(strData, strFileName, strMimeType) {
+                var strData = document.getElementById("myJson").value;
+                downloadStrAsFile(strData,"myJson.json", "plain/text");
+            }
+
+            function downloadStrAsFile(strData, strFileName, strMimeType) {
+                var D = document,
+                        a = D.createElement("a");
+                strMimeType = strMimeType || "application/octet-stream";
+
+
+                if (navigator.msSaveBlob) { // IE10
+                    console.log("IE10 download");
+                    return navigator.msSaveBlob(new Blob([strData], {type: strMimeType}), strFileName);
+                } /* end if(navigator.msSaveBlob) */
+
+
+                if ('download' in a) { //html5 A[download]
+                    a.href = "data:" + strMimeType + "," + encodeURIComponent(strData);
+                    a.setAttribute("download", strFileName);
+                    a.innerHTML = "downloading...";
+                    D.body.appendChild(a);
+                    setTimeout(function () {
+                        a.click();
+                        D.body.removeChild(a);
+                    }, 66);
+                    console.log("html5 download");
+                    return true;
+                } /* end if('download' in a) */
+
+
+                //do iframe dataURL download (old ch+FF):
+                var f = D.createElement("iframe");
+                D.body.appendChild(f);
+                f.src = "data:" + strMimeType + "," + encodeURIComponent(strData);
+
+                setTimeout(function () {
+                    D.body.removeChild(f);
+                }, 333);
+                console.log("old CH+FF download");
+                return true;
+            } /* end download() */
+
+
+
+
+        </script>
+
+        <br /> it comes from
+        <a href="http://stackoverflow.com/questions/16376161/javascript-set-file-in-download" target=_blank>here</a>
+    </body>
+</html>
