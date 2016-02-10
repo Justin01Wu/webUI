@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test readonly selector</title>
+        <meta charset="GBK">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+
+            input
+            {
+                background-color:red;
+            }
+            input[readonly]
+            {
+                background-color:blue;
+            }
+            
+            input[readonly][type="text"][value="READONLY"]   /*   Multiple attribute selectors   */
+            {
+                background-color:lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>test readonly selector and Multiple attribute selectors</h1>
+
+        <br/>
+        <input type="text" placeholder="I am not readonly " />    
+
+        
+        <br/><br/>
+        <input readonly placeholder="my readonly is empty" />
+
+        
+        <br/>
+        <br/>
+        <input type="text" readonly="readonly" placeholder="my readonly= readonly" value="READONLY"/>
+        
+        <br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	it comes from <a href="http://stackoverflow.com/questions/9635293/how-to-style-readonly-attribute-with-css" target=_blank>here</a>
+        <br/>
+        and <a href="http://stackoverflow.com/questions/12340737/css-multiple-attribute-selector" target=_blank>here</a>
+        
+	
+
+    </body>
+</html>
