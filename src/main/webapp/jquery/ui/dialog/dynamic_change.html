@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>dynamic change jquery UI dialog</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="../jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="../jquery-ui-1.11.4/themes/redmond/jquery-ui.min.css">        
+    </head>
+    <body>
+
+
+        <h1>dynamic change jquery UI dialog</h1>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="buttonA" onclick="openDialA()">open dialog </button>
+
+
+        <script>            
+
+            function openDialA() {
+                
+                var myDiv = '<div><br/>will dynamic change dialog box if click OK</div>';
+
+		var dialogElm = jQuery(myDiv);
+
+		//var dialogElm = jQuery("#testDialog");
+
+		dialogElm.dialog({
+		    height : 240,
+		    width : 340,
+		    resizable : false,
+		    closeOnEscape : true,
+		    modal : true,
+		    title : "dynamic change dialog box",
+		    closeText : "No",
+		    buttons : {
+			"Yes" : function() {
+			    //jQuery(this).dialog("close");  //wait for save all return, so keep it, it will be closed in View.postCallBack
+
+			    dialogElm.dialog('option', 'title', 'buttons are removed');
+			    dialogElm.dialog("option", "buttons", {});
+                            dialogElm.html("Buttons are removed");
+			    
+			},
+			"No" : function() {
+			    jQuery(this).dialog("close");
+			}
+		    }
+
+		});
+            }
+
+
+        </script>
+
+    </body>
+</html>
