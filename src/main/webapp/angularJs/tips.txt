@@ -81,3 +81,7 @@ Angular tips:
     2. Use services to mediate between controllers and directives or directives and other directives
 
     3. Services never depend on directives
+
+(7) angularjs will automatically generate $$hashKey in ng-repeat 
+     unless you use  "track by" or angular.toJson(source)
+     if you don't have id in the list, then you can use "track by $index"
