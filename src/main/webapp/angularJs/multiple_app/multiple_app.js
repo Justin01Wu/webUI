@@ -8,6 +8,8 @@
 
     function firstAppController($scope) {
         // Initialize the model variables
+        
+        console.log("init firstApp controller " + $scope.$id);
         $scope.firstName = "John";
         $scope.lastName = "Doe";
 
@@ -20,6 +22,7 @@
 
     function secondAppController($scope) {
         // Initialize the model variables
+        console.log("init secondApp controller " + $scope.$id);
         $scope.firstName = "Bob";
         $scope.middleName = "Al";
         $scope.lastName = "Smith";

@@ -14,7 +14,7 @@ app.directive('message', function(){
 			$scope.msg = $attrs.msg2;
 		}
 		
-      }
+      };
     });
 	
 

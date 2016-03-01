@@ -13,25 +13,40 @@ myApp.run(function($rootScope) {
 	// http://stackoverflow.com/questions/17371687/getting-scope-object-in-angulars-run-method
 });
 
-myApp.directive("test1", function() {
-    console.log("step 3: directive setup");
+myApp.directive("directive1", function() {
+    console.log("step 3: directive1: directive setup");
     return {
-        compile: function() {
-			console.log("step 4: directive compile");
-		}
-    }
+        restrict: 'A',  
+        compile: function(tElement, tAttributes, transcludeFn) {
+            console.log("step 4: directive1: directive compile on :" + tElement[0].id);
+            return this.link; // without this line, current directive will has null link function.
+	},
+	controller: function ($scope, $element, $attrs, $transclude) {
+            console.log("step 6: directive1: init directive controller on " + $element[0].id);	
+	}, 
+        link: function(scope, element, attributes, controller, transcludeFn) {
+            console.log("step 7: directive1: directive link on " + element[0].id);
+	}        
+    };
 });
 
-myApp.directive("test2", function() {
+myApp.directive("directive2", function() {
     return {
-        link: function() {
-			console.log("step 6: directive link");
-		}
-    }
+        compile: function(tElement, tAttributes, transcludeFn) {
+            console.log("step 4: directive2: directive compile on :" + tElement[0].id);
+            return this.link; // without this line, current directive will has null link function.
+	},        
+        controller: function ($scope, $element) {
+            console.log("step 6: directive2 : init directive controller on " + $element[0].id);	
+	},
+        link: function(scope, element) {
+            console.log("step 7: directive2 : directive link on " + element[0].id);
+	}
+    };
 });
 
 myApp.controller('myCtrl', function($scope) {
-    console.log("step 5: app controller");
+    console.log("step 5: app controller ");
 	console.log("  get someData from parent: " + $scope.$parent.someData.message);	
 });
 

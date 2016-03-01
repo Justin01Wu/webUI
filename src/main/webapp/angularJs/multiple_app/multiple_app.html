@@ -12,36 +12,43 @@
         <h1>demo how AngularJs set multiple app in one page</h1>
 
         <div id="firstAppId" ng-controller="firstAppController">
-            <h2>This part is managed by the first app</h2>
-            <strong>First name:</strong> {{firstName}}<br /> 
-            <strong>Last name:</strong> <span ng-bind="lastName"></span><br />
-            <strong>Full name:</strong> {{getFullName()}}<br /> <br /> 
-            <label>Set the first name: <input type="text" ng-model="firstName" /></label><br /> 
-            <label>Set the last name: <input type="text" ng-model="lastName" /></label>
+            <fieldset>
+                <legend>This part is managed by the first app</legend>
+                <strong>First name:</strong> {{firstName}}<br /> 
+                <strong>Last name:</strong> <span ng-bind="lastName"></span><br />
+                <strong>Full name:</strong> {{getFullName()}}<br /> <br /> 
+                <label>Set the first name: <input type="text" ng-model="firstName" /></label><br /> 
+                <label>Set the last name: <input type="text" ng-model="lastName" /></label>
+            </fieldset>
         </div>
 
         <div id="noApp" >
-            <h2>This part is NOT managed by AngularJs</h2>
-            <strong>First name:</strong> {{firstName}}<br /> 
-            <strong>Middle name:</strong> {{middleName}}<br /> 
-            <strong>Last name:</strong> <span ng-bind="lastName"></span><br /> 
-            <strong>Full name:</strong> {{getFullName()}}<br /> <br /> <label>Set the first name: 
-                <input type="text" ng-model="firstName" />
-            </label><br /> <label>Set the middle name: <input type="text" ng-model="middleName" /></label><br /> 
-            <label>Set the last name: <input type="text" ng-model="lastName" />
-            </label>
+            <fieldset>
+                <legend>This part is NOT managed by AngularJs</legend>
+            
+                <strong>First name:</strong> {{firstName}}<br /> 
+                <strong>Middle name:</strong> {{middleName}}<br /> 
+                <strong>Last name:</strong> <span ng-bind="lastName"></span><br /> 
+                <strong>Full name:</strong> {{getFullName()}}<br /> <br /> <label>Set the first name: 
+                    <input type="text" ng-model="firstName" />
+                </label><br /> <label>Set the middle name: <input type="text" ng-model="middleName" /></label><br /> 
+                <label>Set the last name: <input type="text" ng-model="lastName" />
+                </label>
+            </fieldset>
         </div>
 
         <div id="secondAppId" ng-controller="secondAppController">
-            <h2>This part is managed by the second app</h2>
-            <strong>First name:</strong> {{firstName}}<br /> 
-            <strong>Middle name:</strong> {{middleName}}<br /> 
-            <strong>Last name:</strong> <span ng-bind="lastName"></span><br /> 
-            <strong>Full name:</strong> {{getFullName()}}<br /> <br /> <label>Set the first name: 
-                <input type="text" ng-model="firstName" />
-            </label><br /> <label>Set the middle name: <input type="text" ng-model="middleName" /></label><br /> 
-            <label>Set the last name: <input type="text" ng-model="lastName" />
-            </label>
+            <fieldset>
+                <legend>This part is managed by the second app</legend>
+                <strong>First name:</strong> {{firstName}}<br /> 
+                <strong>Middle name:</strong> {{middleName}}<br /> 
+                <strong>Last name:</strong> <span ng-bind="lastName"></span><br /> 
+                <strong>Full name:</strong> {{getFullName()}}<br /> <br /> <label>Set the first name: 
+                    <input type="text" ng-model="firstName" />
+                </label><br /> <label>Set the middle name: <input type="text" ng-model="middleName" /></label><br /> 
+                <label>Set the last name: <input type="text" ng-model="lastName" />
+                </label>
+            </fieldset>            
         </div>
 
         <br/><br/>
