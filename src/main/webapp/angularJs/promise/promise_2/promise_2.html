@@ -40,8 +40,9 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
     <body ng-controller="PersonCtrl">
         <h1>demo how to set Angular layer</h1>
         <ul>
-            <li> directive -> promise -> service</li>
+            <li> app->controller->directive -> service</li>
             <li> reuse http request in the service for multiple directive instances </li>
+            <li> use $q and promise to coordinate multiple http requests  </li>
         </ul>
         <button ng-click="loadPerson(false)">query correct data</button>
         <button ng-click="loadPerson(true)">query wrong data</button>
