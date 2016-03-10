@@ -13,54 +13,36 @@
     return;
 
     function countryService($http, $q) {
-        var promise = null;
+        var deferred = null;
         return {
             getCountryList: getCountryList
         };
         
         function getCountryList() {
-            if (promise === null) {
+            if (deferred === null) {
+                deferred = $q.defer();
                 var apiUrl = getUrl();
-                promise = $http.get(apiUrl).then(function (response) {
-                    console.log("getting country list data is returned");
-                    return response.data;
-                });
-            }
-            return promise;
-        }
-  
-        function getCountryListOld() {
+                $http.get(apiUrl).success(function (data) {
+                    //Passing data to deferred's resolve function on successful completion
 
-            console.log("getting country list is called");
-
-            var apiUrl = getUrl();
-
-            //Creating a deferred object
-            var deferred = $q.defer();
-
-
-            $http.get(apiUrl).success(function (data) {
-                //Passing data to deferred's resolve function on successful completion
-
-                if ("file:" === window.location.protocol) {
-                    // now simulate slow loading, delay response for [8-9.5] seconds
-                    var waitTime = Math.floor((Math.random() * 1500) + 8000);
-                    console.log("loading countryList waiting time: " + waitTime);
-                    setTimeout(function () {
+                    if ("file:" === window.location.protocol) {
+                        // now simulate slow loading, delay response for [8-9.5] seconds
+                        var waitTime = Math.floor((Math.random() * 1500) + 8000);
+                        console.log("loading countryList waiting time: " + waitTime);
+                        setTimeout(function () {
+                            deferred.resolve(data);
+                            console.log("getting country list data is returned");
+                        }, waitTime);
+                    } else {
                         deferred.resolve(data);
                         console.log("getting country list data is returned");
-                    }, waitTime);
-                } else {
-                    deferred.resolve(data);
-                    console.log("getting country list data is returned");
-                }
+                    }
 
-            }).error(function () {
-                //Sending a friendly error message in case of failure
-                deferred.reject("An error occured while fetching country list info");
-            });
-
-            //Returning the promise object
+                }).error(function () {
+                    //Sending a friendly error message in case of failure
+                    deferred.reject("An error occured while fetching country list info");
+                });
+            }
             return deferred.promise;
         }
 
