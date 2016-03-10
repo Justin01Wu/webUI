@@ -8,7 +8,7 @@
         <script src="countryService.js"></script>
         <script src="countryField.js"></script>
         <script src="promise_2.js"></script>
-        
+
 
     </head>
     <body ng-controller="PersonCtrl">
@@ -19,25 +19,40 @@
         </ul>
         <button ng-click="loadPerson(false)">query correct data</button>
         <button ng-click="loadPerson(true)">query wrong data</button>
-        
+
         <br/><label style="color: red">{{errMsg}}</label>
         <br/>
-        Name: {{person.name}}
-        
-        <br/><br/>
-        Citizen {{person.citizen}}<br/>
-        Citizen: <country.field field="person.citizen" ></country.field>
-    
-        <br/><br/>
-        Birth {{person.birth}}<br/>
-        Birth: <country.field field="person.birth" ></country.field>
-    
-                
-        <br/>
 
-        please see 
-        <a href = "http://blog.parse.com/learn/engineering/whats-so-great-about-javascript-promises/" target=_blank>here</a>
-        for benefits
+        <table>
+            <thead>
+                <tr>
+                    <th width="100">ID</th>
+                    <th width="150">Name</th>
+                    <th width="80">Citizen</th>
+                    <th width="190" >Citizen</th>
+                    <th width="80">Birth</th>
+                    <th width="190">Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in person">
+                    <td> {{p.ID}} </td>
+                    <td> {{p.name}} </td>
+                    <td> {{p.citizen}}</td>
+                    <td> <country.field field="p.citizen" ></country.field></td>
+                    <td> {{p.birth}} </td>
+                    <td> <country.field field="p.birth" ></country.field> </td>
+</tr>
+</tbody>
+</table>
 
-    </body>
+
+
+<br/>
+
+please see 
+<a href = "http://blog.parse.com/learn/engineering/whats-so-great-about-javascript-promises/" target=_blank>here</a>
+for benefits
+
+</body>
 </html>

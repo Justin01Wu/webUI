@@ -1,6 +1,14 @@
-{
-        "ID" : "1234",
+[
+    {
+        "ID": "1234",
         "name": "Justin WU",
-        "citizen" : 123,
+        "citizen": 123,
         "birth": 234
-}
+    },
+    {
+        "ID": "2345",
+        "name": "Rita Wang",
+        "citizen": 234,
+        "birth": 123
+    }
+]
