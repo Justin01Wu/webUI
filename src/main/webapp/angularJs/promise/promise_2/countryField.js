@@ -7,23 +7,25 @@
  *  -- Justin Wu
  */
 
-(function (angular) {
+(function (angular, wrongDataFlag) {
     'use strict';
 
-    function _setOptions($scope, currencyList) {
-        console.log("got all currency: " + currencyList.length);
+    function setOptions(oldCountryList, countryList) {
+        
+        console.log("got all country: " + countryList.length);
+        for (var i = 0; i < countryList.length; i++) {
+            var oneCountry = countryList[i];
+            for (var j = 0; j < oldCountryList.length; j++) {
 
-        if(!$scope.initValue){
-            $scope.selectedCurrency.currencyName= "[Please Select]";
-        }
-        for (var i = 0; i < currencyList.length; i++) {
-            var oneCurrency = currencyList[i];
-            
-            if (oneCurrency.currencyId.toString() === $scope.selectedCurrency.currencyId) {
-                $scope.selectedCurrency.currencyName = oneCurrency.currency;
-            } else {
-                $scope.options.push({currencyId: oneCurrency.currencyId, currencyName: oneCurrency.currency});
-
+                var found = false;
+                if (oldCountryList[j].id.toString() === oneCountry.id.toString()) {
+                    oldCountryList[j].name = oneCountry.name;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                oldCountryList.push(oneCountry);
             }
         }
     }
@@ -40,11 +42,23 @@
         return newCountry;
     }
     
-    function _controller($scope, $http) {
+    function _controller($scope, $http, countryService) {
         console.log("init country.field component...");
         
         $scope.countryList = [{id: "", name: "[Please Select]"}];
         $scope.selectedCountry = $scope.countryList[0];  
+        
+        countryService.getCountryList(wrongDataFlag).then(
+                function (data) {
+                    console.log("getting country list data");
+                    setOptions($scope.countryList, data);
+                    $scope.errMsg = null;
+                },
+                function (errorMessage) {
+                    console.log(errorMessage);
+                    $scope.errMsg = errorMessage;
+                }
+        );
         
         $scope.changeCountry = function () {
             console.log("changing country to " + $scope.selectedCountry.id  + " - " + $scope.selectedCountry.name);
@@ -73,14 +87,14 @@
         },
         template: '<select ng-model="selectedCountry" ng-options="item as item.name for item in countryList" ng-change="changeCountry()" ></select>',
         //template: '<input type="text" ng-model="selectedCountry"  />',
-        controller: function ($scope, $http) {
-            _controller($scope, $http);
+        controller: function ($scope, $http, countryService) {
+            _controller($scope, $http, countryService);
         }
 
     };
 
-    angular.module('directives',[]).directive('country.field', function () {
+    angular.module('directives',['myServices']).directive('country.field', function () {
         return myDirective;
     });
 
-})(angular); 
+})(angular, false); 

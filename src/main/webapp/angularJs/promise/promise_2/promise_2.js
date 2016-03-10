@@ -2,7 +2,7 @@
 (function (angular) {
     'use strict';
 
-    var myApp = angular.module('PersonApp', ['directives']);
+    var myApp = angular.module('PersonApp', ['directives', 'myServices']);
     myApp.controller('PersonCtrl', PersonController);
     myApp.factory("personService", personService);
 

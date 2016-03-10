@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
     
-    angular.module('myServices').service('countryService', countryService);
+    angular.module('myServices',[]).service('countryService', countryService);
     return;
     
     function countryService($http, $q) {
