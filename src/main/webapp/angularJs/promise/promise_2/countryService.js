@@ -18,31 +18,41 @@
             getCountryList: getCountryList
         };
         
-        function getCountryList() {
-            if (deferred === null) {
-                deferred = $q.defer();
-                var apiUrl = getUrl();
-                $http.get(apiUrl).success(function (data) {
-                    //Passing data to deferred's resolve function on successful completion
+        function _handleSuccessResponse(deferred, data) {
+            //Passing data to deferred's resolve function on successful completion
 
-                    if ("file:" === window.location.protocol) {
-                        // now simulate slow loading, delay response for [8-9.5] seconds
-                        var waitTime = Math.floor((Math.random() * 1500) + 8000);
-                        console.log("loading countryList waiting time: " + waitTime);
-                        setTimeout(function () {
-                            deferred.resolve(data);
-                            console.log("getting country list data is returned");
-                        }, waitTime);
-                    } else {
-                        deferred.resolve(data);
-                        console.log("getting country list data is returned");
-                    }
-
-                }).error(function () {
-                    //Sending a friendly error message in case of failure
-                    deferred.reject("An error occured while fetching country list info");
-                });
+            if ("file:" === window.location.protocol) {
+                // now simulate slow loading, delay response for [8-9.5] seconds
+                var waitTime = Math.floor((Math.random() * 1500) + 8000);
+                console.log("loading countryList waiting time: " + waitTime);
+                setTimeout(function () {
+                    deferred.resolve(data);
+                    console.log("getting country list data is returned");
+                }, waitTime);
+            } else {
+                deferred.resolve(data);
+                console.log("getting country list data is returned");
             }
+        }
+        
+        function getCountryList() {
+            if (deferred !== null) {
+                return deferred.promise;
+                // this is the key point to reuse same http request
+                // because service is singleton, so we always use the smae deferred to handle all http request
+                // ie http request will be sent onlt once
+                // For detail, please see 
+                //http://stackoverflow.com/questions/35902264/angularjs-multiple-directive-instances-making-xhr-call-multiple-times
+            }
+            deferred = $q.defer();
+            var apiUrl = getUrl();
+            $http.get(apiUrl).success(function (data) {
+                _handleSuccessResponse(deferred, data);
+            }).error(function () {
+                //Sending a friendly error message in case of failure
+                deferred.reject("An error occured while fetching country list info");
+            });
+            
             return deferred.promise;
         }
 

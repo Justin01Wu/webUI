@@ -7,7 +7,7 @@
  *  -- Justin Wu
  */
 
-(function (angular, wrongDataFlag) {
+(function (angular) {
     'use strict';
 
 
@@ -57,7 +57,7 @@
         $scope.countryList = [{id: "", name: "[Please Select]"}];
         $scope.selectedCountry = $scope.countryList[0];  
         
-        countryService.getCountryList(wrongDataFlag).then(
+        countryService.getCountryList().then(
                 function (data) {
                     console.log("getting country list data");
                     setOptions($scope.countryList, data);
@@ -108,4 +108,4 @@
         return myDirective;
     });
 
-})(angular, false); 
+})(angular); 

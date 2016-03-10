@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Angular Structure Example</title>
+        <title>Angular layer Example</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
 
         <script src="countryService.js"></script>
@@ -12,10 +12,10 @@
 
     </head>
     <body ng-controller="PersonCtrl">
-        <h1>demo how to set Angular Structure</h1>
+        <h1>demo how to set Angular layer</h1>
         <ul>
-            <li> promise + service + directive</li>
-            <li> multiple request on the same service </li>
+            <li> directive -> promise -> service</li>
+            <li> reuse http request in the service for multiple directive instances </li>
         </ul>
         <button ng-click="loadPerson(false)">query correct data</button>
         <button ng-click="loadPerson(true)">query wrong data</button>
