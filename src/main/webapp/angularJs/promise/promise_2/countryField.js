@@ -51,10 +51,16 @@
     }
     
     function _controller($scope, $http, countryService) {
-        console.log("init country.field component...");
+        console.log("init country.field component, selectedCountryId = " + $scope.selectedCountryId);
         
         $scope.countryList = [{id: "", name: "[Please Select]"}];
-        $scope.selectedCountry = $scope.countryList[0];  
+        if($scope.selectedCountryId !== undefined){
+            var c = addCountryIfNot({id: $scope.selectedCountryId, name: "loading..."}, $scope.countryList);
+            $scope.selectedCountry = c;            
+        }else{
+            $scope.selectedCountry = $scope.countryList[0];
+        }
+        
         
         countryService.getCountryList().then(
                 function (data) {
