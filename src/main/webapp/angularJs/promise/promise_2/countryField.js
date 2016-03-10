@@ -10,6 +10,15 @@
 (function (angular, wrongDataFlag) {
     'use strict';
 
+
+
+    function _getCurrentPath() {
+        var scripts = document.getElementsByTagName("script");
+        var currentFile = scripts[scripts.length - 1].src;
+        var currentPath = currentFile.substr(0, currentFile.lastIndexOf('/')) + "/";
+        return currentPath;
+    }
+    
     function setOptions(oldCountryList, countryList) {
         
         console.log("got all country: " + countryList.length);
@@ -79,15 +88,15 @@
         });
     }
     
+    var rootDir = _getCurrentPath();
+    
     var myDirective = {
         restrict: 'E',
         require: ['field'],
         scope: {
             selectedCountryId: '=field'
         },
-        template: '<select ng-model="selectedCountry" '
-                + 'ng-options="item as item.name for item in countryList" '
-                + 'ng-change="changeCountry()" ></select>',
+        templateUrl: rootDir + 'countryField.html',
 
         controller: function ($scope, $http, countryService) {
             _controller($scope, $http, countryService);

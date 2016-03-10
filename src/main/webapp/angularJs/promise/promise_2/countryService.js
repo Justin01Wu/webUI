@@ -28,13 +28,18 @@
                 $http.get(apiUrl).success(function (data) {
                     //Passing data to deferred's resolve function on successful completion
                     
-                    // now simulate slow loading
-                    var waitTime = Math.floor((Math.random() * 1500) + 2000);
-                    console.log("loading countryList waiting time: " + waitTime);
-                    setTimeout(function () {
+                    if( "file:" === window.location.protocol){
+                        // now simulate slow loading, delay response for [8-9.5] seconds
+                        var waitTime = Math.floor((Math.random() * 1500) + 8000);
+                        console.log("loading countryList waiting time: " + waitTime);
+                        setTimeout(function () {
+                            deferred.resolve(data);
+                            console.log("getting country list data is returned");
+                        }, waitTime);                        
+                    }else{
                         deferred.resolve(data);
-                        console.log("getting country list data is returned");
-                    }, waitTime);
+                        console.log("getting country list data is returned");                        
+                    }
                     
                 }).error(function () {
                     //Sending a friendly error message in case of failure

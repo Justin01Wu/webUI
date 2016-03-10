@@ -1,0 +1,5 @@
+<select ng-model="selectedCountry" ng-show="selectedCountryId!==undefined"
+                ng-options="item as item.name for item in countryList"
+                ng-change="changeCountry()" >
+                    
+</select>
