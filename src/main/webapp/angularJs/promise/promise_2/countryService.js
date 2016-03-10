@@ -13,11 +13,23 @@
     return;
 
     function countryService($http, $q) {
+        var promise = null;
         return {
             getCountryList: getCountryList
         };
         
         function getCountryList() {
+            if (promise === null) {
+                var apiUrl = getUrl();
+                promise = $http.get(apiUrl).then(function (response) {
+                    console.log("getting country list data is returned");
+                    return response.data;
+                });
+            }
+            return promise;
+        }
+  
+        function getCountryListOld() {
 
             console.log("getting country list is called");
 
