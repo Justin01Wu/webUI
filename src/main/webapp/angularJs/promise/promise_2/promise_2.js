@@ -11,9 +11,9 @@
             
             getUrl: function(wrongDataFlag){
                 if (wrongDataFlag) {
-                    return "data/person_noExist.json";
+                    return "data/personList_noExist.json";
                 }else{
-                    return "data/person.json";
+                    return "data/personList.json";
                 }                
             },
             

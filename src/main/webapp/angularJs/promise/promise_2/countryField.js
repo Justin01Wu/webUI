@@ -40,7 +40,6 @@
     }
 
     function addCountryIfNot(newCountry, countryList) {        
-
         for (var i = 0; i < countryList.length; i++) {
             var oneCountry = countryList[i];            
             if (oneCountry.id.toString() === newCountry.id.toString()) {
@@ -83,7 +82,9 @@
                     return;
             }
             console.log("selectedCountryId changed from " + oldValue + " to " 	+ newValue);
-            var c = addCountryIfNot({id: newValue, name: "loading..."}, $scope.countryList);
+            var newId = newValue === undefined? "":newValue;
+
+            var c = addCountryIfNot({id: newId, name: "loading..."}, $scope.countryList);
             $scope.selectedCountry = c;  
         });
     }
