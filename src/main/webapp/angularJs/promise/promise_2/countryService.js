@@ -27,8 +27,15 @@
                 
                 $http.get(apiUrl).success(function (data) {
                     //Passing data to deferred's resolve function on successful completion
-                    console.log("getting country list data is returned");
-                    deferred.resolve(data);
+                    
+                    // now simulate slow loading
+                    var waitTime = Math.floor((Math.random() * 1500) + 2000);
+                    console.log("loading countryList waiting time: " + waitTime);
+                    setTimeout(function () {
+                        deferred.resolve(data);
+                        console.log("getting country list data is returned");
+                    }, waitTime);
+                    
                 }).error(function () {
                     //Sending a friendly error message in case of failure
                     deferred.reject("An error occured while fetching country list info");

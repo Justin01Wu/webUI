@@ -85,8 +85,10 @@
         scope: {
             selectedCountryId: '=field'
         },
-        template: '<select ng-model="selectedCountry" ng-options="item as item.name for item in countryList" ng-change="changeCountry()" ></select>',
-        //template: '<input type="text" ng-model="selectedCountry"  />',
+        template: '<select ng-model="selectedCountry" '
+                + 'ng-options="item as item.name for item in countryList" '
+                + 'ng-change="changeCountry()" ></select>',
+
         controller: function ($scope, $http, countryService) {
             _controller($scope, $http, countryService);
         }
