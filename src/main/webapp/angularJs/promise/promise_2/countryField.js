@@ -28,24 +28,51 @@
         }
     }
 
+    function addCountryIfNot(newCountry, countryList) {        
+
+        for (var i = 0; i < countryList.length; i++) {
+            var oneCountry = countryList[i];            
+            if (oneCountry.id.toString() === newCountry.id.toString()) {
+                return oneCountry;
+            }            
+        }
+        countryList.push(newCountry);
+        return newCountry;
+    }
+    
     function _controller($scope, $http) {
         console.log("init country.field component...");
         
-        $scope.countryList = [
-                {currencyId: "", currencyName: "[Please Select]"},
-                {currencyId: $scope.initValue, currencyName: "loading..."}
-            ];
-        //$scope.selectedCountry = $scope.options[1];   
+        $scope.countryList = [{id: "", name: "[Please Select]"}];
+        $scope.selectedCountry = $scope.countryList[0];  
+        
+        $scope.changeCountry = function () {
+            console.log("changing country to " + $scope.selectedCountry.id  + " - " + $scope.selectedCountry.name);
+            $scope.selectedCountryId = $scope.selectedCountry.id;
+        };
+        
+        $scope.$watch('selectedCountryId', function(newValue, oldValue) {
+            			 
+            if (newValue === null) {
+                    return;
+            }
+            if (newValue === oldValue) {
+                    return;
+            }
+            console.log("selectedCountryId changed from " + oldValue + " to " 	+ newValue);
+            var c = addCountryIfNot({id: newValue, name: "loading..."}, $scope.countryList);
+            $scope.selectedCountry = c;  
+        });
     }
     
     var myDirective = {
         restrict: 'E',
         require: ['field'],
         scope: {
-            selectedCountry: '=field'
+            selectedCountryId: '=field'
         },
-        //template: '<select ng-model="selectedCountry" ng-options="item as item.name for item in countryList" ></select>',
-        template: '<input type="text" ng-model="selectedCountry"  />',
+        template: '<select ng-model="selectedCountry" ng-options="item as item.name for item in countryList" ng-change="changeCountry()" ></select>',
+        //template: '<input type="text" ng-model="selectedCountry"  />',
         controller: function ($scope, $http) {
             _controller($scope, $http);
         }
