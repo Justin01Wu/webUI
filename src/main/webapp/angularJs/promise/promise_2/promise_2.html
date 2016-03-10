@@ -2,14 +2,16 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Angular.js Example</title>
+        <title>Angular Structure Example</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
 
+        <script src="countryField.js"></script>
         <script src="promise_2.js"></script>
+        
 
     </head>
     <body ng-controller="PersonCtrl">
-        <h1>demo how to use promise</h1>
+        <h1>demo how to set Angular Structure</h1>
         <ul>
             <li> the main benefits of promise is centralizing error handling in the ajax request chain  </li>
         </ul>
@@ -19,6 +21,8 @@
         <br/><label style="color: red">{{errMsg}}</label>
         <br/>
         Name: {{person.name}}<br/>
+        Citizen {{person.citizen}}<br/>
+        Citizen: <country.field field="person.citizen" ></country.field>
                 
         <br/>
 
