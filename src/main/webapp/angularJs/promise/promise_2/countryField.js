@@ -71,6 +71,17 @@
                 function (errorMessage) {
                     console.log(errorMessage);
                     $scope.errMsg = errorMessage;
+                    if($scope.selectedCountryId === undefined){
+                        return;
+                    }
+                    // set "loading..." to "failure"
+                    for (var i = 0; i < $scope.countryList.length; i++) {
+                        var oneCountry = $scope.countryList[i];
+                        if ($scope.selectedCountryId.toString() === oneCountry.id.toString()) {
+                            oneCountry.name = "failure";
+                            break;
+                        }
+                    }
                 }
         );
         

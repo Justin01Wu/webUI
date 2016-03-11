@@ -44,8 +44,9 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
             <li> reuse http request in the service for multiple directive instances </li>
             <li> use $q and promise to coordinate multiple http requests  </li>
         </ul>
-        <button ng-click="loadPerson(false)">query correct data</button>
-        <button ng-click="loadPerson(true)">query wrong data</button>
+        <button ng-click="loadPerson(false,false)">query correct data</button>
+        <button ng-click="loadPerson(true, false)">query wrong person data</button>
+        <button ng-click="loadPerson(false, true)">query wrong country data</button>
 
         <br/><label style="color: red">{{errMsg}}</label>
         <br/>

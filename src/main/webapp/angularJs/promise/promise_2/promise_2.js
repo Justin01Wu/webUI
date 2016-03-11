@@ -45,10 +45,11 @@
     function PersonController($scope, personService  ) {
 
         $scope.person = {};
-        $scope.loadPerson = function (wrongDataFlag) {
+        $scope.loadPerson = function (wrongDataFlag, wrongCountryFlag) {
             console.log("loadPerson is called in controller");
+            window.wrongCountryDataFlag = wrongCountryFlag;
             $scope.person = {};
-            personService.getPerson(wrongDataFlag).then(
+            personService.getPerson(wrongDataFlag).then(                   
                     function (data) {
                         console.log("getting person data");
                         $scope.person = data;
