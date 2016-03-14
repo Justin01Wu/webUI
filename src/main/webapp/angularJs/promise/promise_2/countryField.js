@@ -19,9 +19,10 @@
         return currentPath;
     }
     
-    function setOptions(oldCountryList, countryList) {
-        
+    function setOptions($scope, countryList) {
+        var oldCountryList = $scope.countryList;
         console.log("got all country: " + countryList.length);
+        var foundSelectedItem = false;
         for (var i = 0; i < countryList.length; i++) {
             var oneCountry = countryList[i];
             for (var j = 0; j < oldCountryList.length; j++) {
@@ -29,14 +30,26 @@
                 var found = false;
                 if (oldCountryList[j].id.toString() === oneCountry.id.toString()) {
                     oldCountryList[j].name = oneCountry.name;
-                    found = true;
+                    found = true;                    
                     break;
                 }
             }
             if (!found) {
                 oldCountryList.push(oneCountry);
             }
+            if($scope.selectedCountryId === undefined){
+                foundSelectedItem =  true;
+            }else{
+                if($scope.selectedCountryId.toString() === oneCountry.id.toString()){
+                    foundSelectedItem =  true;
+                }                
+            }
+                
         }
+        if(!foundSelectedItem){
+            $scope.errMsg = "can't found selectedCountryId: " + $scope.selectedCountryId;
+        }
+        
     }
 
     function addCountryIfNot(newCountry, countryList) {        
@@ -65,8 +78,9 @@
         countryService.getCountryList().then(
                 function (data) {
                     console.log("getting country list data");
-                    setOptions($scope.countryList, data);
                     $scope.errMsg = null;
+                    setOptions($scope, data);
+                    
                 },
                 function (errorMessage) {
                     console.log(errorMessage);

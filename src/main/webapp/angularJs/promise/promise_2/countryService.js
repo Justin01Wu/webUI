@@ -20,7 +20,9 @@
         
         function _handleSuccessResponse(deferred, data) {
             //Passing data to deferred's resolve function on successful completion
-
+            
+            // TODO here we need to verify data format
+            
             if ("file:" === window.location.protocol) {
                 // now simulate slow loading, delay response for [8-9.5] seconds
                 var waitTime = Math.floor((Math.random() * 1500) + 8000);
