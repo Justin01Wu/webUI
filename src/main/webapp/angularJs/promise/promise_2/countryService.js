@@ -49,13 +49,22 @@
             deferred = $q.defer();
             var apiUrl = getUrl();
             $http.get(apiUrl).success(function (data) {
-                _handleSuccessResponse(deferred, data);
+                if(!Array.isArray(data)){
+                    deferred.reject("fetched country list is not a array");
+                    return;                    
+                }
+                if(data.length >0 && (data[0].id===undefined || data[0].name===undefined)){
+                    deferred.reject("fetched country list data structure is not correct");
+                    return;                                        
+                }
+                _handleSuccessResponse(deferred, data);                
             }).error(function () {
                 //Sending a friendly error message in case of failure
                 deferred.reject("An error occured while fetching country list info");
             });
-            
             return deferred.promise;
+            
+            
         }
 
         function getUrl() {
