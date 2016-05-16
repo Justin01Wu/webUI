@@ -1,0 +1,20 @@
+[
+    {
+        "ID": "1",
+        "subject": "this is first message",
+        "body": "this is first message body",
+        "unread": true
+    },
+    {
+        "ID": "2",
+        "subject": "this is second message",
+        "body": "this is second message body",
+        "unread": false
+    },    
+    {
+        "ID": "3",
+        "subject": "this is third message",
+        "body": "this is third message body",
+        "unread": true
+    }
+]

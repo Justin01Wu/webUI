@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Angular MVC Example</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
+
+        <script src="messageService.js"></script>
+        <script src="mvc.js"></script>
+        <script src="directives/messageLoad.js"></script>
+        <script src="messageList.js"></script>
+        <script src="directives/messageSummary.js"></script>
+        <script src="directives/messageEdit.js"></script>
+
+    </head>
+    <body >
+        <h1>demo how to share service between directives(MVC design pattern)</h1>
+        <ul>
+            <li> directives -> service</li>
+            <li> service hold data model and its status </li>
+            <li> directives are stateless</li>
+            <li> directives use different direction to view service data</li>
+            <li> directives don't know each other</li>
+            <li> the whole app didn't use AngularJs watch, emit or broadcast</li>
+            <li> service lightly depend on angularJs ,can easily migrate to other UI framework</li>
+            <li> most of business logic is in service</li>
+        </ul>
+
+        <div ng-app="MessageApp">
+            <message.load ></message.load>
+            <message.summary ></message.summary>
+            <message.list ></message.list>
+            <message.edit ></message.edit>
+            
+        </div>
+        
+
+
+
+
+<br/>
+
+</body>
+</html>

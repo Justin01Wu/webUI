@@ -1,0 +1,25 @@
+
+<fieldset ng-show="service.list.length > 0">
+    <legend>This is the second directive</legend>
+
+    <table >
+        <thead>
+            <tr>
+                <th width="100">ID</th>
+                <th width="150">subject</th>
+                <th width="80">unRead</th>
+                <th width="80">operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="m in service.list">
+                <td> {{m.ID}} </td>
+                <td> {{m.subject}} </td>
+                <td> {{m.unread}}</td>
+                <td> <button ng-click="openMsg(m.ID)">open message</button></td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+</fieldset>
