@@ -49,9 +49,9 @@
                         if (this.list[i].unread){
                             this.totalUnread--;
                             this.list[i].unread=false;
-                            this.current=this.list[i];
                         }
-                        return this.list[i];
+                        this.current=this.list[i];
+                        return this.current;
                     }
                 }
             
