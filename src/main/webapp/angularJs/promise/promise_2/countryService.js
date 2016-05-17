@@ -23,18 +23,13 @@
             
             // TODO here we need to verify data format
             
-            if ("file:" === window.location.protocol) {
-                // now simulate slow loading, delay response for [8-9.5] seconds
-                var waitTime = Math.floor((Math.random() * 1500) + 8000);
-                console.log("loading countryList waiting time: " + waitTime);
-                setTimeout(function () {
-                    deferred.resolve(data);
-                    console.log("getting country list data is returned");
-                }, waitTime);
-            } else {
+            // now simulate slow loading, delay response for [8-9.5] seconds
+            var waitTime = Math.floor((Math.random() * 1500) + 8000);
+            console.log("loading countryList waiting time: " + waitTime);
+            setTimeout(function () {
                 deferred.resolve(data);
                 console.log("getting country list data is returned");
-            }
+            }, waitTime);
         }
         
         function getCountryList() {
