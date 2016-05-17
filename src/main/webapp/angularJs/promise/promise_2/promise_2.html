@@ -43,6 +43,8 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
             <li> App->controller->directive -> service</li>
             <li> reuse http request in the service for multiple directive instances </li>
             <li> use $q and promise to coordinate multiple http requests  </li>
+            <li> directive can handle many errors  </li>
+            <li> use setTimeout to simulate slow API call</li>
         </ul>
         <button ng-click="loadPerson(false,false)">query correct data</button>
         <button ng-click="loadPerson(true, false)">query wrong person data</button>
@@ -56,9 +58,10 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
                 <tr>
                     <th width="100">ID</th>
                     <th width="150">Name</th>
-                    <th width="80">Citizen</th>
+                    <th width="80">CitizeniD</th>
                     <th width="190" >Citizen</th>
-                    <th width="80">Birth</th>
+                    <th width="190" >Citizen(readOnly)</th>
+                    <th width="80">BirthiD</th>
                     <th width="190">Birth</th>
                 </tr>
             </thead>
@@ -67,9 +70,10 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
                     <td> {{p.ID}} </td>
                     <td> {{p.name}} </td>
                     <td> {{p.citizen}}</td>
-                    <td> <country.field field="p.citizen" ></country.field></td>
+                    <td> <country.field field="p.citizen" read-only="false" ></country.field></td>
+                    <td> <country.field field="p.citizen" read-only="true" ></country.field></td>
                     <td> {{p.birth}} </td>
-                    <td> <country.field field="p.birth" ></country.field> </td>
+                    <td> <country.field field="p.birth" read-only="false"></country.field> </td>
 </tr>
 </tbody>
 </table>

@@ -1,6 +1,6 @@
 /**
  * declare an angularJs directive "country.field" in module "directives" , type : element usage:
- * <country.field field="person.citizen" ></country.field>
+ * <country.field field="person.citizen" read-only="true"></country.field>
  * 
  *  It depends on countryService.js, angularJs ;
  *  
@@ -74,15 +74,17 @@
             $scope.selectedCountry = $scope.countryList[0];
         }
         
-        
+        $scope.loading=true;
         countryService.getCountryList().then(
                 function (data) {
                     console.log("getting country list data");
+                    $scope.loading=false;
                     $scope.errMsg = null;
                     setOptions($scope, data);
                     
                 },
                 function (errorMessage) {
+                    $scope.loading=false;
                     console.log(errorMessage);
                     $scope.errMsg = errorMessage;
                     if($scope.selectedCountryId === undefined){
@@ -102,6 +104,39 @@
         $scope.changeCountry = function () {
             console.log("changing country to " + $scope.selectedCountry.id  + " - " + $scope.selectedCountry.name);
             $scope.selectedCountryId = $scope.selectedCountry.id;
+        };
+        
+        $scope.displaySelect = function () {
+            if($scope.loading){
+                return false;
+            }
+            if($scope.readOnly=="true"){
+                return false;
+            }            
+            if($scope.selectedCountryId===999){
+                return false;
+            }
+            if($scope.errMsg){
+                return false;
+            }
+            
+            return true;
+        };
+                
+        $scope.displayText = function () {
+            if($scope.loading){
+                return false;
+            }
+            if($scope.readOnly =="false"){
+                return false;
+            }   
+            if($scope.selectedCountryId===999){
+                return false;
+            }
+            if($scope.errMsg){
+                return false;
+            }            
+            return true;
         };
         
         $scope.$watch('selectedCountryId', function(newValue, oldValue) {
@@ -126,7 +161,8 @@
         restrict: 'E',
         require: ['field'],
         scope: {
-            selectedCountryId: '=field'
+            selectedCountryId: '=field',
+            readOnly: '@readOnly'
         },
         templateUrl: rootDir + 'countryField.html',
 

@@ -1,6 +1,9 @@
-<select ng-model="selectedCountry" ng-show="selectedCountryId!==999"
+<select ng-model="selectedCountry" ng-show="displaySelect()"
                 ng-options="item as item.name for item in countryList"
                 ng-change="changeCountry()" >
                     
 </select>
-<span ng-show="errMsg" title="{{errMsg}}" style="color: red">!</span>
+<span ng-show="errMsg" title="{{errMsg}}" style="color: red">!!!</span>
+<span ng-show="loading" >loading...</span>
+<span ng-show="displayText()">{{selectedCountry.name}}</span>
+
