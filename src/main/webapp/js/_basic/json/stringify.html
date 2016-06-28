@@ -18,9 +18,14 @@ and open the template in the editor.
         <button onClick=testStringifyFunction();>test stringify second parameter is a function </button>
         <br/>
         <button onClick=testStringifyArray();>test stringify second parameter is a array </button>
+        <br/>
+        <button onClick=testToJSON();>test ToJSON in  stringify</button>
+
         
         <br/><br/><br/>
         It comes from  <a href = "http://ms.csdn.net/geek/83509" target=_blank>here</a>
+        and 
+        <a href = "http://blog.csdn.net/gisredevelopment/article/details/12890837" target=_blank>here</a>
 
 
         <script>
@@ -64,6 +69,18 @@ and open the template in the editor.
             
             function displayOrigJson() {
                 alert(JSON.stringify(obj,null,4));
+            }
+            
+            var obj2 = {
+                "ddd":2134,
+                "eee":45546,
+                toJSON:function(){
+                    return "{'obj2':'this string comes from toJSON function'}";
+                }
+            };
+            
+            function testToJSON() {
+                alert(JSON.stringify(obj2,null,4));
             }
 
 
