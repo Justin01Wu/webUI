@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test JSON.stringify</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>test JSON.stringify </h1>
+        
+        <button onClick=displayOrigJson();>display original Json </button>
+        <br/>
+        <button onClick=testStringifyFunction();>test stringify second parameter is a function </button>
+        <br/>
+        <button onClick=testStringifyArray();>test stringify second parameter is a array </button>
+        
+        <br/><br/><br/>
+        It comes from  <a href = "http://ms.csdn.net/geek/83509" target=_blank>here</a>
+
+
+        <script>
+            var obj = {
+                    "a": {
+                        "aaa": {},
+                        "bbb": 1234
+                    }
+                };
+
+            function testStringifyFunction() {
+
+                 var result = JSON.stringify(obj, handleSpecialKeyAndValue, 4);
+
+                alert(result);
+                
+                return;
+
+                function handleSpecialKeyAndValue(key, value) {
+                    if (key === "aaa") {
+                        return "this is on specal key: " + key;
+                    }                    
+                    if (typeof value === "number") {
+                        return "this is on specal value: " + value;
+                    }
+                    return value;
+                }
+            }
+            
+            function testStringifyArray() {
+                
+                var myMap = ["a","bbb"];
+
+                var result = JSON.stringify(obj, myMap, 4);
+
+                alert(result);
+                
+                return;
+
+            }
+            
+            function displayOrigJson() {
+                alert(JSON.stringify(obj,null,4));
+            }
+
+
+        </script>        
+    </body>
+
+
+</html>
