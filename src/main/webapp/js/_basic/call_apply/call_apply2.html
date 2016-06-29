@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test call and apply</title>
+</head>
+<body>
+
+	<h1>call and Apply mainly use to change context(ie,this)</h1>
+
+	<script type="text/javascript">
+	
+		String.prototype.print = function(){
+			console.log(this.toString());
+		};
+		
+		"abc".print();  // will output "abc"
+		"ghj".print.call("def");  // will output "def"
+		
+	</script>
+</body>
+</html>
