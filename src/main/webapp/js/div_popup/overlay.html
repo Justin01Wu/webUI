@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Div popup theory</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .overlay {
+                position: fixed;
+                left: 100px;
+                right: 100px;
+                bottom: 100px;
+                top: 100px;
+                border: 3px solid #73AD21;
+                background: rgba(0,0,0,.5); /* 0.8 transprant*/
+            }
+        </style>
+
+    </head>
+    <body>        
+        <div style="height:1200px;z-index:100">
+            <h1>Div popup theory</h1>
+
+            <br/><br/>
+            <h1>popup usually use  position: fixed;  <button type="button" onclick="baseDiv();">onBaseDiv</button></h1>
+
+            <br/>
+            <h1>So you can scroll page and popup always stays</h1><br/>
+            <h1>if you set all edge to zero, like left:0, the popup cover all area</h1><br/>
+            <h1>So we call it overlay</h1><br/>
+
+        </div>
+
+        <div class="overlay" id="overlay">
+            this is in popup, it used position: fixed, so you can scroll page and it stays
+            <br/>
+            <button type="button" onclick="popupDiv();">onPopupDiv</button>
+        </div>  
+        
+        <script>
+            function baseDiv() {
+                alert('baseDiv');
+                document.getElementById("overlay").style.display = 'block';
+            }
+            function popupDiv() {
+                alert('popupDiv');
+                document.getElementById("overlay").style.display = 'none';
+            }
+
+        </script>
+
+    </body>
+</html>
