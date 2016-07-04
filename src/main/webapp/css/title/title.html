@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test css title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+
+            div.myTitle {
+                position: relative;
+            }
+            div.myTitle:hover::after {
+                content: attr(data-title);    // GET data-title ATTRIBUTE VALUE
+                display: inline-block;
+                padding: 10px 14px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                position: absolute;
+                top: -50px;
+                left: -10px;
+            }            
+
+
+        </style>
+    </head>
+    <body>
+        <br/><br/><br/>
+        <div class="myTitle" data-title="my title string">please move mouse to me</div>
+
+        <br/><br/><br/><br/><br/><br/>
+        <a href=""http://ms.csdn.net/geek/86305">comes from here</a>
+    </body>
+</html>

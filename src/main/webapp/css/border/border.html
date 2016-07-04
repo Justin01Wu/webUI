@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test border css</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            div.cycle{
+                width:100px;
+                height: 100px;
+                background: red;
+                border-radius: 100px; // border-radius:100%
+            }
+
+            div.half{
+                width:100px;
+                height: 50px;
+                background: blue;
+                border-radius: 50px 50px 0 0; 
+            }
+
+            div.elipse{
+                width:100px;
+                height: 50px;
+                background: green;
+                border-radius: 50px/25px; 
+            }            
+
+            div.half-elipse{
+                width:100px;
+                height: 50px;
+                background: yellow;
+                border-radius: 100% 0 0 100%/50%; 
+            }         
+
+            div.magnifier {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 5px solid #333;
+                position: relative;
+            }
+            div.magnifier::after {
+                content: '';
+                display: block;    
+                width: 8px;    
+                height: 60px;    
+                border-radius: 5px;    
+                background: #333;    
+                position: absolute;    
+                right: -22px;    
+                top: 38px;    
+                transform: rotate(-45deg);
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="cycle">test border css</div>
+        <div class="half">test half</div>
+        <div class="elipse">test elipse</div>
+        <div class="half-elipse">test half elipse</div>
+
+        <div class="magnifier"></div>
+        
+        <br/><br/><br/>
+        <a href=""http://ms.csdn.net/geek/86305">comes from here</a>
+    </body>
+</html>
