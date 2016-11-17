@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta content="IE=edge" http-equiv="X-UA-Compatible"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+	<META HTTP-EQUIV="EXPIRES" CONTENT="0">
+</head>
+
+<body>
+
+	<h1> this is a demo of how to handle large file on UI side</h1>
+	<ul>
+		<li>UI side will do file reading, validation, and send it to server side by RESTful API</li>
+		<li>It can handle 1GB file on UI side</li>
+		<li>Browser will crash if you directly read the whole file into memory, so you have to use file.slice</li>
+		<li>Chrome Browser can only create about 512Mb object in the memory, after that it will crash, didn't try IE</li>
+		<li>After 1m rows, I will submit them to the server side, but I didn't do server side code, so this testing code just discard those data</li>
+		<li>the file has 17M rows, so it needs 17 API call</li>
+		<li>The code scan every line of file, cut into fields, did some simple validation on them, converting row into json object list</li>
+		<li>I didn't do aggregation operation because I am not familiar on business requirement</li>
+		<li>Chrome is about 2 times faster than IE, it needs about 5 minutes, IE needs about 12 minutes when trunk size is 10k</li>
+		<li>cutting into fields, and simple validation only affect total time a little. Without those, chrome still need 4 minutes30 seconds</li>
+		<li>Chrome is about 1 minute and 20 second and IE is about 3 minutes when trunk size is 100k</li>
+		<li>Browser doesn't allow you run JavaScript for a long time, so it used callback and setTimeout, I didn't try web worker</li>
+		<li>Console.log will severely affect the time on IE if it is in a big loop.  So I only use it in every 160000 rows</li>
+		<li>11.	CPU usage is low, didn't affect other applications</li>
+		<li>Code is pretty simple</li>
+		
+		
+	</ul>
+	
+	
+	Info: <label id="infoLabel"></label>
+	<br/>
+	<input type="file" name="file_11" accept="text/plain" onchange="fileNameChanged(event)"/>
+
+<script type="text/javascript">
+
+	if (!window.console) {
+		window.console = {
+			log : function() {
+			},
+			warn : function() {
+			},
+			error : function() {
+			}
+		};
+	}
+	
+	var info = document.getElementById('infoLabel');
+
+	
+    function endsWith(mainStr, suffix){
+   	 	return mainStr.indexOf(suffix, mainStr.length - suffix.length) !== -1;
+    }
+	
+	var CHUNK_SIZE = 102400;
+	var hasMore = true;
+	var i=0;
+	var totalRow = 0;
+	var offset =0;
+	var fr = new FileReader();
+	var dataList = [];
+	var adjust = 0;    // we don't know if the last line is cut, so use this to remove the last line length
+	var start;
+
+	function fileNameChanged(event){
+		console.log("change file...");
+		start = new Date();
+        var file = event.currentTarget.files[0];
+
+        if (!endsWith(file.name, ".txt") ) {
+            alert("file should be txt file only");
+            return;
+        }
+        
+        cutFile(file);
+
+	}
+	
+	function cutFile(file) {		
+		
+	    fr.onload = function(progressEvent) {
+	    	//console.log(fr.result);
+	    	prepareJson(fr.result);
+	    	
+	    	//if( hasMore && i<250){
+	    	if( hasMore ){
+	    		setTimeout(function(){
+	    			handleSlice(file);
+	    	    }, 0);  
+	    	}else{
+	    		var now= new Date();
+	    		var totalSecond = (now.getTime() - start.getTime())/1000;
+	    		console.log("totalSecond= " + totalSecond);
+	    	}
+	    };
+
+		handleSlice(file);  
+
+	}
+		
+	function handleSlice(file){
+		i++;
+		//console.log("   " );
+		//console.log("  ====== "  );
+		if(i%100===0){
+			console.log("offset= " + offset);	
+		}
+		//console.log("  i= " + i  + " offset= " + offset);
+		
+		var slice = file.slice(offset, offset + CHUNK_SIZE);
+		hasMore = slice.size === CHUNK_SIZE;
+		offset = offset + slice.size;		
+		fr.readAsText(slice, 'ISO-8859-1');
+
+	}
+		
+		
+	
+    function prepareJson(fileContent) {
+    	
+        
+        var lines = fileContent.split('\n');  // if it is windows file, the remaining \r will become a white space, and will be trimmed later 
+        
+        adjust = lines[lines.length-1].length;   // we don't know if the last line is cut, so use this to remove the last line length 
+        offset = offset - adjust ;
+        
+        for (var i = 0; i < lines.length-1; i++) {      // we don't know if the last line is cut, so skip the last line 
+        	
+        	totalRow ++;
+        	if(totalRow == 1){  // first line is description, so skip it
+        		continue;
+        	}        	
+
+        	var line = lines[i].trim();
+        	
+        	if(totalRow % 160000 ==0 ){
+            	console.log("total row..." + totalRow);
+            	console.log("line=" + line);        	
+        		info.innerHTML = ' on file row: ' +  totalRow + " : " + line ;
+        	}
+        	
+        	if(line === ''){
+        		continue;  // skip empty line
+        	}
+            var fields = line.split(/\s+/);  // split on any length white spaces
+            if (fields.length !== 6) {
+            	info.innerHTML = "Line " + (i + 1) + " has wrong fields amount, it should have 6 columns";
+                return;
+            }
+            if (isNaN(fields[0])) {
+            	info.innerHTML =  "Line " + (i + 1) + " has wrong year value, it should be a number: " + fields[0];
+                return;
+            }
+            if (isNaN(fields[1])) {
+            	info.innerHTML = "Line " + (i + 1) + " has wrong eventId value, it should be a number: " + fields[1];
+                return;
+            }
+            
+            if (isNaN(fields[2])) {
+            	info.innerHTML = "Line " + (i + 1) + " has wrong loss value, it should be a number: " + fields[2];
+                return;
+            }
+            
+            if(Number(fields[3])<0){
+            	info.innerHTML = "Line " + (i + 1) + " has wrong vre_modelid, it should be a number: " + fields[3] ;
+                return;            	
+            }
+
+            var oneItem = {};
+            oneItem.year = fields[0];
+            oneItem.eventId = Number(fields[1]);
+            oneItem.loss = Number(fields[2]);
+            oneItem.vre_modelid = Number(fields[3]);
+            oneItem.riskgroup =  fields[4];
+            dataList.push(oneItem);
+            
+            if(totalRow % 1000000 ==0 ){
+            	// TODO: send data to server side   
+            	console.log("               =>>>  send data to the server side");
+            	dataList = [];	
+            }
+            
+        }
+        
+        return dataList;
+
+    }
+	
+</script>	
+</body>	
+</html>
+
+
+
