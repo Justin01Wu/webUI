@@ -53,6 +53,7 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
         <br/><label style="color: red">{{errMsg}}</label>
         <br/>
 
+        Search:<input ng-model="query" type="text"/>
         <table class="peopleListTable">
             <thead>
                 <tr>
@@ -66,7 +67,7 @@ table.peopleListTable tr:nth-child(even), table.peopleListTable thead tr  {
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="p in person">
+                <tr ng-repeat="p in person | filter:query">
                     <td> {{p.ID}} </td>
                     <td> {{p.name}} </td>
                     <td> {{p.citizen}}</td>

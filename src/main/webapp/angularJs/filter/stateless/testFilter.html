@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO-8859-1">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <title>test AngularJs filter is stateless</title>
+    </head>
+    <body>
+
+        <script>
+            angular.module("filters", []);
+            var app = angular.module('myApp', ["filters"]);
+            app.controller('myCtrl', function ($scope) {
+                $scope.myUserId1 = '2';
+                $scope.myUserId2 = '3';
+                $scope.myUserId3 = '4';
+                $scope.myUserId4 = '2';
+                $scope.people= [
+                        {"id": "2"},
+                {"id": "3"},
+                {"id": "4"}
+                ];
+
+                $scope.changeId1 = function () {
+                    if ($scope.myUserId1 == "2") {
+                        $scope.myUserId1 = '3';
+                    } else {
+                        $scope.myUserId1 = '2';
+                    }
+
+                }
+            });
+        </script>
+
+        <!--  must define app firstly , then include filter.js, otherwise angularJs will complain -->
+        <script src="filters.js"></script>
+
+        <h1>test if AngularJs filter is stateless</h1>
+
+        <div ng-app="myApp" ng-controller="myCtrl" >
+
+            <input type="button" ng-click="changeId1()" value = "Change Id 1"/><br/>
+
+            <span>myUserId1 is: <b>{{myUserId1|userIdToName}}</b></span>
+
+            <br/>
+            <span>myUserId2 is: <b>{{myUserId2|userIdToName}}</b></span>
+            <br/>
+            <span>myUserId3 is <b>{{myUserId3|userIdToName}}</b></span>
+            <br/>
+            <span>myUserId4 is <b>{{myUserId4|userIdToName}}</b></span>
+            <br/>
+
+            
+            
+            <br/><br/>
+Search:<input ng-model="query" type="text"/>
+            <table class="peopleListTable">
+                <thead>
+                    <tr>
+                        <th width="100">ID</th>
+                        <th width="150">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in people| filter:query">
+                        <td> {{p.id}} </td>
+                        <td> {{p.id|userIdToName}} </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </body>
+</html>

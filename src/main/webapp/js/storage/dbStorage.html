@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+
+    </head>
+    <body>
+
+        <h1>test db storage</h1>
+
+        <h2>can't run in the file protocol, must run in the web server if you are testing it in IE</h2>
+
+        <ul>
+            <li> IE support db storage since IE 10</li>
+
+            <li> can't run in the file protocol, must run in the web server if you are testing it in IE </li>
+
+            <li> db storage save data into browser session, it will be automatically cleared when session is ended (closing tab, closing windows)</li>
+
+            <li> Opening a page in a new tab or window will cause a new session to be initiated. so can't get saved data from opener</li>
+
+        </ul>	
+        <form>
+            Name: <input type="text" id="userName" name="userName"/><br/>
+            Desc: <input type="text" id="userDesc" name="userDesc"/><br/>
+
+
+        </form>
+        
+        <button onClick=firstTest();>first Test</button>
+
+        <button onClick=saveToDb();>save form input into db storage</button>
+
+        <button onClick=getFromDb();>retrieve from db storage</button>
+
+        <button onClick=getSessionStorageStats();>get session storage status</button>
+
+        <button onClick=clearSessionStorage();>clear session storage</button>
+
+        <br/>
+
+        <label id="infoLabel"></label>
+
+        <script>
+
+            var customerData = [
+                { ssn: "444-44-4444", name: "Bill2", age: 35, email: "bill@company.com" },
+                { ssn: "555-55-5555", name: "Donna2", age: 32, email: "donna@home.org" }
+                ];
+            var dbName = "the_name";
+
+            function firstTest() {
+                
+                
+                function saveData(db){
+                                    
+
+                    // Create an objectStore to hold information about our customers. We're
+                    // going to use "ssn" as our key path because it's guaranteed to be
+                    // unique - or at least that's what I was told during the kickoff meeting.
+                    var objectStore = db.createObjectStore("customers", {keyPath: "ssn"});
+
+                    // Create an index to search customers by name. We may have duplicates
+                    // so we can't use a unique index.
+                    objectStore.createIndex("name", "name", {unique: false});
+
+                    // Create an index to search customers by email. We want to ensure that
+                    // no two customers have the same email, so use a unique index.
+                    objectStore.createIndex("email", "email", {unique: true});
+
+                    // Use transaction oncomplete to make sure the objectStore creation is 
+                    // finished before adding data into it.
+                    objectStore.transaction.oncomplete = function (event) {
+                        // Store values in the newly created objectStore.
+                        if (window.console) {
+                            console.log("transaction.oncomplete");
+                        }
+                        var customerObjectStore = db.transaction("customers", "readwrite").objectStore("customers");
+                        for (var i in customerData) {
+                            customerObjectStore.add(customerData[i]);
+                        }
+                    };
+                };
+                
+                 if (window.console) {
+                    console.log("firstTest...");
+                }
+                // This is what our customer data looks like.
+                var request = indexedDB.open(dbName, 4);
+
+                request.onerror = function (event) {
+                    // Handle errors.
+                };
+                request.onsuccess = function (event) {
+                    var db = event.target.result;
+                    //window.myDb = db;
+                    if (window.console) {
+                        console.log("on success");
+                    }
+                     //saveData(db);
+
+                };                
+                request.onupgradeneeded = function (event) {
+
+                    if (window.console) {
+                        console.log("onupgradeneeded");
+                    }
+                    var db = event.target.result;
+                    
+                    saveData(db);
+
+                };
+            }
+
+            function initDb(user) {
+                if (window.console) {
+                    console.log("initDb...");
+                }
+                if (!window.indexedDB) {
+                    window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+                    return;
+                }
+
+                var request = indexedDB.open("MyTestDatabase");
+                request.onerror = function (event) {
+                    alert("Why didn't you allow my web app to use IndexedDB?!");
+                };
+                request.onsuccess = function (event) {
+                    var db = event.target.result;
+                    window.myDb = db;
+                    if (window.console) {
+                        console.log("db is inited");
+                    }
+
+                };
+
+                request.onupgradeneeded = function (event) {
+                    var db = event.target.result;
+
+                    // Create an objectStore for this database
+                    var objectStore = db.createObjectStore("myTable", {keyPath: "name23"});
+
+                    objectStore.transaction.oncomplete = function (event) {
+                        var db = event.target.result;
+                        // Store values in the newly created objectStore.
+                        var customerObjectStore = db.transaction("myTable", "readwrite").objectStore("myTable");
+                        customerObjectStore.add(user);
+                        var info = document.getElementById('infoLabel');
+                        info.innerHTML = info.innerHTML + ' <br/> saveToDb() is done';
+
+                    };
+                    window.myStore = objectStore;
+                    if (window.console) {
+                        console.log("objectStore is inited");
+                    }
+
+                };
+
+
+            }
+
+            function saveToDb() {
+                if (window.console) {
+                    console.log("saveToDb");
+                }
+                var userNameField = document.getElementById("userName");
+                var userDescField = document.getElementById("userDesc");
+                var user = {};
+                user.name23 = userNameField.value;
+                user.desc = userDescField.value;
+
+
+                console.log("saving user:");
+                console.log(user);
+                window.myUser = user;
+
+                initDb(user);
+
+            }
+
+            function getSessionStorageStats() {
+                var msg = sessionStorage.length + " object saved in sessionStorage";
+                alert(msg);
+            }
+
+            function clearSessionStorage() {
+                sessionStorage.clear();
+                var info = document.getElementById('infoLabel');
+                info.innerHTML = info.innerHTML + ' <br/> sessionStorage is cleared';
+
+            }
+
+            function initDbForRead(myKey) {
+                if (window.console) {
+                    console.log("initDb for read...");
+                }
+                if (!window.indexedDB) {
+                    window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+                    return;
+                }
+
+                var request = indexedDB.open("MyTestDatabase");
+                request.onerror = function (event) {
+                    alert("Why didn't you allow my web app to use IndexedDB?!");
+                };
+                request.onsuccess = function (event) {
+                    var db = event.target.result;
+                    var transaction = db.transaction(["customers"]);
+                    var objectStore = transaction.objectStore("customers");
+                    var request = objectStore.get(myKey);
+
+                    request.onerror = function (event) {
+                        alert("Why didn't you allow my web app to use IndexedDB?!");
+                    };
+                    request.onsuccess = function (event) {
+                        alert("Name for sdfsdfsd is " + request.result.name);
+
+                    };
+
+
+                };
+
+            }
+
+
+            function getFromDb() {
+                var userNameField = document.getElementById("userName");
+                var userDescField = document.getElementById("userDesc");
+                var info = document.getElementById('infoLabel');
+
+                initDbForRead("sdfsdfsd");
+
+            }
+
+        </script>	
+
+    </body>
+</html>
