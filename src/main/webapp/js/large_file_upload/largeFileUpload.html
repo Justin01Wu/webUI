@@ -26,7 +26,7 @@
 		<li>I didn't do aggregation operation because I am not familiar on business requirement</li>
 		<li>Chrome is about 2 times faster than IE, it needs about 5 minutes, IE needs about 12 minutes when trunk size is 10k</li>
 		<li>cutting into fields, and simple validation only affect total time a little. Without those, chrome still need 4 minutes30 seconds</li>
-		<li>Chrome is about 1 minute and 20 second and IE is about 3 minutes when trunk size is 100k</li>
+		<li>Chrome is about 1 minute and IE is about 1 minute 50 second when trunk size is 150k</li>
 		<li>Browser doesn't allow you run JavaScript for a long time, so it used callback and setTimeout, I didn't try web worker</li>
 		<li>Console.log will severely affect the time on IE if it is in a big loop.  So I only use it in every 160000 rows</li>
 		<li>CPU usage is low, didn't affect other applications</li>
@@ -37,6 +37,8 @@
 	
 	
 	Info: <label id="infoLabel"></label>
+	<br/>
+	Percentage: <input type="range" id="percentage" name="points" min="0" max="19" style="width:500px">
 	<br/>
 	<input type="file" name="file_11" accept="text/plain" onchange="fileNameChanged(event)"/>
 
@@ -54,13 +56,14 @@
 	}
 	
 	var info = document.getElementById('infoLabel');
+	var percentage = document.getElementById('percentage');
 
 	
     function endsWith(mainStr, suffix){
    	 	return mainStr.indexOf(suffix, mainStr.length - suffix.length) !== -1;
     }
 	
-	var CHUNK_SIZE = 102400;
+	var CHUNK_SIZE = 152400;
 	var hasMore = true;
 	var i=0;
 	var totalRow = 0;
@@ -79,6 +82,7 @@
             alert("file should be txt file only");
             return;
         }
+        percentage.max= file.size;
         
         cutFile(file);
 
@@ -116,6 +120,7 @@
 		//console.log("  i= " + i  + " offset= " + offset);
 		
 		var slice = file.slice(offset, offset + CHUNK_SIZE);
+		percentage.value=offset;
 		hasMore = slice.size === CHUNK_SIZE;
 		offset = offset + slice.size;		
 		fr.readAsText(slice, 'ISO-8859-1');
@@ -150,6 +155,10 @@
         	if(line === ''){
         		continue;  // skip empty line
         	}
+        	
+        	//year	eventid		loss			vre_modelid	riskgroup	updatedeventid
+        	//1111	201257291	349.720703125	20			ChinaEQ		111111111
+        	
             var fields = line.split(/\s+/);  // split on any length white spaces
             if (fields.length !== 6) {
             	info.innerHTML = "Line " + (i + 1) + " has wrong fields amount, it should have 6 columns";
@@ -170,9 +179,14 @@
             }
             
             if(Number(fields[3])<0){
-            	info.innerHTML = "Line " + (i + 1) + " has wrong vre_modelid, it should be a number: " + fields[3] ;
+            	info.innerHTML = "Line " + (i + 1) + " has wrong vre_modelid, it should be a positive number: " + fields[3] ;
                 return;            	
             }
+            
+            if(Number(fields[5])<0){
+            	info.innerHTML = "Line " + (i + 1) + " has wrong vre_modelid, it should be a positive number: " + fields[5] ;
+                return;            	
+            }            
 
             var oneItem = {};
             oneItem.year = fields[0];
@@ -180,6 +194,7 @@
             oneItem.loss = Number(fields[2]);
             oneItem.vre_modelid = Number(fields[3]);
             oneItem.riskgroup =  fields[4];
+            oneItem.updatedeventid =  fields[5];
             dataList.push(oneItem);
             
             if(totalRow % 1000000 ==0 ){
