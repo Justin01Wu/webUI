@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>onbeforeunload</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>test onbeforeunload</h1>
+        
+        <a href="onbeforeunload_A.html"  >go to page A</a>
+        
+        <h2>Chrome behaviour:</h2>
+        <ul>
+            <li>please open console and enable logs between pages like Chrome "preserve log"</li>
+            <li>onbeforeunload event will be triggered when page is left or closed</li>
+            <li>onbeforeunload event will be triggered when frame is left</li>
+            <li>onbeforeunload event will be triggered when frame is reloading</li>
+            <li style="color: red;">onbeforeunload event will NOT be triggered when frame is closed</li>
+        </ul>
+        
+        <h2>IE 11 behaviour:</h2>
+        <ul>
+            <li>please open console and enable logs between pages like Chrome "preserve log"</li>
+            <li>onbeforeunload event will be triggered when page is left or closed</li>
+            <li>onbeforeunload event will be triggered when frame is left</li>
+            <li>onbeforeunload event will be triggered when frame is reloading</li>
+            <li>onbeforeunload event will be triggered when frame is closed</li>
+        </ul>        
+        <script type="text/javascript">
+            window.onbeforeunload = function (e) {
+                console.log("     onbeforeunload is triggered... ");
+                // can call server side to do something
+
+                var message = "You changed some data, if you leave this page without saving, you will lose it.";
+                e = e || window.event;
+                // For IE and Firefox
+                if (e) {
+                    e.returnValue = message;
+                }
+
+                // For Safari
+                return message;
+            };
+        </script>        
+    </body>
+</html>
