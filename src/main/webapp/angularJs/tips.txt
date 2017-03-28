@@ -34,7 +34,10 @@ Angular tips:
 
     Because we are making a single page application on AngularJs. So the correct solution should be:
 
-    (1) set physical page (ie, main page) to "Cache-Control: No-cache". 
+    (1) set physical page (ie, main page) to "cache-control: no-store". 
+	(Not "no-cache", please see this for difference:)
+ 	http://stackoverflow.com/questions/7573354/what-is-the-difference-between-no-cache-and-no-store-in-cache-control )
+ 
     The physical page should be small, because logical pages are all dynamically loaded by JavaScript, 
     so loading physical page itself should be fast
     This can be done on filter if main page is html page
