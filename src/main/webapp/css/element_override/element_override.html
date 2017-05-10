@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test element overlap</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            td {
+                position: relative;
+            }
+            input#limit{
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            
+            input#limit:focus {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>test element overlap</h1>
+        <table>
+            <tr>
+                <td>Input</td>
+                <td>
+
+                    <input id ="limitDis" type="text" value="NA" name="limitDis" >
+                    <input id ="limit" type="text" value="12345"  name="limit">
+                    
+                </td>
+            </tr>
+        </table>
+        
+        
+    </body>
+</html>
