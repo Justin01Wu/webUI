@@ -10,6 +10,7 @@
 	<h1>Test different input types</h1>
 	<h2>Some are html5, not supported by all browsers</h2>
 
+	<label id="validMsg" style="color:red"></label>
 	<form id="myForm">
 	
 		<input type="submit" id="submitBt" value="Submit">
@@ -33,7 +34,7 @@
 		<br/>
                 
                 number with comma(Pattern): 
-                <input type="text" name="bigNumber" pattern="[0-9]{1,3}(,([0-9]{3}))*(.[0-9]+)?" title="number with comma" placeholder="123,456.7890">
+                <input type="text" name="bigNumber" pattern="-?[0-9]{1,3}(,([0-9]{3}))*(.[0-9]+)?" title="number with comma" placeholder="-123,456.7890">
                 <br/>
 		<br/>
                 
@@ -74,14 +75,26 @@
         
         <script>
             function validateForm(){
-                var valid = document.forms["myForm"].checkValidity();
-                if(!valid){                    
-                      // If the form is invalid, submit it. The form won't actually submit;
-                      // this will just cause the browser to display the native HTML5 error messages.
-                      // this tips comes from http://stackoverflow.com/questions/11866910/how-to-force-a-html5-form-validation-without-submitting-it-via-jquery
-                    document.getElementById("submitBt").click(); 
-                    alert("form has invalid input ");
-                }
+            	var valid;
+            	if(document.forms["myForm"].reportValidity){
+              	    // chrome since 40 and firefox since 49
+            		valid = document.forms["myForm"].reportValidity();
+            	}else{
+                    valid = document.forms["myForm"].checkValidity();
+                    if(!valid){                    
+                         // If the form is invalid, submit it. The form won't actually submit;
+                         // this will just cause the browser to display the native HTML5 error messages.
+                         // this tips comes from http://stackoverflow.com/questions/11866910/how-to-force-a-html5-form-validation-without-submitting-it-via-jquery
+
+                      	  document.getElementById("submitBt").click();	  
+                     }
+            		
+            	}
+            	if(!valid){
+            		document.getElementById("validMsg").innerText="some fields failed on data validation";
+            	}else{
+            		document.getElementById("validMsg").innerText="all field passed validation, now submit data to the server...";
+            	}
             }
             
         </script>
