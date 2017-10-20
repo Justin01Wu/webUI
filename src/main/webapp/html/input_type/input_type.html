@@ -76,11 +76,12 @@
         <script>
             function validateForm(){
             	var valid;
-            	if(document.forms["myForm"].reportValidity){
+            	var myForm = document.forms["myForm"];
+            	if(myForm.reportValidity){
               	    // chrome since 40 and firefox since 49
-            		valid = document.forms["myForm"].reportValidity();
+            		valid = myForm.reportValidity();
             	}else{
-                    valid = document.forms["myForm"].checkValidity();
+                    valid = myForm.checkValidity();
                     if(!valid){                    
                          // If the form is invalid, submit it. The form won't actually submit;
                          // this will just cause the browser to display the native HTML5 error messages.
