@@ -42,8 +42,9 @@
 	<br/>
 	<input type="file" name="file_11" accept="text/plain" onchange="fileNameChanged(event)"/>
 
-<script type="text/javascript">
+<script  src="largeTextFileProcessor.js"></script>
 
+<script type="text/javascript">
 	if (!window.console) {
 		window.console = {
 			log : function() {
@@ -55,6 +56,26 @@
 		};
 	}
 	
+	var  totalRow=0;
+	var dataList = [];
+	
+	function fileNameChanged(event){
+		console.log("change file...");
+
+		var file = event.currentTarget.files[0];        
+
+        if (!endsWith(file.name, ".txt") ) {
+            alert("file should be txt file only");
+            return;
+        }
+        
+        percentage.max= 100;
+        
+		largeTextFileProcessor.process(file, postProcess);
+        
+
+	}
+	
 	var info = document.getElementById('infoLabel');
 	var percentage = document.getElementById('percentage');
 
@@ -62,82 +83,12 @@
     function endsWith(mainStr, suffix){
    	 	return mainStr.indexOf(suffix, mainStr.length - suffix.length) !== -1;
     }
-	
-	var CHUNK_SIZE = 152400;
-	var hasMore = true;
-	var i=0;
-	var totalRow = 0;
-	var offset =0;
-	var fr = new FileReader();
-	var dataList = [];
-	var adjust = 0;    // we don't know if the last line is cut, so use this to remove the last line length
-	var start;
 
-	function fileNameChanged(event){
-		console.log("change file...");
-		start = new Date();
-        var file = event.currentTarget.files[0];
-
-        if (!endsWith(file.name, ".txt") ) {
-            alert("file should be txt file only");
-            return;
-        }
-        percentage.max= file.size;
-        
-        cutFile(file);
-
-	}
-	
-	function cutFile(file) {		
+	function postProcess(lines) {		
 		
-	    fr.onload = function(progressEvent) {
-	    	//console.log(fr.result);
-	    	prepareJson(fr.result);
-	    	
-	    	//if( hasMore && i<250){
-	    	if( hasMore ){
-	    		setTimeout(function(){
-	    			handleSlice(file);
-	    	    }, 0);  
-	    	}else{
-	    		var now= new Date();
-	    		var totalSecond = (now.getTime() - start.getTime())/1000;
-	    		console.log("totalSecond= " + totalSecond);
-	    	}
-	    };
-
-		handleSlice(file);  
-
-	}
+		percentage.value= 100 * largeTextFileProcessor.percentage;
 		
-	function handleSlice(file){
-		i++;
-		//console.log("   " );
-		//console.log("  ====== "  );
-		if(i%100===0){
-			console.log("offset= " + offset);	
-		}
-		//console.log("  i= " + i  + " offset= " + offset);
-		
-		var slice = file.slice(offset, offset + CHUNK_SIZE);
-		percentage.value=offset;
-		hasMore = slice.size === CHUNK_SIZE;
-		offset = offset + slice.size;		
-		fr.readAsText(slice, 'ISO-8859-1');
-
-	}
-		
-		
-	
-    function prepareJson(fileContent) {
-    	
-        
-        var lines = fileContent.split('\n');  // if it is windows file, the remaining \r will become a white space, and will be trimmed later 
-        
-        adjust = lines[lines.length-1].length;   // we don't know if the last line is cut, so use this to remove the last line length 
-        offset = offset - adjust ;
-        
-        for (var i = 0; i < lines.length-1; i++) {      // we don't know if the last line is cut, so skip the last line 
+        for (var i = 0; i < lines.length; i++) {       
         	
         	totalRow ++;
         	if(totalRow == 1){  // first line is description, so skip it
@@ -156,45 +107,48 @@
         		continue;  // skip empty line
         	}
         	
-        	//year	eventid		loss			vre_modelid	riskgroup	updatedeventid
-        	//1111	201257291	349.720703125	20			ChinaEQ		111111111
+        	/* sample: 
+        	NAME	TRIAL	EVENTID	EVENTDATE	LOSS	riskGroup	USD
+			TREATY_PROPERTY	27	600000002	2013-09-06 21:22:00	13591155.1216389	EuropeEQ	13591155.1216389
+			TREATY_PROPERTY	49	600000002	2013-01-28 03:01:00	0.0435210888832808	EuropeEQ	0.0435210888832808
+			TREATY_PROPERTY	105	600000002	2013-12-13 03:49:00	29.5230155944824	EuropeEQ	29.5230155944824
+			TREATY_PROPERTY	169	600000002	2013-10-20 00:42:00	516067.616222072	EuropeEQ	516067.616222072
+			*/
         	
-            var fields = line.split(/\s+/);  // split on any length white spaces
-            if (fields.length !== 6) {
+            //var fields = line.split(/\s+/);  // split on any length white spaces
+            var fields = line.split('\t');// split on tab
+            if (fields.length !== 7) {
             	info.innerHTML = "Line " + (i + 1) + " has wrong fields amount, it should have 6 columns";
                 return;
             }
-            if (isNaN(fields[0])) {
-            	info.innerHTML =  "Line " + (i + 1) + " has wrong year value, it should be a number: " + fields[0];
-                return;
-            }
             if (isNaN(fields[1])) {
-            	info.innerHTML = "Line " + (i + 1) + " has wrong eventId value, it should be a number: " + fields[1];
+            	info.innerHTML = "Line " + (i + 1) + " has wrong TRIAL value, it should be a number: " + fields[1];
                 return;
             }
             
             if (isNaN(fields[2])) {
-            	info.innerHTML = "Line " + (i + 1) + " has wrong loss value, it should be a number: " + fields[2];
+            	info.innerHTML = "Line " + (i + 1) + " has wrong EVENTID value, it should be a number: " + fields[2];
                 return;
             }
             
-            if(Number(fields[3])<0){
-            	info.innerHTML = "Line " + (i + 1) + " has wrong vre_modelid, it should be a positive number: " + fields[3] ;
+            if(Number(fields[4])<0){
+            	info.innerHTML = "Line " + (i + 1) + " has wrong LOSS, it should be a positive number: " + fields[5] ;
                 return;            	
             }
             
-            if(Number(fields[5])<0){
-            	info.innerHTML = "Line " + (i + 1) + " has wrong vre_modelid, it should be a positive number: " + fields[5] ;
+            if(Number(fields[6])<0){
+            	info.innerHTML = "Line " + (i + 1) + " has wrong USD, it should be a positive number: " + fields[5] ;
                 return;            	
             }            
 
             var oneItem = {};
-            oneItem.year = fields[0];
-            oneItem.eventId = Number(fields[1]);
-            oneItem.loss = Number(fields[2]);
-            oneItem.vre_modelid = Number(fields[3]);
-            oneItem.riskgroup =  fields[4];
-            oneItem.updatedeventid =  fields[5];
+            oneItem.name = fields[0];
+            oneItem.TRIAL = Number(fields[1]);
+            oneItem.eventId = Number(fields[2]);
+            oneItem.eventDate = fields[3];
+            oneItem.loss = Number(fields[4]);
+            oneItem.riskgroup =  fields[5];
+            oneItem.usd =  Number(fields[6]);
             dataList.push(oneItem);
             
             if(totalRow % 1000000 ==0 ){
@@ -204,10 +158,12 @@
             }
             
         }
-        
-        return dataList;
+        console.log("               total Row = " + totalRow);
 
-    }
+		
+	}
+	
+	
 	
 </script>	
 </body>	
