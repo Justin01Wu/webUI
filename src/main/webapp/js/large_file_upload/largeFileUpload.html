@@ -36,6 +36,15 @@
 	</ul>
 	
 	
+	<br><br>
+	Test frozen: <select >
+		<option value="0"></option>
+		<option value="1">Item1</option>
+		<option value="2">Item2</option>
+		<option value="3">Item3</option>
+	</select>
+	<br><br>
+	
 	Info: <label id="infoLabel"></label>
 	<br/>
 	Percentage: <input type="range" id="percentage" name="points" min="0" max="19" style="width:500px">
@@ -58,23 +67,7 @@
 	
 	var  totalRow=0;
 	var dataList = [];
-	
-	function fileNameChanged(event){
-		console.log("change file...");
-
-		var file = event.currentTarget.files[0];        
-
-        if (!endsWith(file.name, ".txt") ) {
-            alert("file should be txt file only");
-            return;
-        }
-        
-        percentage.max= 100;
-        
-		largeTextFileProcessor.process(file, postProcess);
-        
-
-	}
+	var processor;
 	
 	var info = document.getElementById('infoLabel');
 	var percentage = document.getElementById('percentage');
@@ -86,7 +79,7 @@
 
 	function postProcess(lines) {		
 		
-		percentage.value= 100 * largeTextFileProcessor.percentage;
+		percentage.value= 100 * processor.percentage;
 		
         for (var i = 0; i < lines.length; i++) {       
         	
@@ -98,8 +91,7 @@
         	var line = lines[i].trim();
         	
         	if(totalRow % 160000 ==0 ){
-            	console.log("total row..." + totalRow);
-            	console.log("line=" + line);        	
+            	console.log("on row: " + totalRow + ", line=" + line);        	
         		info.innerHTML = ' on file row: ' +  totalRow + " : " + line ;
         	}
         	
@@ -118,26 +110,26 @@
             //var fields = line.split(/\s+/);  // split on any length white spaces
             var fields = line.split('\t');// split on tab
             if (fields.length !== 7) {
-            	info.innerHTML = "Line " + (i + 1) + " has wrong fields amount, it should have 6 columns";
+            	info.innerHTML = "Line " + totalRow + " has wrong fields amount, it should have 6 columns";
                 return;
             }
             if (isNaN(fields[1])) {
-            	info.innerHTML = "Line " + (i + 1) + " has wrong TRIAL value, it should be a number: " + fields[1];
+            	info.innerHTML = "Line " + totalRow + " has wrong TRIAL value, it should be a number: " + fields[1];
                 return;
             }
             
             if (isNaN(fields[2])) {
-            	info.innerHTML = "Line " + (i + 1) + " has wrong EVENTID value, it should be a number: " + fields[2];
+            	info.innerHTML = "Line " + totalRow + " has wrong EVENTID value, it should be a number: " + fields[2];
                 return;
             }
             
             if(Number(fields[4])<0){
-            	info.innerHTML = "Line " + (i + 1) + " has wrong LOSS, it should be a positive number: " + fields[5] ;
+            	info.innerHTML = "Line " + totalRow + " has wrong LOSS, it should be a positive number: " + fields[5] ;
                 return;            	
             }
             
             if(Number(fields[6])<0){
-            	info.innerHTML = "Line " + (i + 1) + " has wrong USD, it should be a positive number: " + fields[5] ;
+            	info.innerHTML = "Line " + totalRow + " has wrong USD, it should be a positive number: " + fields[5] ;
                 return;            	
             }            
 
@@ -158,12 +150,32 @@
             }
             
         }
-        console.log("               total Row = " + totalRow);
+        
+        if(!processor.hasMore){
+        	console.log("  ==>  last row: " + totalRow + ", line=" + line);        	
+    		info.innerHTML = ' on file row: ' +  totalRow + " : " + line ;
+        }
+        
 
 		
 	}
 	
-	
+	function fileNameChanged(event){
+		console.log("change file...");
+
+		var file = event.currentTarget.files[0];        
+
+        if (!endsWith(file.name, ".txt") ) {
+            alert("file should be txt file only");
+            return;
+        }
+        
+        percentage.max= 100;
+        processor = new LargeTextFileProcessor(file, postProcess);
+        processor.start();
+        
+
+	}	
 	
 </script>	
 </body>	
