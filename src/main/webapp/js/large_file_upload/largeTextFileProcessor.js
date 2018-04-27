@@ -3,7 +3,7 @@
  *  it depends on ECMAScript5 FileReader
  *  it assumes text file is using new line (support both UNIX new line and windows new line)  as new record starting
  *  it needs a customized callBack function and file to start
- *  it will call back the callBack function every trunk size data
+ *  it will call back the callBack function with those parameters: lines, hasMore, offset, totalSize
  *  By default, trunk size is 150k, but you can override it, 
  *  browser will crash if the trunk size is too big, like 500k 
  *  
@@ -84,12 +84,13 @@
 	        
 	        that.offsetAdjust = lines[lines.length-1].length;   // we don't know if the last line is cut, so use this to remove the last line length 
 	        that.offset = that.offset - that.offsetAdjust ;
+	        var gotoNextSlice = true;
 	        if(that.callBack){
 	        	lines.pop();// we don't know if the last line is cut, so skip the last line		        
-	        	that.callBack(lines);
+	        	gotoNextSlice = that.callBack(lines, that.hasMore, that.offset, that.file.size );
 	        }
 	    	
-	    	if( that.hasMore ){		    		
+	    	if( that.hasMore && gotoNextSlice){		    		
 	    		setTimeout(function(){
 	    			that._handleSlice();
 	    	    }, 0);  

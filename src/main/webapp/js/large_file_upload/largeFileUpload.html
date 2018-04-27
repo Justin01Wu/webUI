@@ -17,7 +17,7 @@
 	<h1> this is a demo of how to handle large file on UI side</h1>
 	<ul>
 		<li>UI side will do file reading, validation, and send it to server side by RESTful API</li>
-		<li>It can handle 1GB file on UI side</li>
+		<li>It can handle at least 1GB file on UI side</li>
 		<li>Browser will crash if you directly read the whole file into memory, so you have to use file.slice</li>
 		<li>Chrome Browser can only create about 512Mb object in the memory, after that it will crash, didn't try IE</li>
 		<li>After 1m rows, I will submit them to the server side, but I didn't do server side code, so this testing code just discard those data</li>
@@ -77,9 +77,9 @@
    	 	return mainStr.indexOf(suffix, mainStr.length - suffix.length) !== -1;
     }
 
-	function postProcess(lines) {		
+	function myCallBack(lines, hasMore, offset, totalSize) {		
 		
-		percentage.value= 100 * processor.percentage;
+		percentage.value = 100* offset/totalSize;
 		
         for (var i = 0; i < lines.length; i++) {       
         	
@@ -111,26 +111,26 @@
             var fields = line.split('\t');// split on tab
             if (fields.length !== 7) {
             	info.innerHTML = "Line " + totalRow + " has wrong fields amount, it should have 6 columns";
-                return;
+                return false;
             }
             if (isNaN(fields[1])) {
             	info.innerHTML = "Line " + totalRow + " has wrong TRIAL value, it should be a number: " + fields[1];
-                return;
+                return false;
             }
             
             if (isNaN(fields[2])) {
             	info.innerHTML = "Line " + totalRow + " has wrong EVENTID value, it should be a number: " + fields[2];
-                return;
+                return false;
             }
             
             if(Number(fields[4])<0){
             	info.innerHTML = "Line " + totalRow + " has wrong LOSS, it should be a positive number: " + fields[5] ;
-                return;            	
+                return false;            	
             }
             
             if(Number(fields[6])<0){
             	info.innerHTML = "Line " + totalRow + " has wrong USD, it should be a positive number: " + fields[5] ;
-                return;            	
+                return false;            	
             }            
 
             var oneItem = {};
@@ -151,11 +151,13 @@
             
         }
         
-        if(!processor.hasMore){
+        if(!hasMore){
         	console.log("  ==>  last row: " + totalRow + ", line=" + line);        	
     		info.innerHTML = ' on file row: ' +  totalRow + " : " + line ;
+    		return true;
         }
         
+        return true;
 
 		
 	}
