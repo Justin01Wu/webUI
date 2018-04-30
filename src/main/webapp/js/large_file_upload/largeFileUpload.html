@@ -66,6 +66,7 @@
 	}
 	
 	var  totalRow=0;
+	var totalColumns;
 	var dataList = [];
 	var processor;
 	
@@ -82,13 +83,16 @@
 		percentage.value = 100* offset/totalSize;
 		
         for (var i = 0; i < lines.length; i++) {       
-        	
+        	var fields, msg;
         	totalRow ++;
+        	
+        	var line = lines[i].trim();
+        	
         	if(totalRow == 1){  // first line is description, so skip it
+        		fields = line.split('\t');// split on tab
+        		totalColumns = fields.length;
         		continue;
         	}        	
-
-        	var line = lines[i].trim();
         	
         	if(totalRow % 160000 ==0 ){
             	console.log("on row: " + totalRow + ", line=" + line);        	
@@ -96,6 +100,7 @@
         	}
         	
         	if(line === ''){
+        		
         		continue;  // skip empty line
         	}
         	
@@ -108,30 +113,34 @@
 			*/
         	
             //var fields = line.split(/\s+/);  // split on any length white spaces
-            var fields = line.split('\t');// split on tab
-            if (fields.length !== 7) {
-            	info.innerHTML = "Line " + totalRow + " has wrong fields amount, it should have 6 columns";
+            fields = line.split('\t');// split on tab
+            if (fields.length !== totalColumns) {
+            	info.innerHTML = "Line " + totalRow + " has wrong fields amount, it should have " + totalColumns + " columns: " + line;
                 return false;
             }
-            if (isNaN(fields[1])) {
-            	info.innerHTML = "Line " + totalRow + " has wrong TRIAL value, it should be a number: " + fields[1];
+            msg = getPositiveIntegerValidationMsg(fields[1], totalRow , "TRIAL");
+            if (msg) {
+            	info.innerHTML = msg;
+                return false;
+            }
+
+            msg = getPositiveIntegerValidationMsg(fields[2], totalRow , "EVENTID");
+            if (msg) {
+            	info.innerHTML = msg;
+                return false;
+            }
+           
+            msg = getPositiveDoubleValidationMsg(fields[4], totalRow , "LOSS");            
+            if(msg){
+            	info.innerHTML = msg;
                 return false;
             }
             
-            if (isNaN(fields[2])) {
-            	info.innerHTML = "Line " + totalRow + " has wrong EVENTID value, it should be a number: " + fields[2];
+            msg = getPositiveDoubleValidationMsg(fields[6], totalRow , "USD");
+            if(msg){
+            	info.innerHTML = msg;
                 return false;
             }
-            
-            if(Number(fields[4])<0){
-            	info.innerHTML = "Line " + totalRow + " has wrong LOSS, it should be a positive number: " + fields[5] ;
-                return false;            	
-            }
-            
-            if(Number(fields[6])<0){
-            	info.innerHTML = "Line " + totalRow + " has wrong USD, it should be a positive number: " + fields[5] ;
-                return false;            	
-            }            
 
             var oneItem = {};
             oneItem.name = fields[0];
@@ -161,6 +170,37 @@
 
 		
 	}
+	
+	function getPositiveIntegerValidationMsg(value, row, label){
+		var msg = null;
+        if (isNaN(value)) {
+        	msg = "Line " + row + " has wrong TRIAL value, it should be a number: " + value;
+        }else{
+        	var myInt = parseInt(value);
+        	if(myInt <=0){
+        		msg = "Line " + row + " has wrong " + label + "  value, it should be an positive integer: " + value;             		
+        	}
+        	if (value != myInt){  // avoid scientific notation format like 3E5
+        		msg  = "Line " + row + " has wrong " + label + " value, it should be an integer: " + value;        		
+        	}
+        }
+        return msg;
+
+	}
+	
+	function getPositiveDoubleValidationMsg(value, row, label){
+		var msg = null;
+		if (isNaN(value)) {
+        	msg = "Line " + row + " has wrong " + label + " value, it should be a number: " + value;
+		}else{
+        	if (Number(value)<0) {
+        		msg = "Line " + row + " has wrong " + label + " value, it should be a positive number: " + value;
+        	}
+		}
+        return msg;
+
+	}
+
 	
 	function fileNameChanged(event){
 		console.log("change file...");
