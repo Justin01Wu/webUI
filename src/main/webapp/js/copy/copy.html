@@ -1,0 +1,96 @@
+<html>
+<head>
+	<meta charset=utf-8 />
+</head>
+<body>
+
+
+
+<h2>example for copy to clipboard</h2>
+comes from <a href="https://www.cnblogs.com/xhyu/p/5370111.html" target=_blank>here</a>
+
+
+
+<div class="selDiv">
+	<textarea rows="4" cols="50"id="myArea">
+	
+	</textarea>
+</div>
+
+<br/>
+
+
+<button type="button" onclick="copy2Clipboard();">copy a dynamic content to Clipboard</button>
+<br/>
+<h2> please paste into any text editor after you click this button</h2>
+
+<script>
+function copy2Clipboard(){
+
+
+	var div = document.createElement('div');
+	
+	var span = document.createElement('span');
+	span.innerText="generated content";
+	div.append(span);
+	
+	var h2 = document.createElement('h2');
+	h2.innerText="generated content2222";
+	div.append(h2);	
+	
+	var table = createTable();
+	div.append(table);	
+	
+	//generated HTML string into text area
+	var textAreaRef = document.getElementById("myArea");
+	textAreaRef.value = div.innerHTML;
+	textAreaRef.select();
+	
+	//copy selected HTML to clipboard
+	var successful = document.execCommand('copy');
+
+	//clean up	
+	textAreaRef.value = "";
+}
+
+function createTable(){
+
+	var items = [
+	  ["abc", "def2"],
+	  ["ssh", "sshj"],
+	  ["fhsas", "last"]
+	];
+
+	var targetTable = document.createElement("table");
+
+	// populate targetTable with cells
+	items.forEach(function(row) {
+		//create row and append to table
+		var domTR = document.createElement("tr");
+		if (targetTable.append) {//optional browser support for append
+			targetTable.append(domTR);
+		} else {
+			targetTable.appendChild(domTR);
+		}
+		//create TD and append to row
+		for (var i = 0; i < row.length; i++) {
+			var domTD = document.createElement("td");
+			domTD.innerText = row[i];
+			if (domTR.append) {
+				domTR.append(domTD);
+			} else {
+				domTR.appendChild(domTD);
+			}
+		}
+	});
+	
+	return targetTable;
+	
+}
+
+</script>
+
+
+</body>
+
+</html>
