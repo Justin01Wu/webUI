@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+	<h1>test local storage event</h1>
+	
+	it comes from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API" target="_blank">here</a>
+
+	<ul class="myUl">
+		<li>This page will notify other pages when it change the text</li>
+
+		<li>it is alternative way for BroadCastChannel which is not	supported by IE</li>
+
+		<li>it will not notify the page itself</li>
+
+		<li>the event is only triggered on the same server, so it can't	be run at local</li>
+		
+		<li>please open this page in two tabs for testing </li>
+
+	</ul>
+
+	<span class="myText">my text</span>
+	<br />
+
+	<button onClick=changeText();>change text</button>
+	
+	<script>
+        
+        window.addEventListener('storage', function(e) {  
+        	
+        	// this event is only for localStorage
+        	
+        	console.log("storge is trigged on " + e.key);
+        	if(e.key == 'myText'){
+        		document.querySelector('.myText').textContent = e.newValue;
+        		console.log("from:" +  e.url);
+        		console.log("area:" +  JSON.stringify(e.storageArea));
+        	}
+        	  
+        });
+
+        function changeText(){
+        	var newText = "Changed by a button at " + new Date().getTime();
+        	document.querySelector('.myText').textContent = newText;
+        	
+        	localStorage.setItem('myText', newText);  // will trigger storage event on other tabs if newText is different from previous
+
+        }
+
+
+        </script>
+
+</body>
+</html>
