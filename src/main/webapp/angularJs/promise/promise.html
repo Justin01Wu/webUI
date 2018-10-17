@@ -10,9 +10,36 @@
 
 
             var myApp = angular.module('countryApp', []);
+
+            angular.module('countryApp').service('counrtyService', function($http, $q){
+		
+                return {
+                    getCountry: getCountry
+                };
+            
+                function getCountry(){
+                
+                    return $http.get('countries.json').then(function(resp){
+                    if(resp.data ){
+                        resp.data = resp.data.filter(function(c){
+                            if(c.name == "Burkina Faso"){
+                                return false;  // skip some country
+                            }
+                            return true;
+                        });
+                    }
+                    
+                    return resp.data;
+                }, function(err){
+                    return err;
+                });
+			
+            }
+        });
+
             myApp.controller('CountryCtrl', MyController);
 
-            function MyController($scope, $http) {
+            function MyController($scope, $http, $q, counrtyService) {
 
                 $scope.search = function () {
 
@@ -24,16 +51,16 @@
 
                     $scope.errMsg = null;
                     $scope.countries = null;
-                    var promise = $http.get('countries.json');
 
-                    promise.then(
-                            function (payload) {  //  handle success
-                                $scope.countries = payload.data;
-                            },
-                            function (errorPayload) { // handle failure
-                                $scope.errMsg = 'failure loading countries';
-                            }
-                    );
+                    var countryLoading = counrtyService.getCountry();
+        			
+        			$q.all([countryLoading]).then(function(values) {   // this can support multiple API requests
+                        //  handle success
+                         $scope.countries = values[0];
+                    }, function(err){
+
+                        $scope.errMsg = 'failure loading countries';
+	            	});
 
                 };
 

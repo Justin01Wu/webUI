@@ -37,7 +37,7 @@
                 return deferred.promise;
                 // this is the key point to reuse same http request
                 // because service is singleton, so we always use the smae deferred to handle all http request
-                // ie http request will be sent onlt once
+                // ie http request will be sent only once
                 // For detail, please see 
                 //http://stackoverflow.com/questions/35902264/angularjs-multiple-directive-instances-making-xhr-call-multiple-times
             }
