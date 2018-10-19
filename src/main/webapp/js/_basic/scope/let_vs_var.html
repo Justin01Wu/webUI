@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>test Let and Var diff</title>
+</head>
+
+<body>
+
+
+    <h1>test Let and Var difference</h1>
+    <h2>Please open console to see the result</h2>
+
+
+    <script>
+        var a = 1;
+        var b = 2;
+
+        if (a === 1) {
+            var a = 11; // the scope is global
+            let b = 22; // the scope is inside the if-block
+
+            console.log(a); // 11
+            console.log(b); // 22
+        }
+
+        console.log(a); // 11
+        console.log(b); // 2
+
+
+    </script>
+</body>
+
+</html>
