@@ -20,6 +20,9 @@ and <a href="https://stackoverflow.com/questions/33855641/copy-output-of-a-javas
 <span class= "copyButton"><button type="button" style="pointer-events: none;">Another way to copy</button></span>
 it comes from <a href="https://stackoverflow.com/questions/45071353/copy-text-string-on-click" target=_blank>here</a>
 
+<br/><br/>
+<button type="button" onClick="copyStringToClipboard();">Third way to copy(similar as 2nd)</button>
+it comes from <a href="https://stackoverflow.com/questions/127040/copy-put-text-on-the-clipboard-with-firefox-safari-and-chrome" target=_blank>here</a>
 
 <script>
 function copy2Clipboard(){
@@ -102,6 +105,19 @@ mySpan.addEventListener("copy", function(event) {
 	
 mySpan.onclick = function() {
 	  document.execCommand("copy");
+}
+
+function copyStringToClipboard () {
+	
+	var myRichText = createRichText();
+    function handler (event){
+        event.clipboardData.setData('text/plain', myRichText);
+        event.preventDefault();
+        document.removeEventListener('copy', handler, true);
+    }
+
+    document.addEventListener('copy', handler, true);
+    document.execCommand('copy');
 }
 
 </script>
