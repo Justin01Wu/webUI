@@ -17,10 +17,20 @@ and <a href="https://stackoverflow.com/questions/33855641/copy-output-of-a-javas
 <h2> please paste into any text editor after you click this button</h2>
 <h2> it will show you rich text if you copy it into MS Excel</h2>
 
+<span class= "copyButton"><button type="button" style="pointer-events: none;">Another way to copy</button></span>
+it comes from <a href="https://stackoverflow.com/questions/45071353/copy-text-string-on-click" target=_blank>here</a>
+
+
 <script>
 function copy2Clipboard(){
+	
+	var myRichText = createRichText();
+	
 
+	copyToClipboard(myRichText);
+}
 
+function createRichText(){
 	var div = document.createElement('div');
 	
 	var span = document.createElement('span');
@@ -34,8 +44,8 @@ function copy2Clipboard(){
 	
 	var table = createTable();
 	div.appendChild(table);
-
-	copyToClipboard(div.innerHTML);
+	
+	return div.innerHTML;
 }
 
 function createTable(){
@@ -76,6 +86,22 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+}
+
+const mySpan = document.querySelector("span");
+
+mySpan.addEventListener("copy", function(event) {
+	  event.preventDefault();
+	  
+	  if (event.clipboardData) {
+		var myRichText = createRichText();
+	    event.clipboardData.setData("text/plain", myRichText);
+	    console.log(event.clipboardData.getData("text"))
+	  }
+	});
+	
+mySpan.onclick = function() {
+	  document.execCommand("copy");
 }
 
 </script>
