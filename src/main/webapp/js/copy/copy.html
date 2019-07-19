@@ -6,13 +6,9 @@
 
 <h2>example for copy to clipboard</h2>
 comes from <a href="https://www.cnblogs.com/xhyu/p/5370111.html" target=_blank>here</a>
+and <a href="https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard" target=_blank>here</a>
 
-<div class="selDiv">
-	<textarea rows="4" cols="50" id="myArea">
-	
-	</textarea>
-</div>
-<br/>
+<br/><br/>
 
 
 <button type="button" onclick="copy2Clipboard();">copy a dynamic content to Clipboard</button>
@@ -20,7 +16,6 @@ comes from <a href="https://www.cnblogs.com/xhyu/p/5370111.html" target=_blank>h
 <h2> This button will create a rich text table in the memory , then copy it into the Clipboard</h2>
 <h2> please paste into any text editor after you click this button</h2>
 <h2> it will show you rich text if you copy it into MS Excel</h2>
-<h2> TODO: is it possible to hide or remove textarea box?</h2>
 
 <script>
 function copy2Clipboard(){
@@ -40,16 +35,7 @@ function copy2Clipboard(){
 	var table = createTable();
 	div.appendChild(table);
 
-	//generated HTML string into text area
-	var textAreaRef = document.getElementById("myArea");
-	textAreaRef.value = div.innerHTML;
-	textAreaRef.select();
-	
-	//copy selected HTML to clipboard
-	var successful = document.execCommand('copy');
-
-	//clean up	
-	textAreaRef.value = "";
+	copyToClipboard(div.innerHTML);
 }
 
 function createTable(){
@@ -77,6 +63,19 @@ function createTable(){
 	
 	return targetTable;
 	
+}
+
+function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    // to avoid breaking orgain page when copying more words
+    // cant copy when adding below this code
+    // dummy.style.display = 'none'
+    document.body.appendChild(dummy);
+    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
 }
 
 </script>
