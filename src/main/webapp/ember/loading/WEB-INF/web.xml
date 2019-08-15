@@ -3,7 +3,7 @@
 <web-app>
   <display-name>loading</display-name>
   <description>
-     this is lazy loading demo
+     This is lazy loading demo
   </description>
 </web-app>
 
