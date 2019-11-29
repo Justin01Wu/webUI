@@ -4,7 +4,7 @@
 	<groupId>wu.justin</groupId>
 	<artifactId>webUI</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>webUI Demo Webapp</name>
 
 	<dependencies>
@@ -15,7 +15,6 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-		
 		
 
 	</dependencies>

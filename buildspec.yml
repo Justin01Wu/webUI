@@ -1,0 +1,10 @@
+version: 1.0
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean package
+artifacts:
+  files:
+    - target/webUI-1.0.war
