@@ -7,7 +7,7 @@ phases:
       - mvn clean package
   install:
     runtime-versions:
-      java: openjdk8      
+      java: corretto8      
 artifacts:
   files:
     - target/webUI-1.0.war
