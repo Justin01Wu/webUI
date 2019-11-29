@@ -5,6 +5,9 @@ phases:
     commands:
       - echo Build started on `date`
       - mvn clean package
+  install:
+    runtime-versions:
+      java: corretto8      
 artifacts:
   files:
     - target/webUI-1.0.war
