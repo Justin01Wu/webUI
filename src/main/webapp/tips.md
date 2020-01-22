@@ -11,9 +11,9 @@ But IE and Firefox will show you which line of JS code
  it is a drop down list on the top of Chrome console
 
 ## Chrome will send an error status 0 when browser cancelled a request
-    (it often happens when user click a link to go to another page before an AJAX request return)
-    So your code need to handle it if you are using jQuery:
-	```javascript
+(it often happens when user click a link to go to another page before an AJAX request return)
+So your code need to handle it if you are using jQuery:
+```javascript
      	jQuery.ajax({
     		url : ...,
     		dataType : 'json',
@@ -32,7 +32,7 @@ But IE and Firefox will show you which line of JS code
                 //alert(msg);  // this one will block JS execuation, so remove it
                 jQuery("#userColumn").addClass("hasError");
             }
-	```		
+```		
 
 
 ## Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
