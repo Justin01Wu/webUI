@@ -14,24 +14,26 @@ But IE and Firefox will show you which line of JS code
 (it often happens when user click a link to go to another page before an AJAX request return)
 So your code need to handle it if you are using jQuery:
 ```javascript
-	jQuery.ajax({
-		url : ...,
-		dataType : 'json',
-		success : function(json) {
-			...
-		},
-		error: function(jqXHR,error, errorThrown) {
-			
-			//If either of these are true, then it's not a true error and we don't care
-			if (jqXHR.status === 0 || jqXHR.readyState === 0) {
-				console.error("browser canceled request: " + self.apiUrl );
-				return;
-			}
-			var msg = "loading all clients error with status: " + jqXHR.status;
-			console.error(msg);
-			//alert(msg);  // this one will block JS execuation, so remove it
-			jQuery("#userColumn").addClass("hasError");
+
+jQuery.ajax({
+	url : ...,
+	dataType : 'json',
+	success : function(json) {
+		...
+	},
+	error: function(jqXHR,error, errorThrown) {
+		
+		//If either of these are true, then it's not a true error and we don't care
+		if (jqXHR.status === 0 || jqXHR.readyState === 0) {
+			console.error("browser canceled request: " + self.apiUrl );
+			return;
 		}
+		var msg = "loading all clients error with status: " + jqXHR.status;
+		console.error(msg);
+		//alert(msg);  // this one will block JS execuation, so remove it
+		jQuery("#userColumn").addClass("hasError");
+	}
+		
 ```		
 
 
@@ -57,13 +59,15 @@ So any code are using console.log or warn will fail.
 
 To stop this , JavaScript code must have this dummy definition in the beginning:
 ```javascript
-	if (!window.console) {
-		   window.console = {
-				 log : function() {},
-				 warn : function() {},
-				 error : function() {}
-		   };
-	}
+
+if (!window.console) {
+	   window.console = {
+			 log : function() {},
+			 warn : function() {},
+			 error : function() {}
+	   };
+}
+	
 ```	
 
     by the way, some JS library has some kind of logging service, but none of them can be traced by browser: 
