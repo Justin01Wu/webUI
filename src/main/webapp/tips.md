@@ -1,16 +1,18 @@
-# general web development tips
+# General web development tips
 
-## In Chrome (version 38 -40, didn't try others), the exception comes from JOSN.parse won't show up which line of JS code it comes from.
+## Browser
+
+ - In Chrome (version 38 -40, didn't try others), the exception comes from JOSN.parse won't show up which line of JS code it comes from.
 But IE and Firefox will show you which line of JS code
 
-## IE(5-11) always cache AJAX response until you explicitly appending a query string parameter "_=[TIMESTAMP]"
+ - IE(5-11) always cache AJAX response until you explicitly appending a query string parameter "_=[TIMESTAMP]"
  which means jQuery.ajax({cache: false, ... 
  other browser never cache  AJAX response
 
-## when a page has multiple frame in frame set, you need to choose correct frame in Chrome console to run command properly,
+ - when a page has multiple frame in frame set, you need to choose correct frame in Chrome console to run command properly,
  it is a drop down list on the top of Chrome console
 
-## Chrome will send an error status 0 when browser cancelled a request
+ - Chrome will send an error status 0 when browser cancelled a request
 (it often happens when user click a link to go to another page before an AJAX request return)
 So your code need to handle it if you are using jQuery:
 ```javascript
@@ -36,15 +38,7 @@ jQuery.ajax({
 		
 ```		
 
-
-## Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
-     if your JavaScript is not there, you need manually add it 
-     otherwise you will get this error when click the link of  a JavaScript function:     
-       "the source is not on the include path of a JavaScript project"
-       
-     you can change it Project Explorer view, right-click the required project and select Properties | JavaScript | JavaScript Libraries.
-
-##  download behavior:
+ - download behavior:
 
     <a href="/images/a.jpg" download>
     with download , chrome and FireFox are silently download,  but IE still open it in the page
@@ -52,7 +46,7 @@ jQuery.ajax({
     after set attachment, chrome and FireFox are still silently downloading, but IE ask "do you want to open or save..."
     for attachment, IE will automatically close window which is opened by target="_blank", but chrome and FireFox won't close it.
 
-## console.log
+ - console.log
     
 Basically IE browser doesn’t have console object if users didn’t open developer console.
 So any code are using console.log or warn will fail.
@@ -74,14 +68,27 @@ if (!window.console) {
     In some browser, console.log will automatically write down which line of which file generate the log
     you can click on it to open related code
 
-##  to run your web page on your local , you have to disable some browser security setting
-    in Chrome: you can add some parameter to disable it: 
+## IDE
+ - Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
+     if your JavaScript is not there, you need manually add it 
+     otherwise you will get this error when click the link of  a JavaScript function:     
+       "the source is not on the include path of a JavaScript project"
+       
+     you can change it Project Explorer view, right-click the required project and select Properties | JavaScript | JavaScript Libraries.
+
+
+
+##  Run without a server
+
+ To run your web page on your local , you have to disable some browser security setting
+###   in Chrome: 
+	you can add some parameter to disable it: 
         "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
     
     Since Chrome 49, the command is:
         "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security --user-data-dir
 
-    In Firefox: 
+### In Firefox: 
         Go to about:config
         Find security.fileuri.strict_origin_policy parameter
         Set it to false
