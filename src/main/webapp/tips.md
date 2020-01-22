@@ -39,9 +39,10 @@ jQuery.ajax({
 ```		
 
  - download behavior:
-
-    <a href="/images/a.jpg" download>
-    with download , chrome and FireFox are silently download,  but IE still open it in the page
+```xml
+	<a href="/images/a.jpg" download />
+```
+    With 'download' , chrome and FireFox are silently download,  but IE still open it in the page
 
     after set attachment, chrome and FireFox are still silently downloading, but IE ask "do you want to open or save..."
     for attachment, IE will automatically close window which is opened by target="_blank", but chrome and FireFox won't close it.
