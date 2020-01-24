@@ -42,10 +42,11 @@ jQuery.ajax({
 ```xml
 	<a href="/images/a.jpg" download />
 ```
-    With 'download' , chrome and FireFox are silently download,  but IE still open it in the page
+ 
+ With 'download' , chrome and FireFox are silently download,  but IE still open it in the page
 
-    after set attachment, chrome and FireFox are still silently downloading, but IE ask "do you want to open or save..."
-    for attachment, IE will automatically close window which is opened by target="_blank", but chrome and FireFox won't close it.
+ After set attachment, chrome and FireFox are still silently downloading, but IE ask "do you want to open or save..."
+ for attachment, IE will automatically close window which is opened by target="_blank", but chrome and FireFox won't close it.
 
  - console.log
     
@@ -65,9 +66,9 @@ if (!window.console) {
 	
 ```	
 
-    by the way, some JS library has some kind of logging service, but none of them can be traced by browser: 
-    In some browser, console.log will automatically write down which line of which file generate the log
-    you can click on it to open related code
+By the way, some JS library has some kind of logging service, but none of them can be traced by browser: 
+In some browser, console.log will automatically write down which line of which file generate the log
+you can click on it to open related code
 
 ## IDE
  - Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
@@ -83,12 +84,14 @@ if (!window.console) {
 
  To run your web page on your local , you have to disable some browser security setting
 ###   in Chrome: 
-	you can add some parameter to disable it: 
+You can add some parameter to disable it: 
+```shell
         "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
-    
-    Since Chrome 49, the command is:
+```    
+Since Chrome 49, the command is:
+```shell
         "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security --user-data-dir
-
+```
 ### In Firefox: 
         Go to about:config
         Find security.fileuri.strict_origin_policy parameter
