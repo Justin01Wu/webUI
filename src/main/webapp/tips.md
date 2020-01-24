@@ -86,11 +86,11 @@ you can click on it to open related code
 ###   in Chrome: 
 You can add some parameter to disable it: 
 ```shell
-  "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
 ```    
 Since Chrome 49, the command is:
 ```shell
-  "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security --user-data-dir
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security --user-data-dir
 ```
 ### In Firefox: 
         Go to about:config
