@@ -97,3 +97,5 @@ Since Chrome 49, the command is:
         Find security.fileuri.strict_origin_policy parameter
         Set it to false
              
+## JavaScript IDE support			 
+- Eclipse give up JavaScript supporting, Please see here](https://bugs.eclipse.org/bugs/show_bug.cgi?id=530728) 	 
