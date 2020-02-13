@@ -12,7 +12,8 @@
 ## build and run in the command
 
 - TypeScript files have extension ts
-- you have to use tsc to comile  a ts file: `tsc abc.ts`
+- you have to use tsc to comile  a ts file: `tsc abc.ts`, it will generate a js file
+- Then run this command: `node abc.js`
 
 ## build and run in IDEthe
 
