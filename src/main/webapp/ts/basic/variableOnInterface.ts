@@ -1,6 +1,7 @@
 interface IPerson {
    firstName: string;
-   lastName: string;
+   lastName: string;  // mandatory field, implementation must have it	       
+	birthDate?: Date;   // this field is optional because that question mark
    sayHi: () => string;
 }
 

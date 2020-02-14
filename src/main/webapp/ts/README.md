@@ -37,7 +37,41 @@
 - It has decorators (roughly comparable to Java's annotations)
 
 ## compare with Java:  https://www.beyondjava.net/comparing-typescript-java
+- It has only one number type, Java has many: int, long, float, double
+- It has **any** type, which is backward compatible for old Javascript code or library. it opens back door for type unsafe:
+```typescript
+	let notSure: any = 4;
+```
+- ** any** type is different from Object:
+```typescript
+	let notSure: any = 4;
+	notSure.ifItExists(); // okay, ifItExists might exist at runtime
+	notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
 
+	let prettySure: Object = 4;
+	prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
+```
+- Type inference also applies to methods, much the way it does in Scala. 
+If you don't specify the return type, the compiler checks every return value and determines the common data type:
+```typescript
+	public multiply(a: number, b: number) {
+	  return a * b;
+	}
 
+	public consumer() {
+	  // tooltip shows: "let numeric: number = ..."
+	  let numeric = this.multiply(4, 2);
 
+	  // doesn't compile
+	  // tooltip shows: "Type 'number' is not assignable to 'string'"
+	  let text: string = this.multiply(4, 2);
+	}
+```
+- Some attributes of an interface can be optional to support dynamic REST response( see question mark below):
+```typescript
+	interface Person {		
+		name: string;       // mandatory field, implementation must have it
+		birthDate?: Date;   // this field is optional
+	}
+```
 
