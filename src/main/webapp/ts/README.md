@@ -12,8 +12,14 @@
 ## build and run in the command
 
 - TypeScript files have extension ts
-- you have to use tsc to comile  a ts file: `tsc abc.ts`, it will generate a js file
+- You have to use tsc to comile  a ts file: `tsc abc.ts`, it will generate a js file
 - Then run this command: `node abc.js`
+- my current tsc version is 3.7.4, by default it will generate target code for es3, you can use this command to see it
+```shell
+	tsc --help
+```
+- You can use this command to change it: `tsc --target es6 abs.ts`
+- You can also set it in tsconfig.json in your project root folder
 
 ## build and run in the IDE
 
@@ -54,7 +60,7 @@
 - Type inference also applies to methods, much the way it does in Scala. 
 If you don't specify the return type, the compiler checks every return value and determines the common data type:
 ```typescript
-	public multiply(a: number, b: number) {
+	public multiply(a: number, b: number) {  // usually you should define like this public multiply(a: number, b: number): number {
 	  return a * b;
 	}
 
