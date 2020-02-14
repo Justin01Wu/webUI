@@ -38,7 +38,9 @@ class Customer3 extends com.justa999.person.Customer2 {
    firstName = 'Tom';  // default value for instance variable
    lastName = 'Hanks';
    middleName  = 'sdsds';
-   sayHi () {return "hi," + this.firstName; }
+   private birthDate?: Date = new Date();
+   sayHi () {return "hi," + this.firstName; };
+   get getBirthDate(): Date { return this.birthDate}  // it has 'get' decration
 }
 const c3 = new Customer3();
 
@@ -46,3 +48,6 @@ const c3 = new Customer3();
 console.log("c3: ============");
 console.log(c3.firstName);
 console.log(c3.lastName);
+//console.log(c3.birthDate);   // compile error, because it is private
+console.log(c3.getBirthDate);   // it is not a function, can't use () with it
+console.log(c3.sayHi());   // 
