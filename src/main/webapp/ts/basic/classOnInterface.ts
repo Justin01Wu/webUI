@@ -40,7 +40,7 @@ class Customer3 extends com.justa999.person.Customer2 {
    middleName  = 'sdsds';
    private birthDate?: Date = new Date();
    sayHi () {return "hi," + this.firstName; };
-   get getBirthDate(): Date { return this.birthDate}  // it has 'get' decration
+   get getBirthDate(): Date { return this.birthDate}  // it has 'get' decoration
 }
 const c3 = new Customer3();
 
