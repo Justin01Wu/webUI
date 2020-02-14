@@ -18,7 +18,7 @@
 ```shell
 	tsc --help
 ```
-- You can use this command to change it: `tsc --target es6 abs.ts`
+- You can use this command to change it: `tsc --target es6 abc.ts`
 - You can also set it in tsconfig.json in your project root folder
 
 ## build and run in the IDE
