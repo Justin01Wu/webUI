@@ -1,26 +1,28 @@
-// import { constants } from "os";
+namespace com.justa999.person { 
 
-interface IPerson {
-   firstName: string;
-   lastName: string;
-   sayHi: () => string;
+   export interface IPerson {
+      firstName: string;
+      lastName: string;
+      sayHi: () => string;
+   }
+
+   export interface IPerson2 extends IPerson {
+      middleName: string;
+   }
+
+   // create a class from an interface
+   export abstract class Customer2 implements IPerson2 {
+      firstName: string;
+      middleName: string;
+      lastName: string;
+      abstract sayHi(): string;
+   }
 }
 
-interface IPerson2 extends IPerson {
-   middleName: string;
-}
-
-// create a class from an interface
-abstract class Customer2 implements IPerson2 {
-   firstName: string;
-   middleName: string;
-   lastName: string;
-   abstract sayHi(): string;
-}
-
+/// <reference path = "classOnInterface.ts" />
 // const c2 = new Customer2();  this will get compile error because Customer2 is abstract
 // so you have to use this way:
-const c2: Customer2 = {
+const c2: com.justa999.person.Customer2 = {
    firstName: 'Justin',  // instance variable
    lastName: 'Wu',
    middleName: 'sdsds',
@@ -32,7 +34,7 @@ console.log("c2: ===============");
 console.log(c2.firstName);
 console.log(c2.lastName);
 
-class Customer3 extends Customer2 {
+class Customer3 extends com.justa999.person.Customer2 {
    firstName = 'Tom';  // default value for instance variable
    lastName = 'Hanks';
    middleName  = 'sdsds';

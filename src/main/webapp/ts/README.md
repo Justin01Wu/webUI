@@ -42,7 +42,7 @@
 ```typescript
 	let notSure: any = 4;
 ```
-- ** any** type is different from Object:
+- **any** type is different from Object:
 ```typescript
 	let notSure: any = 4;
 	notSure.ifItExists(); // okay, ifItExists might exist at runtime
@@ -67,7 +67,7 @@ If you don't specify the return type, the compiler checks every return value and
 	  let text: string = this.multiply(4, 2);
 	}
 ```
-- Some attributes of an interface can be optional to support dynamic REST response( see question mark below):
+- Some attributes of an interface can be optional to support dynamic REST response (see question mark below):
 ```typescript
 	interface Person {		
 		name: string;       // mandatory field, implementation must have it
