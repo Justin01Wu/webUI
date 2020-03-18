@@ -43,12 +43,12 @@
 - It has decorators (roughly comparable to Java's annotations)
 
 ## compare with Java:  https://www.beyondjava.net/comparing-typescript-java
-- It has only one number type, Java has many: int, long, float, double
-- It has **any** type, which is backward compatible for old Javascript code or library. it opens back door for type unsafe:
++ It has only one number type, Java has many: int, long, float, double
++ It has **any** type, which is backward compatible for old Javascript code or library. it opens back door for type unsafe:
 ```typescript
 	let notSure: any = 4;
 ```
-- **any** type is different from Object:
++ **any** type is different from Object:
 ```typescript
 	let notSure: any = 4;
 	notSure.ifItExists(); // okay, ifItExists might exist at runtime
@@ -57,7 +57,8 @@
 	let prettySure: Object = 4;
 	prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
 ```
-- Type inference also applies to methods, much the way it does in Scala. 
+
++ Type inference also applies to methods, much the way it does in Scala. 
 If you don't specify the return type, the compiler checks every return value and determines the common data type:
 ```typescript
 	public multiply(a: number, b: number) {  // usually you should define like this public multiply(a: number, b: number): number {
@@ -73,11 +74,28 @@ If you don't specify the return type, the compiler checks every return value and
 	  let text: string = this.multiply(4, 2);
 	}
 ```
-- Some attributes of an interface can be optional to support dynamic REST response (see question mark below):
++ Some attributes of an interface can be optional to support dynamic REST response (see question mark below):
 ```typescript
 	interface Person {		
 		name: string;       // mandatory field, implementation must have it
 		birthDate?: Date;   // this field is optional
 	}
 ```
++ Support Default parameters:
+```typescript
+	function calculate_discount(price:number,rate:number = 0.50) { 
+	   var discount = price * rate; 
+	   console.log("Discount Amount: ",discount); 
+	} 
+	calculate_discount(1000) 
+	calculate_discount(1000,0.30)
+```
+
+
+## drawbacks
++ JavaScript language is weak for large application: no thread, no type safe, no interface, bad inhertance...
++ TypeScript is compiled into Javascript, based on target ES settings, which is not stable as Java JVM code
++ Need a compiling stage , can only be good for large web application
++ Need to do something to hook source code into target Javascript code when debug in the browser
+
 
