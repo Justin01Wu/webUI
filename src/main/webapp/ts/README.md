@@ -28,19 +28,49 @@
 - VisualStudio Code can do similar function of Eclipse refactoring, like rename a method in whole project scope
 
 ## typescript language 
-- It is similar like Java rather than Javascript
-- It has abstract class concept
++ It is similar like Java rather than Javascript
++ It has abstract class concept
 ```typescript
 	abstract class Customer2 implements IPerson2 {   
 		abstract sayHi(): string;
 	}
 ```
-- It has Interface
-- It has generic
-- It has extension and implementation
-- It hasprivate attributes
-- It hasprivate attributes
-- It has decorators (roughly comparable to Java's annotations)
++ It has Interface
+```typescript
+	interface IPerson { 
+	   firstName:string, 
+	   lastName:string, 
+	   sayHi: ()=>string 
+	} 
+```	
++ It has generic
++ It has extension and implementation
++ It has private attributes
++ It has decorators (roughly comparable to Java's annotations)
++ It support module (depreacted, please use namespace)
+```typescript
+	module TutorialPoint { 
+	   export function add(x, y) {  
+	      console.log(x+y); 
+	   } 
+	}
+```
++ It support namespace, similar like Java package
+```typescript
+	namespace TutorialPoint { 
+	   export function add(x, y) { console.log(x + y);} 
+	}
+```
++ Both module and namespace will be compiled into anonymous function:
+```typescript
+	var TutorialPoint; 
+	(function (TutorialPoint) { 
+	   function add(x, y) { 
+	      console.log(x + y); 
+	   } 
+	   TutorialPoint.add = add; 
+	})(TutorialPoint || (TutorialPoint = {}));
+```
 
 ## compare with Java:  https://www.beyondjava.net/comparing-typescript-java
 + It has only one number type, Java has many: int, long, float, double
@@ -61,7 +91,8 @@
 + Type inference also applies to methods, much the way it does in Scala. 
 If you don't specify the return type, the compiler checks every return value and determines the common data type:
 ```typescript
-	public multiply(a: number, b: number) {  // usually you should define like this public multiply(a: number, b: number): number {
+	public multiply(a: number, b: number) {  
+	// usually you should define like this public multiply(a: number, b: number): number {
 	  return a * b;
 	}
 
