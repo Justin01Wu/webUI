@@ -96,6 +96,12 @@ Since Chrome 49, the command is:
         Go to about:config
         Find security.fileuri.strict_origin_policy parameter
         Set it to false
+		
+## Run with a server
++ This project is already has Java web project setting, you just need to package and deploy it
++ You can also use IDe like Eclipse to run it
++ You can use this command in the target folder to start a web server if you have NodeJs installed: `npx serve`	
++ Please see serve details from here https://www.npmjs.com/package/serve	
              
 ## JavaScript IDE support			 
 - Eclipse give up JavaScript supporting, Please see here](https://bugs.eclipse.org/bugs/show_bug.cgi?id=530728) 	 
