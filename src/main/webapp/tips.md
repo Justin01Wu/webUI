@@ -98,8 +98,8 @@ Since Chrome 49, the command is:
         Set it to false
 		
 ## Run with a server
-+ This project is already has Java web project setting, you just need to package and deploy it
-+ You can also use IDe like Eclipse to run it
++ This project already has Java web project setting, you just need to package and deploy it
++ You can also use IDE like Eclipse to run it
 + You can use this command in the target folder to start a web server if you have NodeJs installed: `npx serve`	
 + Please see serve details from here https://www.npmjs.com/package/serve	
              
