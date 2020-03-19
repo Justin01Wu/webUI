@@ -67,18 +67,17 @@ if (!window.console) {
 ```	
 
 By the way, some JS library has some kind of logging service, but none of them can be traced by browser: 
-In some browser, console.log will automatically write down which line of which file generate the log
-you can click on it to open related code
+In some browser, console.log will automatically write down which line of which file generate the log.
+You can click on it to open related code
 
 ## IDE
- - Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
++ Eclipse (some version) always set JavaScript build path to src\main\webapp when import a maven project, 
      if your JavaScript is not there, you need manually add it 
      otherwise you will get this error when click the link of  a JavaScript function:     
        "the source is not on the include path of a JavaScript project"
        
      you can change it Project Explorer view, right-click the required project and select Properties | JavaScript | JavaScript Libraries.
-
-
++ Eclipse give up JavaScript supporting since 2019, Please see here](https://bugs.eclipse.org/bugs/show_bug.cgi?id=530728) 
 
 ##  Run without a server
 
@@ -102,6 +101,5 @@ Since Chrome 49, the command is:
 + You can also use IDE like Eclipse to run it
 + You can use this command in the target folder to start a web server if you have NodeJs installed: `npx serve`	
 + Please see serve details from here https://www.npmjs.com/package/serve	
-             
-## JavaScript IDE support			 
-- Eclipse give up JavaScript supporting, Please see here](https://bugs.eclipse.org/bugs/show_bug.cgi?id=530728) 	 
+		 
+	 
