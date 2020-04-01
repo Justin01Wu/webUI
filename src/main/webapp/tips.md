@@ -82,7 +82,7 @@ You can click on it to open related code
 ##  Run without a server
 
  To run your web page on your local , you have to disable some browser security setting
-###   in Chrome: 
+###   In Chrome: 
 You can add some parameter to disable it: 
 ```shell
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files --disable-web-security
