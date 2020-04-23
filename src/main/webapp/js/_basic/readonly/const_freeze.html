@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta charset=utf-8 />
+</head>
+<body>
+
+	<h1>compare const and Object.freeze</h1>
+	<h2>const lock the pointer, will throw exception when  you change the pointer</h2>
+	<pre>
+	const foo = {};
+	foo = {}; // TypeError: Assignment to constant variable.
+	</pre>
+	
+	<br />	
+	<h2>Object.freeze lock the properties of an object</h2>
+	<pre>
+	let foo = Object.freeze({});
+	foo.prop = 123;
+	console.log(foo.prop) // undefined
+	</pre>
+	<br />
+
+	<h2>changing frozen object properties will be silently ignored until you have 'use strict' in the top</h2>
+	<br />
+
+	<script>
+		//"use strict";
+		let foo = Object.freeze({});
+		foo.prop = 123;
+		console.log(foo.prop) // undefined
+		
+		const foo2 = {};
+		foo2 = {}; // TypeError: Assignment to constant variable.
+	</script>
+
+</body>
+
+</html>
