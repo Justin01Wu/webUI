@@ -10,8 +10,27 @@
 
 
     <h1>test Let and Var difference</h1>
-    <h2>Please open console to see the result</h2>
-
+    
+	<h2>Let is blcok scope, var is function scope</h2>
+	
+	<h2>the follow is working:</h2>
+	<pre>
+	{
+		var x = "It's me"; 
+	}
+	console.log(x);  // will output "It's me"
+	</pre>
+	
+	<h2>the follow is NOT working:</h2>
+	<pre>
+	{
+		let y = "It's me"; 
+	}
+	console.log(y);  // will throw ReferenceError
+	</pre>
+	
+	<br/>
+	<h2>Please open console to see the result</h2>
 
     <script>
         var a = 1;
@@ -26,7 +45,17 @@
         }
 
         console.log(a); // 11
-        console.log(b); // 2
+        console.log(b); // 2		
+
+		{
+			var x = "It's me"; 
+		}
+		console.log(x);  // will output "It's me"
+		
+		{
+			let y = "It's me"; 
+		}
+		console.log(y);  // will throw ReferenceError
 
 
     </script>
