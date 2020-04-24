@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>test Let and Var diff</title>
+</head>
+
+<body>
+
+
+    <h1>ES6 support back tick for multiple line string</h1>
+    
+
+	<h2>the follow is working:</h2>
+	<pre>
+let multi = `
+hello
+world
+my
+name
+is
+asim`;
+console.log(multi);
+	</pre>
+	
+	<h2>the follow is also working:</h2>
+	<pre>
+let name = "asim";
+let multi2 = `
+hello
+world
+my
+name
+is
+${name}
+`;
+console.log(multi2);
+
+	</pre>
+	
+	<h2>Please open console to see the result</h2>
+	<h2>All browsers except IE support it</h2>
+
+    <script>
+let multi = `
+hello
+world
+my
+name
+is
+asim`;
+console.log(multi);
+
+let name = "asim";
+let multi2 = `
+hello
+world
+my
+name
+is
+${name}
+`;
+console.log(multi2);
+
+    </script>
+</body>
+
+</html>
