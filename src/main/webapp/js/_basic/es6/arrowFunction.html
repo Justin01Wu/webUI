@@ -32,9 +32,62 @@ setTimeout(() => {
 setTimeout(() => console.log("setTimeout called!"), 1000);
 
 	</pre>	
+
+	<h2>With parameters:</h2>
+	<pre>
+// old way:
+let add = function(a,b) {
+	return a + b;
+};
+
+// Now new way:
+let add = (a,b) => a + b;
+	</pre>	
 	
+	<h2>'this' in traditional anonymous function will point to function itself.</h2>
+		<pre>
+let obj = {
+	name: "asim",
+	sayLater: function () {
+		let self = this; // Assign to self
+		console.log(self);
+		setTimeout(function () {
+			console.log(`${self.name}`); // 'this' doesn't work, so have to use self not this
+		}, 1000);
+	}
+};
+	</pre>	
+	
+	<h2>But 'this' in arrow function will point to its context, so this code is working:</h2>
+			<pre>
+let obj = {
+	name: "asim",
+	sayLater: function () {
+		console.log(this); // `this` points to obj
+		setTimeout(() => {
+			console.log(this); // `this` points to obj
+			console.log(`${this.name}`); // `this` points to obj
+		}, 1000);
+	}
+};
+obj.sayLater();
+	</pre>	
 	<h2>All browsers except IE support it</h2>
 
+	<script>
+	let obj = {
+		name: "asim",
+		sayLater: function () {
+			console.log(this); // `this` points to obj
+			setTimeout(() => {
+				console.log(this); // `this` points to obj
+				console.log(`${this.name}`); // `this` points to obj
+			}, 1000);
+		}
+	};
+	obj.sayLater();
+
+    </script>
     
 </body>
 
