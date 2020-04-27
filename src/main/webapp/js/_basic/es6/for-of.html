@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>test for of loop</title>
+</head>
+
+<body>
+
+
+    <h1>ES6 fixed for in loop by using for of loop</h1>
+    
+
+	<h2>The ES5 for in loop has a bug:</h2>
+	<pre>
+let array = [10,20,30];
+let total = 0;
+for (let index in array) {
+	total = total + index;
+}
+console.log(total);  // output will be "0123"
+	</pre>
+	
+	<h2>Now use For of loop:</h2>
+	<pre>
+
+let array = [10,20,30];
+let total = 0;
+for (let value of array) {
+	total = total + value;
+}
+console.log(total);  // output will be 60
+	</pre>	
+	
+<h2>The for-in loop is designed for iterating over an objects properties, like so:</h2>
+
+	<pre>
+
+var obj = {a:1,b:2};
+for (let prop in obj) {
+	console.log(prop);
+}
+// a
+// b
+	</pre>	
+	
+	<h2>Please always use for of on the array, set and map, always use for in on the object</h2>
+	<h2>All browsers except IE support it</h2>
+
+	<script>
+let array = [10,20,30];
+let total = 0;
+for (let index in array) {
+	total = total + index;
+}
+console.log(total);  // output will be "0012"
+
+total = 0;
+for (let value of array) {
+	total = total + value;
+}
+console.log(total);  // output will be 60
+
+var obj = {a:1,b:2};
+for (let prop in obj) {
+	console.log(prop);
+}
+
+// a
+// b
+    </script>
+    
+</body>
+
+</html>
