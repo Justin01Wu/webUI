@@ -40,7 +40,16 @@
 	<ul>
 		<li>Promise is also a callBack function, but it has a standard interface</li>
 		<li>Promise can easily work together like chain because it has a standard interface</li>
+		<li>Promise will have much easy error handler because it has a standard interface:</li>
 	</ul>
+	<pre>
+		// Handling Errors
+		Promise.resolve('done')
+				.then((val) => {throw new Error("fail in the promise")})
+				//.then((val) => console.log(val), (err) => console.error(err))
+				.catch((err) => console.error(err));   // the same as above line right part
+	</pre>
+
 	<h2>All browsers except IE support it</h2>
 
 	<script>
@@ -63,6 +72,12 @@
 			return promise;
 		}
 		doAsyncTask2().then((data) => console.log("Task Complete with data: " + data));
+
+		// Handling Errors
+		Promise.resolve('done')
+				.then((val) => {throw new Error("fail in the promise")})
+				//.then((val) => console.log(val), (err) => console.error(err))
+				.catch((err) => console.error(err));   // the same as above line right part
     </script>
     
 </body>
