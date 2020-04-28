@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>test Promise</title>
+</head>
+
+<body>
+
+
+    <h1>ES6 Promise</h1>
+    
+
+	<h2>We have to use callBack before promise, which is ugly:</h2>
+	<pre>
+		function doAsyncTask1(cb) {
+			setTimeout(() => {
+				console.log("Async Task Calling Callback");
+				cb("data2 from Async task");
+			}, 1000);
+		}
+		doAsyncTask1((data) => console.log("Callback Called with data: " + data));
+	</pre>
+	
+	<h2>Now we use promise:</h2>
+	<pre>
+		function doAsyncTask2() {
+			let promise = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log("Async Work Complete");
+					resolve("data2 from promise");
+				}, 2000);
+			});
+			return promise;
+		}
+		doAsyncTask2().then((data) => console.log("Task Complete with data: " + data));
+	</pre>	
+	<h2>Main differences:</h2>
+	<ul>
+		<li>Promise is also a callBack function, but it has a standard interface</li>
+		<li>Promise can easily work together like chain because it has a standard interface</li>
+	</ul>
+	<h2>All browsers except IE support it</h2>
+
+	<script>
+
+		function doAsyncTask1(cb) {
+			setTimeout(() => {
+				console.log("Async Task Calling Callback");
+				cb("data2 from Async task");
+			}, 1000);
+		}
+		doAsyncTask1((data) => console.log("Callback Called with data: " + data));
+
+		function doAsyncTask2() {
+			let promise = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log("Async Work Complete");
+					resolve("data2 from promise");
+				}, 2000);
+			});
+			return promise;
+		}
+		doAsyncTask2().then((data) => console.log("Task Complete with data: " + data));
+    </script>
+    
+</body>
+
+</html>
