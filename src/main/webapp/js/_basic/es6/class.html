@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>test ES6 class</title>
+</head>
+
+<body>
+
+
+    <h1>Before ES6, JavaScript only used prototype pattern or function to simulate classical pattern.</h1>
+    
+
+	<h2>the old way:</h2>
+	<pre>
+        function MyClass() {
+            this.a = 'first';
+        };
+        
+        MyClass.prototype.sayHi = function() {
+            console.log(this.a) ;  //outpot 'first'
+        };
+	</pre>
+	
+	<h2>Now Es6 support Class and Inheritance(more and more close to Java):</h2>
+	<pre>
+        class Person {
+            name = "";
+            constructor(name) {
+                this.name = name;            
+            }
+            whoAreYou() {
+                return `Hi i'm ${this.name}`;
+            }
+        }
+        let person = new Person('Justin');
+        console.log(person.whoAreYou());
+
+        class Student extends Person { 
+            course;
+            constructor(name, course) {
+                super(name);
+                this.course = course;
+            }
+            whoAreYou() { 
+                return `${super.whoAreYou()} and i'm studying ${this.course}`;
+            }
+        }
+
+        let student = new Student('Justin', 'Computer Science');
+        console.log(student.whoAreYou());
+
+	</pre>
+	
+	<h2>Please open console to see the result</h2>
+	<h2>All browsers except IE support it</h2>
+
+    <script>
+        class Person {
+            name = "";
+            constructor(name) {
+                this.name = name;            
+            }
+            whoAreYou() {
+                return `Hi i'm ${this.name}`;
+            }
+        }
+        let person = new Person('Justin');
+        console.log(person.whoAreYou());
+
+        class Student extends Person { 
+            course;
+            constructor(name, course) {
+                super(name);
+                this.course = course;
+            }
+            whoAreYou() { 
+                return `${super.whoAreYou()} and i'm studying ${this.course}`;
+            }
+        }
+
+        let student = new Student('Justin', 'Computer Science');
+        console.log(student.whoAreYou());
+
+
+    </script>
+</body>
+
+</html>
