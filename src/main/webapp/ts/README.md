@@ -44,7 +44,13 @@
 	} 
 ```	
 + It has generic
-+ It has extension and implementation
+```typescript
+    class Post<T> {
+        content: T;
+    }
+```	
+
++ It has extension and implementation: `class Customer3 extends Customer2 implements Custom {...}`
 + It has private attributes
 + It has decorators (roughly comparable to Java's annotations)
 + It support module (depreacted, please use namespace)
