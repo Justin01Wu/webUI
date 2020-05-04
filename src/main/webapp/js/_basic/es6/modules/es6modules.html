@@ -5,8 +5,21 @@
     </head>
 	<body>
 		<h1>Es6 module demo</h1>
-		<h2> You need a web server to see the result, otherwise browser will blo0ck it for CORS reason</h2>
-		<h2> IE 11 doesn't support ES6 modules, Firefox and Chrome support it</h2>
+		<h2> You need a web server to see the result, otherwise browser will block it for CORS reason</h2>
+        <h2> IE 11 doesn't support ES6 modules, Firefox and Chrome support it</h2>
+        <h2> Define:</h2>
+        <pre>
+            export {square, cow};
+            export function abc(){};
+        </pre>
+
+        <h2> Only usage file will be added to the html page script tag, define file doesn't need</h2>
+        <h2>Usage:</h2>
+        <pre>
+            import { square, abc } from './html.js'
+        </pre>
+
+
 		<a href="https://www.sitepoint.com/using-es-modules/" target=_blank>comes from here</a>
 
 		<script type="module" src="es6modules.js"></script>
