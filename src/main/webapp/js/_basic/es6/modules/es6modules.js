@@ -1,5 +1,6 @@
 // es6modules.js
-import { tag } from './html.js'
+import { square, tag } from './html.js'
 
-const h1 = tag('h1', ' from Js code!')
-document.body.appendChild(h1)
+let a = square(12);
+const h1 = tag('h1', ' from Js code:' + a);
+document.body.appendChild(h1);
