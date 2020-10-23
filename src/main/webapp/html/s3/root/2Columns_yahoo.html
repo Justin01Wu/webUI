@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo different way to do 2 columns</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .content{
+                position: relative;
+                zoom:1;   /* this line is designed for old IE */
+            }
+            .aside{
+                position: absolute;
+                left:0;
+                top:0;
+                width:170px;
+                background-color:Lavender;
+            }
+            .main{
+                margin-left: 170px;
+                zoom: 1;  /* this line is designed for old IE */
+                background-color:aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="aside">
+                <h1>Demo different way to do 2 columns</h1>
+            </div>
+            <div class="main">
+                <h2>This is Yahoo style:</h2>
+                <h2>absolute + margin-left</h2>
+                <h2>support any old browser</h2>
+            </div>
+        </div>
+        <h2>----- outside of content -----</h2>
+    </body>
+</html>
