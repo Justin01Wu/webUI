@@ -5,7 +5,10 @@ API return:<br/>
 
 <textarea  style="width: 100%; height: 350px;" id=demo></textarea>
 
-<button onclick="callPetApi()" >Call API</button>
+<button onclick="callNameApi()" >Call Name API</button>
+<button onclick="callPetApi()" >Call Pet API</button>
+<button onclick="callPet2Api()" >Call Pet2 API</button>
+
 
 <script>
 
@@ -25,16 +28,17 @@ function callAPI(url){
 
 }
 
-const url = "https://bod76cqgu4.execute-api.us-east-1.amazonaws.com/default/returnMyName";
-callAPI(url);
-
-// var sss={first:'aaass'};
-// var str = JSON.stringify(sss, null, 4); // spacing level = 4
-// document.getElementById("demo").innerText = str;
-
-
-function callPetApi(){
+function callPet2Api(){
     const url = "https://qgyn8v5pvh.execute-api.us-east-1.amazonaws.com/default/mypet2";
+    callAPI(url);
+}
+function callPetApi(){
+    const url = "https://qgyn8v5pvh.execute-api.us-east-1.amazonaws.com/default/mypet";
+    callAPI(url);
+}
+
+function callNameApi(){
+    const url = "https://bod76cqgu4.execute-api.us-east-1.amazonaws.com/default/returnMyName";
     callAPI(url);
 }
 </script>
