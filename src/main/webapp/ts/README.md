@@ -115,7 +115,7 @@ If you don't specify the return type, the compiler checks every return value and
 		birthDate?: Date;   // this field is optional
 	}
 ```
-+ Support Default parameters:
++ Support default parameters:
 ```typescript
 	function calculate_discount(price:number,rate:number = 0.50) { 
 	   var discount = price * rate; 
@@ -144,7 +144,7 @@ If you don't specify the return type, the compiler checks every return value and
 ```
 
 
-## drawbacks
+## Drawbacks
 + JavaScript language is weak for large application: no thread, no type safe, no interface, bad inhertance...
 + TypeScript is compiled into Javascript, based on target ES settings, which is not stable as Java JVM code
 + Need a compiling stage , can only be good for large web application
