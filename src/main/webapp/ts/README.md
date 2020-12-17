@@ -133,7 +133,7 @@ If you don't specify the return type, the compiler checks every return value and
 	calculate_discount(1000) 
 	calculate_discount(1000,0.30)
 ```
-+ Typescript doesnt allow for the name-choosing of given parameters based on their type (without explicitly writing the type check yourself)
++ Overload: Typescript doesnt allow for the name-choosing of given parameters based on their type (without explicitly writing the type check yourself)
 + TS used multiple types parameters to replace overload, which is weak
 ```typescript
 	function calculate_discount(price:number|string) { 
