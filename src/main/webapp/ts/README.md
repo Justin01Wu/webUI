@@ -14,10 +14,7 @@
 - TypeScript files have extension ts
 - You have to use tsc to comile  a ts file: `tsc abc.ts`, it will generate a js file
 - Then run this command: `node abc.js`
-- my current tsc version is 3.7.4, by default it will generate target code for es3, you can use this command to see it
-```shell
-	tsc --help
-```
+- my current tsc version is 3.7.4, by default it will generate target code for es3, you can use this command to see it: `tsc --help`
 - You can use this command to change it: `tsc --target es6 abc.ts`
 - You can also set it in tsconfig.json in your project root folder
 
@@ -126,6 +123,23 @@ If you don't specify the return type, the compiler checks every return value and
 	} 
 	calculate_discount(1000) 
 	calculate_discount(1000,0.30)
+```
++ Support optional parameters:
+```typescript
+	function calculate_discount(price:number,rate?:number) { 
+	   var discount = price * rate; 
+	   console.log("Discount Amount: ",discount); 
+	} 
+	calculate_discount(1000) 
+	calculate_discount(1000,0.30)
+```
++ Support multiple types parameters(which can be replaced with overload):
+```typescript
+	function calculate_discount(price:number|string) { 
+	   ...
+	} 
+	calculate_discount(1000) 
+	calculate_discount('1000')
 ```
 
 
