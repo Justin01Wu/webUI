@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+	<h1>test Broadcast Channel</h1>
+
+	it comes from
+	<a
+		href="https://developers.google.com/web/updates/2016/09/broadcastchannel"
+		target="_blank">here</a>
+
+	<ul class="myUl">
+		<li>This page will notify other pages when it change the text</li>
+
+		<li>it is using BroadCastChannel which is not supported by IE</li>
+
+		<li>it will not notify the page itself</li>
+
+		<li>the event is only triggered on the same server</li>
+		
+		<li>it can be run at local, which is different from localStorage event</li>
+
+		<li>please open this page in two tabs for testing</li>
+
+	</ul>
+
+	<span class="myText">my text</span>
+	<br />
+
+	<button onClick=changeText();>change text</button>
+
+	<script>
+	
+	const channel = new BroadcastChannel('justa.my_bus');
+        
+	channel.onmessage = function(e) {
+		  console.log('Received', e.data);       	
+     	  document.querySelector('.myText').textContent = e.data;        	  
+      };
+
+      function changeText(){
+      	var newText = "Changed by a button at " + new Date().getTime();
+      	document.querySelector('.myText').textContent = newText;
+      	channel.postMessage(newText);
+      }
+
+
+        </script>
+
+</body>
+</html>

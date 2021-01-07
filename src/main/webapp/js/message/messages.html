@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1> Messages in web application</h1>
+
+It comes from <a href="https://stackoverflow.com/questions/28230845/communication-between-tabs-or-windows" target="_blank">here</a>
+<br/>
+
+<h1>There are ways to communicate between pages and domains:</h1>
+
+<h2>using window object</h2>
+<pre>Defects:
+		You need to open a window from your current window and 
+		then you can communicate only as long as you keep the windows open. 
+		If you reload the page in any of the windows, you most likely lost the communication.
+</pre>
+
+<h2>using window.postMessage</h2>
+<p> 
+  Can on web worker thread   <a href="../web_worker/web_worker.html" target="_blank">sample</a>
+</p>
+<pre>Can cross origin
+ 	the defects are the same of first one
+</pre>
+
+<h2>using dispathEvent</h2>
+
+<h2>using cookies</h2>
+<pre>You have to implement some sort of timeout to read the cookie periodically. 
+Furthermore you are limited by maximum cookie length, which is 4KB.
+</pre>
+
+<h2>using localStorage </h2>
+<a href="../storage/localStorageEvent.html" target="_blank">sample</a>
+<pre> pollute local storage, </pre>
+
+<h2>using BroadcastChannel</h2>
+<pre> Old browser didn't support this</pre>
+<a href="BroadcaseChannel.html" target="_blank">sample</a>
+
+</body>
+</html>
