@@ -35,8 +35,8 @@
         	
         	// this event is only for localStorage
         	
-        	console.log("storge is trigged on " + e.key);
-        	if(e.key == 'myText'){
+        	console.log("storage is trigged on " + e.key);
+        	if(e.key == 'justa.myText'){
         		document.querySelector('.myText').textContent = e.newValue;
         		console.log("from:" +  e.url);
         		console.log("area:" +  JSON.stringify(e.storageArea));
@@ -48,7 +48,8 @@
         	var newText = "Changed by a button at " + new Date().getTime();
         	document.querySelector('.myText').textContent = newText;
         	
-        	localStorage.setItem('myText', newText);  // will trigger storage event on other tabs if newText is different from previous
+        	localStorage.setItem('justa.myText', newText);  // will trigger storage event on other tabs if newText is different from previous
+			// better to add prefix like "justa" to avoid conflict with other applications in the same server
 
         }
 
