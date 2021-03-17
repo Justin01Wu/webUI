@@ -1,4 +1,6 @@
-rem call mvn clean package
+
+rem build the project
+call mvn clean package
 
 echo "copy files..."
 
