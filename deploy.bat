@@ -15,6 +15,6 @@ rem pip3 install --upgrade --user awscli --trusted-host pypi.python.org
 $env:Path = "C:\Program Files\nodejs\;C:\Python370;C:\Python370\Scripts\;"
 rem aws s3 ls s3://www.justa999.com/angular/
 
-aws s3 cp  ./target/webUI-1.0/ s3://www.justa999.com/webUI --recursive --exclude "META-INF/*" --exclude "WEB-INF/*"
+aws s3 cp  ./target/webUI-1.0/ s3://www.justa999.com/webUI --recursive --exclude "META-INF/*" --exclude "WEB-INF/*"  --exclude "extjs/*" --exclude "test_bower/*"
 
 
