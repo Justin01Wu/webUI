@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test rest parameter</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>test rest parameter (three dots)</h1>
+        
+        <button onClick=displayOrigJson();>display original Json </button>
+        <br/>
+        <button onClick=alert(sum(1,2,3));>test rest parameter </button>
+        <br/>
+        <button onClick=displayExtenedJson();>display extended Json</button>
+
+        
+        <br/><br/><br/>
+        It comes from  <a href = "https://oprearocks.medium.com/what-do-the-three-dots-mean-in-javascript-bc5749439c9a" target=_blank>here</a>
+        
+        <script>
+            const adrian = {
+				fullName: 'Adrian Oprea',
+				occupation: 'Software developer',
+				age: 31,
+				website: 'https://oprea.rocks'
+			};
+			const bill = {
+				...adrian,
+				fullName: 'overWrotten fullname',
+				extraField: 'Justin added',
+				website: 'overWrotten website'
+			};
+            
+			function sum(...numbers) {
+				return numbers.reduce((accumulator, current) => {
+					return accumulator += current
+				});
+			};
+            
+            function displayOrigJson() {
+                alert(JSON.stringify(adrian, null, 4));
+            }
+            
+            function displayExtenedJson() {
+                alert(JSON.stringify(bill,null,4));
+            }
+
+
+        </script>        
+    </body>
+
+
+</html>
