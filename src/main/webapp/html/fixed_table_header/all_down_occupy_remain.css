@@ -1,0 +1,36 @@
+.container {
+  width: 100px;
+  height: 300px;
+  border: 1px solid red;
+  float: left;
+}
+.up {
+  background: green;
+}
+.down {
+  background: pink;
+}
+.grid.container {
+  display: grid;
+  grid-template-rows: 100px;
+}
+.flexbox.container {
+  display: flex;
+  flex-direction: column;
+}
+.flexbox.container .down {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+.calc .up {
+  height: 100px;
+}
+.calc .down {
+  height: calc(100% - 100px);
+}
+.overflow.container {
+  overflow: hidden;
+}
+.overflow .down {
+  height: 100%;
+}
