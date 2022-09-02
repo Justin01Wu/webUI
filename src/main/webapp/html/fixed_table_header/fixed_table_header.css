@@ -25,7 +25,7 @@ table.fixed_headers th + th, table.fixed_headers td + td {
 
 }
 .fixed_headers td:nth-child(3), .fixed_headers th:nth-child(3) {	
-    width: 350px;
+    width: 30%; /* this one is not working well because the two tables has different width, one has vertical scroll bar*/
 
 }
 
