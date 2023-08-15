@@ -112,7 +112,7 @@ If you don't specify the return type, the compiler checks every return value and
 ```typescript
 	interface Person {		
 		name: string;       // mandatory field, implementation must have it
-		birthDate?: Date;   // this field is optional
+		birthDate?: Date;   // this field is optional, it equals:  birthDate: undefined|Date;
 	}
 ```
 + Support default parameters:
