@@ -9,20 +9,24 @@ th, td {
 	white-space: nowrap
 }
 
+tr:nth-child(even) td {
+	background-color: #ddd;
+}
+
 
 table th:nth-child(2){
     width: 25%;
 }
 
 .first {
-  background-color: rgba(128,128,128,.25);
+  background-color: lightblue;
   width:15%;
 }
 .second {
-  background-color: rgba(255,0,0,.25);
+  background-color: pink;
 }
 .third {
 	color: blue;
-	width: 25%;
-  background-color: rgba(0,0,255,.25);
+	width: 5%;
+  background-color: lightyellow;
 }
