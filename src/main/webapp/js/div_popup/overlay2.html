@@ -21,10 +21,13 @@
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+	margin-left: 200px;
+	margin-top: 200px;
+	margin-right: 0px;
+	margin-bottom: 0px;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 300px; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -49,8 +52,9 @@
 		<button id="myBtn">Open Modal</button>
 		<ul>
 			<li>This button will display a full screen size half transprant div </li>
-			<li>In this Div, it has another small div to display dialog box content</li>
+			<li>In this div, it has another small div to display dialog box content</li>
 			<li>This big div also has a click event to close itself</li>
+			<li>The click event has a target, so can detect if the event comes from big div or small div</li>
 			<li>The samples comes from <a href="https://www.w3schools.com/howto/howto_css_modals.asp">here</a></li>		
 		</ul>
 		
